@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:longzongbuy/Home/home.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:longzongbuy/Home/screens/ItemTable/bloc/itemtable_bloc.dart';
+import 'package:longzongbuy/Home/screens/ItemTable/itemTable.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +29,10 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider(
+        create: (context) => ItemTableBloc()..add(ItemTableFetched()),
+        child: ItemTable(),
+      ),
     );
   }
 }
