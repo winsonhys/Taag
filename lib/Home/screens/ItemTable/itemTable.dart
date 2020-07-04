@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:longzongbuy/Home/screens/ItemTable/bloc/itemtable_bloc.dart';
+import 'package:longzongbuy/Home/screens/ItemTable/widgets/ItemCard.dart';
 import 'package:longzongbuy/models/shopping_item.dart';
 
 class ItemTable extends StatefulWidget {
@@ -15,7 +16,7 @@ class ItemTable extends StatefulWidget {
 
 class _ItemTableState extends State<ItemTable> {
   Widget _buildGridItem(ShoppingItem item) {
-    return Container(child: Text(item.name));
+    return Itemcard(item);
   }
 
   @override

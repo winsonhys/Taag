@@ -16,12 +16,23 @@ class ItemTableBloc extends Bloc<ItemTableEvent, ItemTableState> {
   Stream<ItemTableState> mapEventToState(
     ItemTableEvent event,
   ) async* {
-    // TODO: implement mapEventToState
     if (event is ItemTableFetched) {
       yield ItemTableSuccess([
-        ShoppingItem("1", "test1", ""),
-        ShoppingItem("2", "test2", ""),
-        ShoppingItem("3", "test3", "")
+        ShoppingItem(
+            "1",
+            "test1",
+            "https://s3.gsxtr.com/i/pr/t-shirt-patagonia-p-6-logo-responsibili-tee-t-shirt-classic-navy-130721-450-2.jpg",
+            "1"),
+        ShoppingItem(
+            "2",
+            "test2",
+            "https://s3.gsxtr.com/i/pr/t-shirt-patagonia-p-6-logo-responsibili-tee-t-shirt-classic-navy-130721-450-2.jpg",
+            "2"),
+        ShoppingItem(
+            "3",
+            "test3",
+            "https://s3.gsxtr.com/i/pr/t-shirt-patagonia-p-6-logo-responsibili-tee-t-shirt-classic-navy-130721-450-2.jpg",
+            "3")
       ]);
     }
   }
