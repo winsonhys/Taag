@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:longzongbuy/Home/home.dart';
-import 'package:longzongbuy/Home/screens/ItemTable/bloc/itemtable_bloc.dart';
-import 'package:longzongbuy/Home/screens/ItemTable/itemTable.dart';
+import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +28,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        routes: {"/details": (context) => ItemDetails()},
         home: HomePage());
   }
 }

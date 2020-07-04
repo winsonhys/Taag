@@ -5,8 +5,9 @@ class ShoppingItem extends Equatable {
   final String name;
   final String imageUri;
   final String price;
+  final String desc;
 
-  ShoppingItem(this.id, this.name, this.imageUri, this.price);
+  ShoppingItem(this.id, this.name, this.imageUri, this.price, {this.desc = ""});
 
   @override
   List<Object> get props => [id, name, imageUri, price];

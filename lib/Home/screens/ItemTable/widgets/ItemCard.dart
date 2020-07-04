@@ -18,8 +18,7 @@ class Itemcard extends StatelessWidget {
         children: <Widget>[
           Container(
               padding: EdgeInsets.all(25),
-              height: 140,
-              width: 160,
+              constraints: BoxConstraints(maxHeight: 140),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: Colors.blue,
@@ -29,7 +28,7 @@ class Itemcard extends StatelessWidget {
                       blurRadius: 10.0,
                     )
                   ]),
-              child: Image.network(item.imageUri)),
+              child: Hero(tag: item.id, child: Image.network(item.imageUri))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(
@@ -37,7 +36,8 @@ class Itemcard extends StatelessWidget {
               style: TextStyle(color: Colors.lightBlue, fontSize: 20),
             ),
           ),
-          Text("\$${item.price}", style: TextStyle(fontSize: 19))
+          Text("\$${item.price}",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
         ],
       ),
     );

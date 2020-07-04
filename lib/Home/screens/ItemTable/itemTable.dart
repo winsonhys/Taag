@@ -36,6 +36,8 @@ class _ItemTableState extends State<ItemTable> {
       if (state is ItemTableSuccess) {
         return GridView.count(
             crossAxisCount: 2,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
             children: state.items.map(_buildGridItem).toList());
       }
     });
