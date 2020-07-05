@@ -4,5 +4,5 @@ abstract class ItemDetailsEvent {}
 
 class ItemDetailsFetched extends ItemDetailsEvent {
   final String itemId;
-  ItemDetailsFetched(this.itemId)
+  ItemDetailsFetched(this.itemId);
 }

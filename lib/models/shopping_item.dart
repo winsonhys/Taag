@@ -6,6 +6,7 @@ class ShoppingItem extends Equatable {
   final String imageUri;
   final String price;
   final String desc;
+  static final String tag = "SHOPPING_ITEM";
 
   ShoppingItem(this.id, this.name, this.imageUri, this.price, {this.desc = ""});
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:longzongbuy/Home/home.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
+import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +30,21 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        routes: {"/details": (context) => ItemDetails()},
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case ItemDetails.route:
+              return PageRouteBuilder(
+                  pageBuilder: (context, _, __) => BlocProvider(
+                        create: (context) => ItemDetailsBloc(),
+                        child: ItemDetails(),
+                      ),
+                  transitionDuration: Duration(milliseconds: 300),
+                  transitionsBuilder: (_, anim, __, child) =>
+                      FadeTransition(opacity: anim, child: child));
+          }
+
+          return MaterialPageRoute(builder: (_) => HomePage());
+        },
         home: HomePage());
   }
 }
