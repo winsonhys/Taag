@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
-import 'package:longzongbuy/models/shopping_item.dart';
+import 'package:longzongbuy/Home/screens/ItemDetails/widgets/ItemDetailsHeader.dart';
 
 class ItemDetailsArguments {
   final String itemId;
@@ -23,6 +23,37 @@ class ItemDetails extends StatelessWidget {
       }
       return Scaffold(
           backgroundColor: Theme.of(context).accentColor,
+          floatingActionButton: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                width: 150,
+                child: SizedBox(
+                  child: FloatingActionButton(
+                    heroTag: 'unq1',
+                    onPressed: () {},
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                    backgroundColor: Colors.green,
+                    child: const Icon(Icons.map, size: 36.0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 16.0,
+              ),
+              FloatingActionButton.extended(
+                heroTag: 'unq2',
+                onPressed: () {},
+                materialTapTargetSize: MaterialTapTargetSize.padded,
+                backgroundColor: Colors.white,
+                label: Text("BUY NOW",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.bold)),
+              )
+            ],
+          ),
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.white,
@@ -40,69 +71,27 @@ class ItemDetailsBody extends StatelessWidget {
   const ItemDetailsBody(this.state, this.imageUri, this.itemId, {Key key})
       : super(key: key);
 
-  getHeaderText(ItemDetailsState state, ThemeData themeData) {
+  getItemDesc(ItemDetailsState state) {
     if (state is ItemDetailsSuccess) {
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            style: themeData.textTheme.headline5.copyWith(
-                color: themeData.accentColor, fontWeight: FontWeight.bold),
-            text: "${state.item.name}\n")
-      ]));
+      final text = state.item.desc;
+      return Text(
+        text,
+        style: TextStyle(color: Colors.white),
+      );
     }
-    return Container();
-  }
-
-  getPriceText(ItemDetailsState state, ThemeData themeData) {
-    if (state is ItemDetailsSuccess) {
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            style: themeData.textTheme.headline6
-                .copyWith(color: themeData.accentColor, fontSize: 15),
-            text: "Price\n"),
-        TextSpan(
-            style: themeData.textTheme.headline3.copyWith(
-                color: themeData.accentColor, fontWeight: FontWeight.bold),
-            text: "\$${state.item.price}")
-      ]));
-    }
-    return Container();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(children: <Widget>[
-      Stack(
-        children: <Widget>[
-          Container(
-              padding: EdgeInsets.only(left: 100),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(25.0),
-                      bottomRight: Radius.circular(25.0))),
-              child: ClipRRect(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(25.0)),
-                child: Hero(tag: itemId, child: Image.network(imageUri)),
-              )),
-          Positioned.fill(
-            right: 300,
-            child: Padding(
-              padding: EdgeInsets.only(left: 20.0, bottom: 30.0, top: 25.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  getHeaderText(state, Theme.of(context)),
-                  getPriceText(state, Theme.of(context))
-                ],
-              ),
-            ),
-          )
-        ],
-      )
-    ]));
+    return Stack(
+      children: <Widget>[
+        SingleChildScrollView(
+            child: Column(children: <Widget>[
+          ItemDetailsHeader(itemId: itemId, imageUri: imageUri, state: state),
+          Padding(
+              padding: EdgeInsets.only(top: 20.0), child: getItemDesc(state))
+        ])),
+      ],
+    );
   }
 }
