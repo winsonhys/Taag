@@ -8,7 +8,8 @@ class Itemcard extends StatelessWidget {
   const Itemcard(this.item, {Key key}) : super(key: key);
 
   void goToItemPage(context) {
-    Navigator.pushNamed(context, ItemDetails.route, arguments: item.id);
+    Navigator.pushNamed(context, ItemDetails.route,
+        arguments: ItemDetailsArguments(item.id, item.imageUri));
   }
 
   @override
@@ -17,20 +18,21 @@ class Itemcard extends StatelessWidget {
       onTap: () => goToItemPage(context),
       child: Column(
         children: <Widget>[
-          Container(
-              padding: EdgeInsets.all(25),
-              constraints: BoxConstraints(maxHeight: 140),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.blue,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 10.0,
-                    )
-                  ]),
-              child: Hero(
-                  tag: ShoppingItem.tag, child: Image.network(item.imageUri))),
+          Hero(
+              tag: item.id,
+              child: Container(
+                  constraints: BoxConstraints(maxHeight: 140),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 5.0,
+                        )
+                      ]),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.network(item.imageUri)))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(

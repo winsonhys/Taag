@@ -36,14 +36,16 @@ class MyApp extends StatelessWidget {
               return PageRouteBuilder(
                   pageBuilder: (context, _, __) => BlocProvider(
                         create: (context) => ItemDetailsBloc(),
-                        child: ItemDetails(),
+                        child: ItemDetails(settings.arguments),
                       ),
                   transitionDuration: Duration(milliseconds: 300),
                   transitionsBuilder: (_, anim, __, child) =>
                       FadeTransition(opacity: anim, child: child));
-          }
 
-          return MaterialPageRoute(builder: (_) => HomePage());
+            default:
+              return MaterialPageRoute(
+                  settings: settings, builder: (context) => HomePage());
+          }
         },
         home: HomePage());
   }
