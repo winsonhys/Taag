@@ -55,7 +55,7 @@ class ItemDetailsHeader extends StatelessWidget {
             child: ClipRRect(
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(25.0)),
-              child: Hero(tag: itemId, child: Image.network(imageUri)),
+              child: Image.network(imageUri),
             )),
         Positioned.fill(
           right: 300,

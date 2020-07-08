@@ -24,7 +24,7 @@ class ItemDetails extends StatelessWidget {
       return Scaffold(
           backgroundColor: Theme.of(context).accentColor,
           floatingActionButton: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
                 width: 150,
@@ -33,23 +33,21 @@ class ItemDetails extends StatelessWidget {
                     heroTag: 'unq1',
                     onPressed: () {},
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    backgroundColor: Colors.green,
-                    child: const Icon(Icons.map, size: 36.0),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).accentColor,
+                    child: const Icon(Icons.add_shopping_cart, size: 36.0),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 16.0,
               ),
               FloatingActionButton.extended(
                 heroTag: 'unq2',
                 onPressed: () {},
                 materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).accentColor,
                 label: Text("BUY NOW",
                     style: TextStyle(
                         fontSize: 20,
-                        color: Theme.of(context).accentColor,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold)),
               )
             ],
@@ -76,22 +74,38 @@ class ItemDetailsBody extends StatelessWidget {
       final text = state.item.desc;
       return Text(
         text,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.blue),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        SingleChildScrollView(
-            child: Column(children: <Widget>[
-          ItemDetailsHeader(itemId: itemId, imageUri: imageUri, state: state),
-          Padding(
-              padding: EdgeInsets.only(top: 20.0), child: getItemDesc(state))
-        ])),
-      ],
-    );
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+      return SingleChildScrollView(
+          child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
+              ),
+              child: IntrinsicHeight(
+                  child: Column(children: <Widget>[
+                ItemDetailsHeader(
+                    itemId: itemId, imageUri: imageUri, state: state),
+                // Expands the body view to be as big as the screen or more. Expensive. https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html
+                Expanded(
+                  child: Container(
+                      constraints: BoxConstraints.expand(),
+                      margin: EdgeInsets.only(
+                          top: 20.0, left: 20.0, right: 20.0, bottom: 10),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: getItemDesc(state)),
+                )
+              ]))));
+    });
   }
 }

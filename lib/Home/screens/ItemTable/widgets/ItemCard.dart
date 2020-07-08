@@ -18,21 +18,19 @@ class Itemcard extends StatelessWidget {
       onTap: () => goToItemPage(context),
       child: Column(
         children: <Widget>[
-          Hero(
-              tag: item.id,
-              child: Container(
-                  constraints: BoxConstraints(maxHeight: 140),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 5.0,
-                        )
-                      ]),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.network(item.imageUri)))),
+          Container(
+              constraints: BoxConstraints(maxHeight: 140),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 5.0,
+                    )
+                  ]),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(item.imageUri))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(

@@ -14,14 +14,13 @@ class ItemDetailsBloc extends Bloc<ItemDetailsEvent, ItemDetailsState> {
   Stream<ItemDetailsState> mapEventToState(
     ItemDetailsEvent event,
   ) async* {
-    // TODO: implement mapEventToState
     if (event is ItemDetailsFetched) {
       yield ItemDetailsSuccess(ShoppingItem(
           "1",
           "test1",
           "https://s3.gsxtr.com/i/pr/t-shirt-patagonia-p-6-logo-responsibili-tee-t-shirt-classic-navy-130721-450-2.jpg",
           "1",
-          desc: "This is a description"));
+          desc: "sd."));
     }
   }
 }
