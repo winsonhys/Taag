@@ -7,7 +7,8 @@ class ThreeDimensionalDrawer extends StatefulWidget {
   final Widget child;
   final Widget titleWidget;
 
-  const ThreeDimensionalDrawer({Key key, this.child, this.titleWidget) : super(key: key);
+  const ThreeDimensionalDrawer({Key key, this.child, this.titleWidget})
+      : super(key: key);
 
   static ThreeDimensionalDrawerState of(BuildContext context) =>
       context.findAncestorStateOfType<ThreeDimensionalDrawerState>();

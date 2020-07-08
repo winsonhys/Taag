@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ThreeDimensionalDrawer(
       titleWidget: Text(
-        'Hello Flutter Europe',
+        'Long zong buy',
         style: Theme.of(context).primaryTextTheme.headline6,
         textAlign: TextAlign.center,
       ),

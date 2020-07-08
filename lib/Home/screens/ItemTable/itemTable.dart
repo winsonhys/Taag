@@ -34,14 +34,12 @@ class _ItemTableState extends State<ItemTable> {
         );
       }
       if (state is ItemTableSuccess) {
-        return Container(
-          margin: EdgeInsets.only(top: 20),
-          child: GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              children: state.items.map(_buildGridItem).toList()),
-        );
+        return GridView.count(
+            crossAxisCount: 2,
+            padding: EdgeInsets.only(top: 20),
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            children: state.items.map(_buildGridItem).toList());
       }
     });
   }
