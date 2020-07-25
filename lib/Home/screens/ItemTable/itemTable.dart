@@ -1,13 +1,11 @@
-// Flutter code sample for AnimatedList
-
-// This sample application uses an [AnimatedList] to create an effect when
-// items are removed or added to the list.
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/screens/ItemTable/bloc/itemtable_bloc.dart';
 import 'package:longzongbuy/Home/screens/ItemTable/widgets/ItemCard.dart';
-import 'package:longzongbuy/models/shopping_item.dart';
+import 'package:longzongbuy/api.graphql.dart';
 
 class ItemTable extends StatefulWidget {
   @override
@@ -15,32 +13,29 @@ class ItemTable extends StatefulWidget {
 }
 
 class _ItemTableState extends State<ItemTable> {
-  Widget _buildGridItem(ShoppingItem item) {
-    return Itemcard(item);
-  }
+  // Widget _buildGridItem(ShoppingItem item) {
+  //   return Itemcard(item);
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ItemTableBloc, ItemTableState>(
-        builder: (context, state) {
-      if (state is ItemTableInitial) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      if (state is ItemTableError) {
-        return Center(
-          child: Text("Fail"),
-        );
-      }
-      if (state is ItemTableSuccess) {
-        return GridView.count(
-            crossAxisCount: 2,
-            padding: EdgeInsets.only(top: 20),
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            children: state.items.map(_buildGridItem).toList());
-      }
-    });
+    return Query(
+        options: WatchQueryOptions(documentNode: AllShopItemsQuery().document),
+        builder: (QueryResult result,
+            {VoidCallback refetch, FetchMore fetchMore}) {
+          inspect(result);
+          if (result.loading) {
+            return new Text("Loading");
+          }
+          final data = AllShopItems$Query.fromJson(result.data);
+          inspect(data);
+          return StaggeredGridView.countBuilder(
+              crossAxisCount: 2,
+              itemBuilder: (BuildContext context, int index) =>
+                  new Text("Hello"),
+              staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20);
+        });
   }
 }

@@ -19,10 +19,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(),
           body: Center(
-            child: BlocProvider(
-              create: (context) => ItemTableBloc()..add(ItemTableFetched()),
-              child: ItemTable(),
-            ),
+            child: ItemTable(),
           )),
     );
   }

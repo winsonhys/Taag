@@ -6,17 +6,35 @@ import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
 
 void main() {
-  final HttpLink httpLink = HttpLink(
-    uri: 'https://localhost:4000',
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(GraphQLContainer());
+}
 
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
+class GraphQLContainer extends StatelessWidget {
+  static String uuidFromObject(Object object) {
+    if (object is Map<String, Object>) {
+      final String typeName = object['__typename'] as String;
+      final String id = object['id'].toString();
+      if (typeName != null && id != null) {
+        return <String>[typeName, id].join('/');
+      }
+    }
+    return null;
+  }
+
+  final ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(
-      cache: InMemoryCache(),
-      link: httpLink,
-    ),
+        cache: OptimisticCache(
+          dataIdFromObject: uuidFromObject,
+        ),
+        link: HttpLink(
+          uri: 'http://localhost:4000/',
+        )),
   );
-  runApp(GraphQLProvider(client: client, child: MyApp()));
+  @override
+  Widget build(BuildContext context) {
+    return GraphQLProvider(client: client, child: MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
