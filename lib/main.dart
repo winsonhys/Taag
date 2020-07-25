@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:longzongbuy/Home/common/widgets/ThreeDimensionalDrawer.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/home.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  final HttpLink httpLink = HttpLink(
+    uri: 'https://localhost:4000',
+  );
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      cache: InMemoryCache(),
+      link: httpLink,
+    ),
+  );
+  runApp(GraphQLProvider(client: client, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

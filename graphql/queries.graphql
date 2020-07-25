@@ -1,0 +1,13 @@
+query allShopItems {
+  shopItems {
+    id
+    name
+    description
+    price
+    imageUrl
+    shop {
+      id
+      username
+    }
+  }
+}
