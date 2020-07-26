@@ -10,7 +10,7 @@ class Itemcard extends StatelessWidget {
 
   void goToItemPage(context) {
     Navigator.pushNamed(context, ItemDetails.route,
-        arguments: ItemDetailsArguments(item.id, item.imageUrl));
+        arguments: ItemDetailsArguments(item.id));
   }
 
   @override

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/widgets/ItemDetailsHeader.dart';
+import 'package:longzongbuy/api.graphql.dart';
 
 class ItemDetailsArguments {
   final String itemId;
-  final String imageUri;
-  ItemDetailsArguments(this.itemId, this.imageUri);
+  ItemDetailsArguments(this.itemId);
 }
 
 class ItemDetails extends StatelessWidget {
@@ -15,69 +14,62 @@ class ItemDetails extends StatelessWidget {
   static const route = "/details";
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ItemDetailsBloc, ItemDetailsState>(
-        builder: (context, state) {
-      if (state is ItemDetailsInitial) {
-        BlocProvider.of<ItemDetailsBloc>(context)
-            .add(ItemDetailsFetched(args.itemId));
-      }
-      return Scaffold(
-          backgroundColor: Theme.of(context).accentColor,
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 150,
-                child: SizedBox(
-                  child: FloatingActionButton(
-                    heroTag: 'unq1',
+    return Query(
+        options: WatchQueryOptions(
+            documentNode: FindOneShopItemQuery().document,
+            variables: {'id': args.itemId}),
+        builder: (QueryResult result,
+            {VoidCallback refetch, FetchMore fetchMore}) {
+          if (result.loading) {
+            return new Text("Loading");
+          }
+          final ItemMixin item =
+              FindOneShopItem$Query.fromJson(result.data).shopItem;
+          return Scaffold(
+              backgroundColor: Theme.of(context).accentColor,
+              floatingActionButton: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 150,
+                    child: SizedBox(
+                      child: FloatingActionButton(
+                        heroTag: 'unq1',
+                        onPressed: () {},
+                        materialTapTargetSize: MaterialTapTargetSize.padded,
+                        backgroundColor: Colors.white,
+                        foregroundColor: Theme.of(context).accentColor,
+                        child: const Icon(Icons.add_shopping_cart, size: 36.0),
+                      ),
+                    ),
+                  ),
+                  FloatingActionButton.extended(
+                    heroTag: 'unq2',
                     onPressed: () {},
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    backgroundColor: Colors.white,
-                    foregroundColor: Theme.of(context).accentColor,
-                    child: const Icon(Icons.add_shopping_cart, size: 36.0),
-                  ),
-                ),
+                    backgroundColor: Theme.of(context).accentColor,
+                    label: Text("BUY NOW",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
+                  )
+                ],
               ),
-              FloatingActionButton.extended(
-                heroTag: 'unq2',
-                onPressed: () {},
-                materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Theme.of(context).accentColor,
-                label: Text("BUY NOW",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              )
-            ],
-          ),
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            iconTheme: IconThemeData(color: Theme.of(context).accentColor),
-          ),
-          body: ItemDetailsBody(state, args.imageUri, args.itemId));
-    });
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(color: Theme.of(context).accentColor),
+              ),
+              body: ItemDetailsBody(item: item));
+        });
   }
 }
 
 class ItemDetailsBody extends StatelessWidget {
-  final ItemDetailsState state;
-  final String imageUri;
-  final String itemId;
-  const ItemDetailsBody(this.state, this.imageUri, this.itemId, {Key key})
-      : super(key: key);
+  final ItemMixin item;
 
-  getItemDesc(ItemDetailsState state) {
-    if (state is ItemDetailsSuccess) {
-      final text = state.item.desc;
-      return Text(
-        text,
-        style: TextStyle(color: Colors.blue),
-      );
-    }
-  }
+  const ItemDetailsBody({@required this.item, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +82,7 @@ class ItemDetailsBody extends StatelessWidget {
               ),
               child: IntrinsicHeight(
                   child: Column(children: <Widget>[
-                ItemDetailsHeader(
-                    itemId: itemId, imageUri: imageUri, state: state),
+                ItemDetailsHeader(item: item),
                 // Expands the body view to be as big as the screen or more. Expensive. https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html
                 Expanded(
                   child: Container(
@@ -103,7 +94,10 @@ class ItemDetailsBody extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(25)),
-                      child: getItemDesc(state)),
+                      child: Text(
+                        item.description,
+                        style: TextStyle(color: Colors.blue),
+                      )),
                 )
               ]))));
     });

@@ -1,44 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
+import 'package:longzongbuy/api.graphql.dart';
 
 class ItemDetailsHeader extends StatelessWidget {
-  const ItemDetailsHeader(
-      {Key key,
-      @required this.itemId,
-      @required this.imageUri,
-      @required this.state})
-      : super(key: key);
+  const ItemDetailsHeader({
+    Key key,
+    @required this.item,
+  }) : super(key: key);
 
-  final String itemId;
-  final String imageUri;
-  final ItemDetailsState state;
+  final ItemMixin item;
 
-  getHeaderText(ItemDetailsState state, ThemeData themeData) {
-    if (state is ItemDetailsSuccess) {
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            style: themeData.textTheme.headline5.copyWith(
-                color: themeData.accentColor, fontWeight: FontWeight.bold),
-            text: "${state.item.name}\n")
-      ]));
-    }
+  getHeaderText(ItemMixin item, ThemeData themeData) {
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+          style: themeData.textTheme.headline5.copyWith(
+              color: themeData.accentColor, fontWeight: FontWeight.bold),
+          text: "${item.name}\n")
+    ]));
   }
 
-  getPriceText(ItemDetailsState state, ThemeData themeData) {
-    if (state is ItemDetailsSuccess) {
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            style: themeData.textTheme.headline6
-                .copyWith(color: themeData.accentColor, fontSize: 15),
-            text: "Price\n"),
-        TextSpan(
-            style: themeData.textTheme.headline3.copyWith(
-                color: themeData.accentColor, fontWeight: FontWeight.bold),
-            text: "\$${state.item.price}")
-      ]));
-    }
+  getPriceText(ItemMixin item, ThemeData themeData) {
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+          style: themeData.textTheme.headline6
+              .copyWith(color: themeData.accentColor, fontSize: 15),
+          text: "Price\n"),
+      TextSpan(
+          style: themeData.textTheme.headline3.copyWith(
+              color: themeData.accentColor, fontWeight: FontWeight.bold),
+          text: "\$${item.price}")
+    ]));
   }
 
   @override
@@ -55,7 +47,7 @@ class ItemDetailsHeader extends StatelessWidget {
             child: ClipRRect(
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(25.0)),
-              child: Image.network(imageUri),
+              child: Image.network(item.imageUrl),
             )),
         Positioned.fill(
           right: 300,
@@ -64,8 +56,8 @@ class ItemDetailsHeader extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                getHeaderText(state, Theme.of(context)),
-                getPriceText(state, Theme.of(context))
+                getHeaderText(item, Theme.of(context)),
+                getPriceText(item, Theme.of(context))
               ],
             ),
           ),

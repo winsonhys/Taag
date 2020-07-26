@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/home.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
-import 'package:longzongbuy/Home/screens/ItemDetails/bloc/itemdetails_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,10 +49,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case ItemDetails.route:
               return PageRouteBuilder(
-                  pageBuilder: (context, _, __) => BlocProvider(
-                        create: (context) => ItemDetailsBloc(),
-                        child: ItemDetails(settings.arguments),
-                      ),
+                  pageBuilder: (context, _, __) =>
+                      ItemDetails(settings.arguments),
                   transitionDuration: Duration(milliseconds: 300),
                   transitionsBuilder: (_, anim, __, child) =>
                       FadeTransition(opacity: anim, child: child));
