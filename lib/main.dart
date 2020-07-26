@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/flutter_login.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/home.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
+import 'package:longzongbuy/Login/screens/LoginScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,9 +45,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+            primarySwatch: Colors.blue,
+            primaryColor: Color.fromRGBO(251, 171, 102, 1),
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: GoogleFonts.ibmPlexSansTextTheme()),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case ItemDetails.route:
@@ -57,9 +61,10 @@ class MyApp extends StatelessWidget {
 
             default:
               return MaterialPageRoute(
-                  settings: settings, builder: (context) => HomePage());
+                  settings: settings, builder: (context) => (HomePage()));
           }
         },
-        home: HomePage());
+        routes: {"auth": (context) => LoginScreen()},
+        home: LoginScreen());
   }
 }
