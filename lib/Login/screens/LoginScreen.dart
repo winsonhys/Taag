@@ -22,6 +22,9 @@ class LoginScreen extends StatelessWidget {
         theme: LoginTheme(pageColorDark: Color.fromRGBO(247, 65, 140, 1)),
         logo: "assets/images/login_logo.png",
         title: "Taag",
+        onSubmitAnimationCompleted: () =>
+            Navigator.popAndPushNamed(context, "home"),
+        titleTag: "appTitle",
       ),
     );
   }

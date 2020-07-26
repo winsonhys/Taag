@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/flutter_login.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/home.dart';
@@ -47,6 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             primaryColor: Color.fromRGBO(251, 171, 102, 1),
+            accentColor: Color.fromRGBO(236, 151, 6, 1),
             visualDensity: VisualDensity.adaptivePlatformDensity,
             textTheme: GoogleFonts.ibmPlexSansTextTheme()),
         onGenerateRoute: (settings) {
@@ -64,7 +64,10 @@ class MyApp extends StatelessWidget {
                   settings: settings, builder: (context) => (HomePage()));
           }
         },
-        routes: {"auth": (context) => LoginScreen()},
+        routes: {
+          "auth": (context) => LoginScreen(),
+          "home": (context) => HomePage()
+        },
         home: LoginScreen());
   }
 }

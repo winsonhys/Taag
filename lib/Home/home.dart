@@ -8,10 +8,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThreeDimensionalDrawer(
-      titleWidget: Text(
-        'Long zong buy',
-        style: Theme.of(context).primaryTextTheme.headline6,
-        textAlign: TextAlign.center,
+      titleWidget: Hero(
+        tag: "appTitle",
+        child: Text(
+          'Taag',
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
       ),
       child: Scaffold(
           appBar: AppBar(),
