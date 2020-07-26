@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/api.graphql.dart';
-import 'package:longzongbuy/models/shopping_item.dart';
 
 class Itemcard extends StatelessWidget {
   final ItemMixin item;

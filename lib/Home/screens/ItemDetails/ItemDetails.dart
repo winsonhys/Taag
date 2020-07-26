@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:longzongbuy/Home/screens/ItemDetails/widgets/AddToCartButton.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/widgets/ItemDetailsHeader.dart';
 import 'package:longzongbuy/api.graphql.dart';
 
@@ -30,19 +31,7 @@ class ItemDetails extends StatelessWidget {
               floatingActionButton: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
-                    width: 150,
-                    child: SizedBox(
-                      child: FloatingActionButton(
-                        heroTag: 'unq1',
-                        onPressed: () {},
-                        materialTapTargetSize: MaterialTapTargetSize.padded,
-                        backgroundColor: Colors.white,
-                        foregroundColor: Theme.of(context).accentColor,
-                        child: const Icon(Icons.add_shopping_cart, size: 36.0),
-                      ),
-                    ),
-                  ),
+                  AddToCartButton(),
                   FloatingActionButton.extended(
                     heroTag: 'unq2',
                     onPressed: () {},
