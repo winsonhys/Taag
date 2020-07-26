@@ -229,6 +229,7 @@ enum OrderByArg {
 }
 
 type Query {
+  shopItem(where: ShopItemWhereUniqueInput!): ShopItem
   shopItems(where: ShopItemWhereInput, orderBy: ShopItemOrderByInput, cursor: ShopItemWhereUniqueInput, take: Int, skip: Int): [ShopItem!]!
   user(where: UserWhereUniqueInput!): User
   findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiCartByUserIdInput!): MultiCart!

@@ -1,0 +1,7 @@
+query findOneShopItem($id: String!) {
+  shopItem(where: {
+    id: $id
+  }) {
+    ...Item
+  }
+}

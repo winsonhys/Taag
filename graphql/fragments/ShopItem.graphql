@@ -1,5 +1,4 @@
-query allShopItems {
-  shopItems {
+fragment Item on ShopItem {
     id
     name
     description
@@ -9,5 +8,4 @@ query allShopItems {
       id
       username
     }
-  }
 }

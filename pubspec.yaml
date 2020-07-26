@@ -40,7 +40,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  artemis: '>=5.0.0 <6.0.0'
+  artemis: '6.0.10-beta.1'
   build_runner: ^1.5.0
 
 

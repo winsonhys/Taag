@@ -1,0 +1,5 @@
+query allShopItems {
+  shopItems {
+    ...Item
+  }
+}

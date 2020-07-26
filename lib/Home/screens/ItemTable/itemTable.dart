@@ -13,9 +13,9 @@ class ItemTable extends StatefulWidget {
 }
 
 class _ItemTableState extends State<ItemTable> {
-  // Widget _buildGridItem(ShoppingItem item) {
-  //   return Itemcard(item);
-  // }
+  Widget _buildGridItem(ItemMixin item) {
+    return Itemcard(item: item);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,16 @@ class _ItemTableState extends State<ItemTable> {
         options: WatchQueryOptions(documentNode: AllShopItemsQuery().document),
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
-          inspect(result);
           if (result.loading) {
             return new Text("Loading");
           }
-          final data = AllShopItems$Query.fromJson(result.data);
-          inspect(data);
+          final List<ItemMixin> items =
+              AllShopItems$Query.fromJson(result.data).shopItems;
           return StaggeredGridView.countBuilder(
               crossAxisCount: 2,
+              itemCount: items.length,
               itemBuilder: (BuildContext context, int index) =>
-                  new Text("Hello"),
+                  _buildGridItem(items[index]),
               staggeredTileBuilder: (index) => StaggeredTile.fit(2),
               mainAxisSpacing: 20,
               crossAxisSpacing: 20);

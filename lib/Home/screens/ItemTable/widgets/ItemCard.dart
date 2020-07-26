@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
+import 'package:longzongbuy/api.graphql.dart';
 import 'package:longzongbuy/models/shopping_item.dart';
 
 class Itemcard extends StatelessWidget {
-  final ShoppingItem item;
+  final ItemMixin item;
 
-  const Itemcard(this.item, {Key key}) : super(key: key);
+  const Itemcard({@required this.item, Key key}) : super(key: key);
 
   void goToItemPage(context) {
     Navigator.pushNamed(context, ItemDetails.route,
-        arguments: ItemDetailsArguments(item.id, item.imageUri));
+        arguments: ItemDetailsArguments(item.id, item.imageUrl));
   }
 
   @override
@@ -30,7 +31,7 @@ class Itemcard extends StatelessWidget {
                   ]),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(item.imageUri))),
+                  child: Image.network(item.imageUrl))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(
