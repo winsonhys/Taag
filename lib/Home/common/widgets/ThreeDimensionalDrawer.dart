@@ -88,7 +88,7 @@ class ThreeDimensionalDrawerState extends State<ThreeDimensionalDrawer>
                   ),
                 ),
                 Positioned(
-                  top: 16.0 + MediaQuery.of(context).padding.top,
+                  top: MediaQuery.of(context).padding.top,
                   left: animationController.value *
                       MediaQuery.of(context).size.width,
                   width: MediaQuery.of(context).size.width,
@@ -142,7 +142,7 @@ class MyDrawer extends StatelessWidget {
       width: 300,
       height: double.infinity,
       child: Material(
-        color: Colors.blue,
+        color: Theme.of(context).primaryColor,
         child: SafeArea(
           child: Theme(
             data: ThemeData(brightness: Brightness.dark),

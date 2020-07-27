@@ -19,12 +19,13 @@ class LoginScreen extends StatelessWidget {
         onSignup: _loginUser,
         onLogin: _loginUser,
         onRecoverPassword: _recoverPassword,
-        theme: LoginTheme(pageColorDark: Color.fromRGBO(247, 65, 140, 1)),
+        theme: LoginTheme(
+          pageColorDark: Color.fromRGBO(244, 151, 108, 1),
+        ),
         logo: "assets/images/login_logo.png",
         title: "Taag",
         onSubmitAnimationCompleted: () =>
             Navigator.popAndPushNamed(context, "home"),
-        titleTag: "appTitle",
       ),
     );
   }

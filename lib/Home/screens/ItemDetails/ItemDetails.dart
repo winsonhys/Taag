@@ -36,19 +36,19 @@ class ItemDetails extends StatelessWidget {
                     heroTag: 'unq2',
                     onPressed: () {},
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    backgroundColor: Theme.of(context).accentColor,
+                    // backgroundColor: Theme.of(context).accentColor,
                     label: Text("BUY NOW",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .button
+                            .apply(fontWeightDelta: 20, fontSizeDelta: 5)),
                   )
                 ],
               ),
               appBar: AppBar(
                 elevation: 0,
                 backgroundColor: Colors.white,
-                iconTheme: IconThemeData(color: Theme.of(context).accentColor),
+                iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
               ),
               body: ItemDetailsBody(item: item));
         });
@@ -81,11 +81,10 @@ class ItemDetailsBody extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(25)),
                       child: Text(
                         item.description,
-                        style: TextStyle(color: Colors.blue),
                       )),
                 )
               ]))));

@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/api.graphql.dart';
+import 'package:lottie/lottie.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Itemcard extends StatelessWidget {
   final ItemMixin item;
@@ -21,21 +24,20 @@ class Itemcard extends StatelessWidget {
           Container(
               constraints: BoxConstraints(maxHeight: 140),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5.0,
-                    )
-                  ]),
+                borderRadius: BorderRadius.circular(16),
+              ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(item.imageUrl))),
+                  // child: Lottie.asset("assets/lottie/corgi.json")
+                  child: CachedNetworkImage(
+                      imageUrl: item.imageUrl,
+                      placeholder: (context, url) =>
+                          Lottie.asset("assets/lottie/corgi.json")))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(
               item.name,
-              style: TextStyle(color: Colors.lightBlue, fontSize: 20),
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
           Text("\$${item.price}",

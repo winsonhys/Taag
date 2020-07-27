@@ -25,14 +25,18 @@ class _ItemTableState extends State<ItemTable> {
           }
           final List<ItemMixin> items =
               AllShopItems$Query.fromJson(result.data).shopItems;
-          return StaggeredGridView.countBuilder(
-              crossAxisCount: 2,
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  _buildGridItem(items[index]),
-              staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20);
+          return Container(
+            color: Theme.of(context).accentColor,
+            child: StaggeredGridView.countBuilder(
+                padding: EdgeInsets.only(top: 20),
+                crossAxisCount: 2,
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    _buildGridItem(items[index]),
+                staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20),
+          );
         });
   }
 }

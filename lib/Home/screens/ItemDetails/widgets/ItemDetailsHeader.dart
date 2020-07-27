@@ -1,5 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:longzongbuy/api.graphql.dart';
+import 'package:lottie/lottie.dart';
 
 class ItemDetailsHeader extends StatelessWidget {
   const ItemDetailsHeader({
@@ -14,23 +17,26 @@ class ItemDetailsHeader extends StatelessWidget {
         text: TextSpan(children: [
       TextSpan(
           style: themeData.textTheme.headline5.copyWith(
-              color: themeData.accentColor, fontWeight: FontWeight.bold),
+              color: themeData.primaryColor, fontWeight: FontWeight.bold),
           text: "${item.name}\n")
     ]));
   }
 
   getPriceText(ItemMixin item, ThemeData themeData) {
-    return RichText(
-        text: TextSpan(children: [
-      TextSpan(
-          style: themeData.textTheme.headline6
-              .copyWith(color: themeData.accentColor, fontSize: 15),
-          text: "Price\n"),
-      TextSpan(
-          style: themeData.textTheme.headline3.copyWith(
-              color: themeData.accentColor, fontWeight: FontWeight.bold),
-          text: "\$${item.price}")
-    ]));
+    return AutoSizeText.rich(
+      TextSpan(children: [
+        TextSpan(
+            style: themeData.textTheme.headline6
+                .copyWith(color: themeData.primaryColor),
+            text: "Price\n"),
+        TextSpan(
+            style: themeData.textTheme.headline3.copyWith(
+                color: themeData.primaryColor, fontWeight: FontWeight.bold),
+            text: "\$${item.price}")
+      ]),
+      maxLines: 2,
+      minFontSize: 6,
+    );
   }
 
   @override
@@ -45,10 +51,12 @@ class ItemDetailsHeader extends StatelessWidget {
                     bottomLeft: Radius.circular(25.0),
                     bottomRight: Radius.circular(25.0))),
             child: ClipRRect(
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(25.0)),
-              child: Image.network(item.imageUrl),
-            )),
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(25.0)),
+                child: CachedNetworkImage(
+                    imageUrl: item.imageUrl,
+                    placeholder: (context, url) =>
+                        Lottie.asset("assets/lottie/corgi.json")))),
         Positioned.fill(
           right: 300,
           child: Padding(
