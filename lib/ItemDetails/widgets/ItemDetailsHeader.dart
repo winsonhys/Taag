@@ -10,9 +10,9 @@ class ItemDetailsHeader extends StatelessWidget {
     @required this.item,
   }) : super(key: key);
 
-  final ItemMixin item;
+  final ShopItemMixin item;
 
-  getHeaderText(ItemMixin item, ThemeData themeData) {
+  getHeaderText(ShopItemMixin item, ThemeData themeData) {
     return RichText(
         text: TextSpan(children: [
       TextSpan(
@@ -22,7 +22,7 @@ class ItemDetailsHeader extends StatelessWidget {
     ]));
   }
 
-  getPriceText(ItemMixin item, ThemeData themeData) {
+  getPriceText(ShopItemMixin item, ThemeData themeData) {
     return AutoSizeText.rich(
       TextSpan(children: [
         TextSpan(

@@ -10,7 +10,7 @@ class ItemTable extends StatefulWidget {
 }
 
 class _ItemTableState extends State<ItemTable> {
-  Widget _buildGridItem(ItemMixin item) {
+  Widget _buildGridItem(ShopItemMixin item) {
     return Itemcard(item: item);
   }
 
@@ -23,7 +23,7 @@ class _ItemTableState extends State<ItemTable> {
           if (result.loading) {
             return new Text("Loading");
           }
-          final List<ItemMixin> items =
+          final List<ShopItemMixin> items =
               AllShopItems$Query.fromJson(result.data).shopItems;
           return Container(
             color: Theme.of(context).accentColor,

@@ -7,17 +7,17 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'api.graphql.g.dart';
 
-mixin ItemMixin {
+mixin ShopItemMixin {
   String id;
   String name;
   String description;
   double price;
   String imageUrl;
-  ItemMixin$Shop shop;
+  ShopItemMixin$Shop shop;
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllShopItems$Query$ShopItems with EquatableMixin, ItemMixin {
+class AllShopItems$Query$ShopItems with EquatableMixin, ShopItemMixin {
   AllShopItems$Query$ShopItems();
 
   factory AllShopItems$Query$ShopItems.fromJson(Map<String, dynamic> json) =>
@@ -43,11 +43,11 @@ class AllShopItems$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ItemMixin$Shop with EquatableMixin {
-  ItemMixin$Shop();
+class ShopItemMixin$Shop with EquatableMixin {
+  ShopItemMixin$Shop();
 
-  factory ItemMixin$Shop.fromJson(Map<String, dynamic> json) =>
-      _$ItemMixin$ShopFromJson(json);
+  factory ShopItemMixin$Shop.fromJson(Map<String, dynamic> json) =>
+      _$ShopItemMixin$ShopFromJson(json);
 
   String id;
 
@@ -55,11 +55,11 @@ class ItemMixin$Shop with EquatableMixin {
 
   @override
   List<Object> get props => [id, username];
-  Map<String, dynamic> toJson() => _$ItemMixin$ShopToJson(this);
+  Map<String, dynamic> toJson() => _$ShopItemMixin$ShopToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class FindOneShopItem$Query$ShopItem with EquatableMixin, ItemMixin {
+class FindOneShopItem$Query$ShopItem with EquatableMixin, ShopItemMixin {
   FindOneShopItem$Query$ShopItem();
 
   factory FindOneShopItem$Query$ShopItem.fromJson(Map<String, dynamic> json) =>
@@ -103,11 +103,11 @@ class AllShopItemsQuery
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                    name: NameNode(value: 'Item'), directives: [])
+                    name: NameNode(value: 'ShopItem'), directives: [])
               ]))
         ])),
     FragmentDefinitionNode(
-        name: NameNode(value: 'Item'),
+        name: NameNode(value: 'ShopItem'),
         typeCondition: TypeConditionNode(
             on: NamedTypeNode(
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),
@@ -223,11 +223,11 @@ class FindOneShopItemQuery
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                    name: NameNode(value: 'Item'), directives: [])
+                    name: NameNode(value: 'ShopItem'), directives: [])
               ]))
         ])),
     FragmentDefinitionNode(
-        name: NameNode(value: 'Item'),
+        name: NameNode(value: 'ShopItem'),
         typeCondition: TypeConditionNode(
             on: NamedTypeNode(
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),

@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
+import 'package:longzongbuy/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/api.graphql.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Itemcard extends StatelessWidget {
-  final ItemMixin item;
+  final ShopItemMixin item;
 
   const Itemcard({@required this.item, Key key}) : super(key: key);
 

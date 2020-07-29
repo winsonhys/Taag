@@ -1,4 +1,4 @@
-fragment Item on ShopItem {
+fragment ShopItem on ShopItem {
     id
     name
     description

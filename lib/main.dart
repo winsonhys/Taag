@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:longzongbuy/Home/home.dart';
-import 'package:longzongbuy/Home/screens/ItemDetails/ItemDetails.dart';
+import 'package:longzongbuy/ItemDetails/ItemDetails.dart';
 import 'package:longzongbuy/Login/screens/LoginScreen.dart';
 
 void main() {

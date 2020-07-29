@@ -16,7 +16,7 @@ AllShopItems$Query$ShopItems _$AllShopItems$Query$ShopItemsFromJson(
     ..imageUrl = json['imageUrl'] as String
     ..shop = json['shop'] == null
         ? null
-        : ItemMixin$Shop.fromJson(json['shop'] as Map<String, dynamic>);
+        : ShopItemMixin$Shop.fromJson(json['shop'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$AllShopItems$Query$ShopItemsToJson(
@@ -44,13 +44,13 @@ Map<String, dynamic> _$AllShopItems$QueryToJson(AllShopItems$Query instance) =>
       'shopItems': instance.shopItems?.map((e) => e?.toJson())?.toList(),
     };
 
-ItemMixin$Shop _$ItemMixin$ShopFromJson(Map<String, dynamic> json) {
-  return ItemMixin$Shop()
+ShopItemMixin$Shop _$ShopItemMixin$ShopFromJson(Map<String, dynamic> json) {
+  return ShopItemMixin$Shop()
     ..id = json['id'] as String
     ..username = json['username'] as String;
 }
 
-Map<String, dynamic> _$ItemMixin$ShopToJson(ItemMixin$Shop instance) =>
+Map<String, dynamic> _$ShopItemMixin$ShopToJson(ShopItemMixin$Shop instance) =>
     <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
@@ -66,7 +66,7 @@ FindOneShopItem$Query$ShopItem _$FindOneShopItem$Query$ShopItemFromJson(
     ..imageUrl = json['imageUrl'] as String
     ..shop = json['shop'] == null
         ? null
-        : ItemMixin$Shop.fromJson(json['shop'] as Map<String, dynamic>);
+        : ShopItemMixin$Shop.fromJson(json['shop'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$FindOneShopItem$Query$ShopItemToJson(

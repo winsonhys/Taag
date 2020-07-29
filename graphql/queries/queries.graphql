@@ -1,5 +1,5 @@
 query allShopItems {
   shopItems {
-    ...Item
+    ...ShopItem
   }
 }
