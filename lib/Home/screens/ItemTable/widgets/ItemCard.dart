@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:longzongbuy/ItemDetails/ItemDetails.dart';
-import 'package:longzongbuy/api.graphql.dart';
+import 'package:Taag/ItemDetails/ItemDetails.dart';
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 

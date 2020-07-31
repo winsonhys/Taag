@@ -1,40 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:longzongbuy/Home/home.dart';
-import 'package:longzongbuy/ItemDetails/ItemDetails.dart';
-import 'package:longzongbuy/Login/screens/LoginScreen.dart';
+import 'package:Taag/Home/home.dart';
+import 'package:Taag/ItemDetails/ItemDetails.dart';
+import 'package:Taag/Login/screens/LoginScreen.dart';
+import 'package:Taag/graphql/GraphqlContainer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(GraphQLContainer());
-}
-
-class GraphQLContainer extends StatelessWidget {
-  static String uuidFromObject(Object object) {
-    if (object is Map<String, Object>) {
-      final String typeName = object['__typename'] as String;
-      final String id = object['id'].toString();
-      if (typeName != null && id != null) {
-        return <String>[typeName, id].join('/');
-      }
-    }
-    return null;
-  }
-
-  final ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-        cache: OptimisticCache(
-          dataIdFromObject: uuidFromObject,
-        ),
-        link: HttpLink(
-          uri: 'http://localhost:4000/',
-        )),
-  );
-  @override
-  Widget build(BuildContext context) {
-    return GraphQLProvider(client: client, child: MyApp());
-  }
+  runApp(GraphQLContainer(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
