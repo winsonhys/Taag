@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "848234658273",
+    "firebase_url": "https://randevu-signup.firebaseio.com",
+    "project_id": "randevu-signup",
+    "storage_bucket": "randevu-signup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848234658273:android:e03f7065d89bac1ed7baa0",
+        "android_client_info": {
+          "package_name": "com.taag.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848234658273-s1949686l0nd1fdak15n4c3ja47kfvdo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3TqbYOjVTsbkxYM9kd4bJ4YKQwaDkDW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848234658273-s1949686l0nd1fdak15n4c3ja47kfvdo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "848234658273-mlahddc7cnht83l3vog7hdoooi214htb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taag"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
