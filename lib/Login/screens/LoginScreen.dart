@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
     }
 
     final userToken = (await user.getIdToken()).token;
-    GraphQLContainer.setToken(userToken);
+    // GraphQLContainer.setToken(userToken);
     return Future.value(null);
   }
 

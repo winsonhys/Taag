@@ -9,6 +9,7 @@ import 'package:Taag/graphql/GraphqlContainer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  print("app initialized");
   runApp(GraphQLContainer(
     child: MyApp(),
   ));
