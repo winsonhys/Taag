@@ -9,7 +9,6 @@ import 'package:Taag/graphql/GraphqlContainer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  print("app initialized");
   runApp(GraphQLContainer(
     child: MyApp(),
   ));
@@ -36,13 +35,13 @@ class MyApp extends StatelessWidget {
                 transitionDuration: Duration(milliseconds: 300),
                 transitionsBuilder: (_, anim, __, child) =>
                     FadeTransition(opacity: anim, child: child));
-          case '/':
+          case 'Home':
             return PageRouteBuilder(
                 pageBuilder: (context, _, __) => HomePage(),
                 transitionDuration: Duration(milliseconds: 500),
                 transitionsBuilder: (_, anim, __, child) =>
                     FadeTransition(opacity: anim, child: child));
-          case 'login':
+          case '/':
             return PageRouteBuilder(
                 pageBuilder: (context, _, __) => LoginScreen(),
                 transitionDuration: Duration(milliseconds: 500),

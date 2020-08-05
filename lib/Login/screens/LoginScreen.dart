@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   Future<String> _loginUser(LoginData data) async {
     FirebaseUser user;
     try {
-      user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+      user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
               email: data.name, password: data.password))
           .user;
     } catch (e) {
