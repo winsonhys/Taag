@@ -22,7 +22,6 @@ class AddToCartButton extends StatelessWidget {
           documentNode: AddToCartMutation().document,
         ),
         builder: (RunMutation runMutation, result) {
-          inspect(result);
           return AddToCartButtonView(
               loading: result.loading,
               addToCart: () {
