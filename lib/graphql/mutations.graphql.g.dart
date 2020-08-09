@@ -101,6 +101,31 @@ Map<String, dynamic> _$ShopItemMixin$ShopToJson(ShopItemMixin$Shop instance) =>
       'username': instance.username,
     };
 
+SignUpUser$Mutation$SignUp _$SignUpUser$Mutation$SignUpFromJson(
+    Map<String, dynamic> json) {
+  return SignUpUser$Mutation$SignUp()..id = json['id'] as String;
+}
+
+Map<String, dynamic> _$SignUpUser$Mutation$SignUpToJson(
+        SignUpUser$Mutation$SignUp instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+SignUpUser$Mutation _$SignUpUser$MutationFromJson(Map<String, dynamic> json) {
+  return SignUpUser$Mutation()
+    ..signUp = json['signUp'] == null
+        ? null
+        : SignUpUser$Mutation$SignUp.fromJson(
+            json['signUp'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SignUpUser$MutationToJson(
+        SignUpUser$Mutation instance) =>
+    <String, dynamic>{
+      'signUp': instance.signUp?.toJson(),
+    };
+
 AddToCartArguments _$AddToCartArgumentsFromJson(Map<String, dynamic> json) {
   return AddToCartArguments(
     itemId: json['itemId'] as String,
@@ -112,4 +137,26 @@ Map<String, dynamic> _$AddToCartArgumentsToJson(AddToCartArguments instance) =>
     <String, dynamic>{
       'itemId': instance.itemId,
       'buyerId': instance.buyerId,
+    };
+
+SignUpUserArguments _$SignUpUserArgumentsFromJson(Map<String, dynamic> json) {
+  return SignUpUserArguments(
+    email: json['email'] as String,
+    password: json['password'] as String,
+    displayName: json['displayName'] as String,
+    firstName: json['firstName'] as String,
+    lastName: json['lastName'] as String,
+    dob: json['dob'] == null ? null : DateTime.parse(json['dob'] as String),
+  );
+}
+
+Map<String, dynamic> _$SignUpUserArgumentsToJson(
+        SignUpUserArguments instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'displayName': instance.displayName,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'dob': instance.dob?.toIso8601String(),
     };

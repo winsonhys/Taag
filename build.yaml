@@ -8,11 +8,11 @@ targets:
         options:
             fragments_glob: graphql/fragments/**.graphql
             schema_mapping:
-                - output: lib/api.graphql.dart
+                - output: lib/graphql/api.graphql.dart
                   schema: graphql/schema.gql
                   queries_glob: graphql/queries/**.graphql
                   naming_scheme: pathedWithFields
-                - output: lib/mutations.graphql.dart
+                - output: lib/graphql/mutations.graphql.dart
                   schema: graphql/schema.gql
                   queries_glob: graphql/mutations/*.graphql
                   naming_scheme: pathedWithFields

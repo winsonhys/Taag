@@ -1,6 +1,6 @@
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:Taag/ItemDetails/widgets/ItemDetailsHeader.dart';
-import 'package:Taag/graphql/api.graphql.dart';
 
 class ItemDetailsBody extends StatelessWidget {
   final ShopItemMixin item;

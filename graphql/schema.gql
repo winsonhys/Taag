@@ -196,6 +196,7 @@ type Mutation {
   createShopItem(data: ShopItemCreateInput!): ShopItem!
   removeFromCart(removeFromCartInput: RemoveFromCartInput!): Cart!
   addToCart(addToCartInput: AddToCartInput!): Cart!
+  signUp(signUpInput: SignUpInput!): User!
 }
 
 input NullableDateTimeFilter {
@@ -355,6 +356,20 @@ input ShopWhereUniqueInput {
   id: String
   email: String
   username: String
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  displayName: String!
+  firstName: String!
+  lastName: String!
+  dob: DateTime!
 }
 
 input StringFilter {

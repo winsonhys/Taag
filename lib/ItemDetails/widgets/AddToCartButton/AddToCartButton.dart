@@ -1,9 +1,7 @@
-import 'dart:developer';
-
+import 'package:Taag/graphql/mutations.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/ItemDetails/widgets/AddToCartButton/AddToCartButtonView.dart';
-import 'package:Taag/mutations.graphql.dart';
 
 class AddToCartButton extends StatelessWidget {
   final String itemId;

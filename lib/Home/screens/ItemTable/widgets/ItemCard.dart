@@ -1,9 +1,8 @@
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:Taag/ItemDetails/ItemDetails.dart';
-import 'package:Taag/graphql/api.graphql.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shimmer/shimmer.dart';
 
 class Itemcard extends StatelessWidget {
   final ShopItemMixin item;
@@ -28,7 +27,6 @@ class Itemcard extends StatelessWidget {
               ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  // child: Lottie.asset("assets/lottie/corgi.json")
                   child: CachedNetworkImage(
                       imageUrl: item.imageUrl,
                       placeholder: (context, url) =>

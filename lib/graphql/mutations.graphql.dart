@@ -96,6 +96,34 @@ class ShopItemMixin$Shop with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class SignUpUser$Mutation$SignUp with EquatableMixin {
+  SignUpUser$Mutation$SignUp();
+
+  factory SignUpUser$Mutation$SignUp.fromJson(Map<String, dynamic> json) =>
+      _$SignUpUser$Mutation$SignUpFromJson(json);
+
+  String id;
+
+  @override
+  List<Object> get props => [id];
+  Map<String, dynamic> toJson() => _$SignUpUser$Mutation$SignUpToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignUpUser$Mutation with EquatableMixin {
+  SignUpUser$Mutation();
+
+  factory SignUpUser$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$SignUpUser$MutationFromJson(json);
+
+  SignUpUser$Mutation$SignUp signUp;
+
+  @override
+  List<Object> get props => [signUp];
+  Map<String, dynamic> toJson() => _$SignUpUser$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class AddToCartArguments extends JsonSerializable with EquatableMixin {
   AddToCartArguments({@required this.itemId, @required this.buyerId});
 
@@ -302,4 +330,140 @@ class AddToCartMutation
   @override
   AddToCart$Mutation parse(Map<String, dynamic> json) =>
       AddToCart$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignUpUserArguments extends JsonSerializable with EquatableMixin {
+  SignUpUserArguments(
+      {@required this.email,
+      @required this.password,
+      @required this.displayName,
+      @required this.firstName,
+      @required this.lastName,
+      @required this.dob});
+
+  factory SignUpUserArguments.fromJson(Map<String, dynamic> json) =>
+      _$SignUpUserArgumentsFromJson(json);
+
+  final String email;
+
+  final String password;
+
+  final String displayName;
+
+  final String firstName;
+
+  final String lastName;
+
+  final DateTime dob;
+
+  @override
+  List<Object> get props =>
+      [email, password, displayName, firstName, lastName, dob];
+  Map<String, dynamic> toJson() => _$SignUpUserArgumentsToJson(this);
+}
+
+class SignUpUserMutation
+    extends GraphQLQuery<SignUpUser$Mutation, SignUpUserArguments> {
+  SignUpUserMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'signUpUser'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'email')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'password')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'displayName')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'firstName')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'lastName')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'dob')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'DateTime'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'signUp'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'signUpInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'email'),
+                          value: VariableNode(name: NameNode(value: 'email'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'password'),
+                          value:
+                              VariableNode(name: NameNode(value: 'password'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'displayName'),
+                          value: VariableNode(
+                              name: NameNode(value: 'displayName'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'firstName'),
+                          value:
+                              VariableNode(name: NameNode(value: 'firstName'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'lastName'),
+                          value:
+                              VariableNode(name: NameNode(value: 'lastName'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'dob'),
+                          value: VariableNode(name: NameNode(value: 'dob')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'signUpUser';
+
+  @override
+  final SignUpUserArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  SignUpUser$Mutation parse(Map<String, dynamic> json) =>
+      SignUpUser$Mutation.fromJson(json);
 }

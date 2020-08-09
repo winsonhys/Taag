@@ -1,9 +1,9 @@
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/ItemDetails/widgets/AddAFriendButton/AddAFriendButton.dart';
 import 'package:Taag/ItemDetails/widgets/AddToCartButton/AddToCartButton.dart';
 import 'package:Taag/ItemDetails/widgets/ItemDetailsBody.dart';
-import 'package:Taag/graphql/api.graphql.dart';
 
 class ItemDetailsArguments {
   final String itemId;

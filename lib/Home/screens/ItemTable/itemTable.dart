@@ -1,8 +1,8 @@
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/Home/screens/ItemTable/widgets/ItemCard.dart';
-import 'package:Taag/graphql/api.graphql.dart';
 
 class ItemTable extends StatefulWidget {
   @override
