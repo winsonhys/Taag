@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:get/route_manager.dart';
 
 class LoginScreenView extends StatelessWidget {
   final Function signUpUser;
@@ -24,8 +25,7 @@ class LoginScreenView extends StatelessWidget {
         ),
         logo: "assets/images/login_logo.png",
         title: "Taag",
-        onSubmitAnimationCompleted: () =>
-            Navigator.popAndPushNamed(context, "home"),
+        onSubmitAnimationCompleted: () => Get.offAllNamed("home"),
       ),
     );
   }

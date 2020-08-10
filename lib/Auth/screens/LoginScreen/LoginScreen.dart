@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:Taag/Login/screens/LoginScreen/LoginScreenView.dart';
+import 'package:Taag/Auth/screens/LoginScreen/LoginScreenView.dart';
 import 'package:Taag/graphql/mutations.graphql.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
