@@ -347,7 +347,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "961908f957a73137bb65c0d5916ce24b1ff0a7a6"
+      resolved-ref: "61f05bc70320bbe88fcfebea7826607a0cf687a0"
       url: "git@github.com:winsonhys/flutter_login.git"
     source: git
     version: "1.0.14"
