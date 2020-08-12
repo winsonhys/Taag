@@ -1,3 +1,4 @@
+import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -27,9 +28,10 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.ibmPlexSansTextTheme()
               .apply(bodyColor: Colors.white, displayColor: Colors.white)),
-      initialRoute: "Login",
+      initialRoute: "Await",
       getPages: [
-        GetPage(name: "/", page: () => HomePage()),
+        GetPage(name: "Await", page: () => AwaitScreen()),
+        GetPage(name: "Home", page: () => HomePage()),
         GetPage(name: "Login", page: () => LoginScreen()),
         GetPage(
             name: ItemDetails.route,

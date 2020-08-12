@@ -25,7 +25,7 @@ class LoginScreenView extends StatelessWidget {
         ),
         logo: "assets/images/login_logo.png",
         title: "Taag",
-        onSubmitAnimationCompleted: () => Get.offAllNamed("home"),
+        onSubmitAnimationCompleted: () => Get.offAllNamed("Home"),
       ),
     );
   }
