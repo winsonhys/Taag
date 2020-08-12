@@ -28,6 +28,10 @@ mixin ShopItemMixin {
   String imageUrl;
   ShopItemMixin$Shop shop;
 }
+mixin UserDataMixin {
+  String id;
+  UserDataMixin$Cart cart;
+}
 
 @JsonSerializable(explicitToJson: true)
 class AddToCart$Mutation$AddToCart with EquatableMixin, CartMixin {
@@ -96,16 +100,14 @@ class ShopItemMixin$Shop with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SignUpUser$Mutation$SignUp with EquatableMixin {
+class SignUpUser$Mutation$SignUp with EquatableMixin, UserDataMixin {
   SignUpUser$Mutation$SignUp();
 
   factory SignUpUser$Mutation$SignUp.fromJson(Map<String, dynamic> json) =>
       _$SignUpUser$Mutation$SignUpFromJson(json);
 
-  String id;
-
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id, cart];
   Map<String, dynamic> toJson() => _$SignUpUser$Mutation$SignUpToJson(this);
 }
 
@@ -121,6 +123,20 @@ class SignUpUser$Mutation with EquatableMixin {
   @override
   List<Object> get props => [signUp];
   Map<String, dynamic> toJson() => _$SignUpUser$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserDataMixin$Cart with EquatableMixin {
+  UserDataMixin$Cart();
+
+  factory UserDataMixin$Cart.fromJson(Map<String, dynamic> json) =>
+      _$UserDataMixin$CartFromJson(json);
+
+  String id;
+
+  @override
+  List<Object> get props => [id];
+  Map<String, dynamic> toJson() => _$UserDataMixin$CartToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -443,6 +459,28 @@ class SignUpUserMutation
                           value: VariableNode(name: NameNode(value: 'dob')))
                     ]))
               ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'UserData'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'UserData'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(name: NameNode(value: 'User'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'cart'),
+              alias: null,
+              arguments: [],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(

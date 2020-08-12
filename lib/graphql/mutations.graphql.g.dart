@@ -103,13 +103,18 @@ Map<String, dynamic> _$ShopItemMixin$ShopToJson(ShopItemMixin$Shop instance) =>
 
 SignUpUser$Mutation$SignUp _$SignUpUser$Mutation$SignUpFromJson(
     Map<String, dynamic> json) {
-  return SignUpUser$Mutation$SignUp()..id = json['id'] as String;
+  return SignUpUser$Mutation$SignUp()
+    ..id = json['id'] as String
+    ..cart = json['cart'] == null
+        ? null
+        : UserDataMixin$Cart.fromJson(json['cart'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SignUpUser$Mutation$SignUpToJson(
         SignUpUser$Mutation$SignUp instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'cart': instance.cart?.toJson(),
     };
 
 SignUpUser$Mutation _$SignUpUser$MutationFromJson(Map<String, dynamic> json) {
@@ -124,6 +129,15 @@ Map<String, dynamic> _$SignUpUser$MutationToJson(
         SignUpUser$Mutation instance) =>
     <String, dynamic>{
       'signUp': instance.signUp?.toJson(),
+    };
+
+UserDataMixin$Cart _$UserDataMixin$CartFromJson(Map<String, dynamic> json) {
+  return UserDataMixin$Cart()..id = json['id'] as String;
+}
+
+Map<String, dynamic> _$UserDataMixin$CartToJson(UserDataMixin$Cart instance) =>
+    <String, dynamic>{
+      'id': instance.id,
     };
 
 AddToCartArguments _$AddToCartArgumentsFromJson(Map<String, dynamic> json) {

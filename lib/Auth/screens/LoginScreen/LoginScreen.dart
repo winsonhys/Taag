@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:Taag/graphql/GraphqlContainer.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   // Maybe put this in provider.
@@ -40,6 +41,10 @@ class LoginScreen extends StatelessWidget {
     if (result.exception != null) {
       Future.value(result.exception.graphqlErrors[0].message);
     }
+    final UserDataMixin userData =
+        SignUpUser$Mutation.fromJson(result.data).signUp;
+    final userDataProvider = Provider.of<UserDataMixin>(context);
+    // userDataProvider.
     FirebaseUser user;
     try {
       user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
