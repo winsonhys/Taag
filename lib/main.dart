@@ -1,5 +1,5 @@
+import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
-import 'package:Taag/graphql/mutations.graphql.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // TODO:Move this into await screen
   await Firebase.initializeApp();
   runApp(GraphQLContainer(
     child: MyApp(),
@@ -22,8 +23,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<UserDataMixin>.value(
-        value: null,
+    return Provider<UserProvider>(
+        create: (context) => UserProvider(context: context),
         child: GetMaterialApp(
           title: 'Taag',
           theme: ThemeData(
