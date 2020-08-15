@@ -1,5 +1,6 @@
 import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
+import 'package:Taag/Cart/Cart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
                   .apply(bodyColor: Colors.white, displayColor: Colors.white)),
           initialRoute: "Await",
           getPages: [
+            GetPage(name: "Cart", page: () => Cart()),
             GetPage(name: "Await", page: () => AwaitScreen()),
             GetPage(name: "Home", page: () => HomePage()),
             GetPage(name: "Login", page: () => LoginScreen()),

@@ -2,6 +2,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ThreeDimensionalDrawer extends StatefulWidget {
   final Widget child;
@@ -151,8 +152,9 @@ class MyDrawer extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 ListTile(
-                  leading: Icon(Icons.new_releases),
-                  title: Text('News'),
+                  leading: Icon(Icons.shopping_cart),
+                  title: Text('Cart'),
+                  onTap: () => Get.toNamed("Cart"),
                 ),
                 ListTile(
                   leading: Icon(Icons.star),

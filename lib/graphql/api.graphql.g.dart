@@ -246,6 +246,70 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
       'shopItem': instance.shopItem?.toJson(),
     };
 
+FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
+    _$FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCountsFromJson(
+        Map<String, dynamic> json) {
+  return FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts()
+    ..id = json['id'] as String
+    ..cartId = json['cartId'] as String
+    ..price = (json['price'] as num)?.toDouble()
+    ..count = json['count'] as int
+    ..shopItem = json['shopItem'] == null
+        ? null
+        : CartItemCountMixin$ShopItem.fromJson(
+            json['shopItem'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic>
+    _$FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCountsToJson(
+            FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'cartId': instance.cartId,
+          'price': instance.price,
+          'count': instance.count,
+          'shopItem': instance.shopItem?.toJson(),
+        };
+
+FindCartFromOwnerId$Query$FindCartFromOwnerId
+    _$FindCartFromOwnerId$Query$FindCartFromOwnerIdFromJson(
+        Map<String, dynamic> json) {
+  return FindCartFromOwnerId$Query$FindCartFromOwnerId()
+    ..id = json['id'] as String
+    ..price = (json['price'] as num)?.toDouble()
+    ..cartItemCounts = (json['cartItemCounts'] as List)
+        ?.map((e) => e == null
+            ? null
+            : FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
+                .fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$FindCartFromOwnerId$Query$FindCartFromOwnerIdToJson(
+        FindCartFromOwnerId$Query$FindCartFromOwnerId instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'cartItemCounts':
+          instance.cartItemCounts?.map((e) => e?.toJson())?.toList(),
+    };
+
+FindCartFromOwnerId$Query _$FindCartFromOwnerId$QueryFromJson(
+    Map<String, dynamic> json) {
+  return FindCartFromOwnerId$Query()
+    ..findCartFromOwnerId = json['findCartFromOwnerId'] == null
+        ? null
+        : FindCartFromOwnerId$Query$FindCartFromOwnerId.fromJson(
+            json['findCartFromOwnerId'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$FindCartFromOwnerId$QueryToJson(
+        FindCartFromOwnerId$Query instance) =>
+    <String, dynamic>{
+      'findCartFromOwnerId': instance.findCartFromOwnerId?.toJson(),
+    };
+
 AddToCartArguments _$AddToCartArgumentsFromJson(Map<String, dynamic> json) {
   return AddToCartArguments(
     itemId: json['itemId'] as String,
@@ -305,4 +369,17 @@ Map<String, dynamic> _$FindOneShopItemArgumentsToJson(
         FindOneShopItemArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
+    };
+
+FindCartFromOwnerIdArguments _$FindCartFromOwnerIdArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return FindCartFromOwnerIdArguments(
+    ownerId: json['ownerId'] as String,
+  );
+}
+
+Map<String, dynamic> _$FindCartFromOwnerIdArgumentsToJson(
+        FindCartFromOwnerIdArguments instance) =>
+    <String, dynamic>{
+      'ownerId': instance.ownerId,
     };

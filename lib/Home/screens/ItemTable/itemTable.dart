@@ -4,12 +4,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/Home/screens/ItemTable/widgets/ItemCard.dart';
 
-class ItemTable extends StatefulWidget {
-  @override
-  _ItemTableState createState() => _ItemTableState();
-}
+class ItemTable extends StatelessWidget {
+  final Function toggleDrawer;
+  const ItemTable({Key key, @required this.toggleDrawer}) : super(key: key);
 
-class _ItemTableState extends State<ItemTable> {
   Widget _buildGridItem(ShopItemMixin item) {
     return Itemcard(item: item);
   }
