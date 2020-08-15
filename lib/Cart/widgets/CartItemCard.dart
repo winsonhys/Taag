@@ -42,18 +42,21 @@ class CartItemCard extends StatelessWidget {
                           initialValue: cartItemCount.count,
                           builder: (field) {
                             return Row(children: <Widget>[
-                              Ink(
-                                  decoration: ShapeDecoration(
-                                    color: Colors.lightBlue,
-                                    shape: CircleBorder(),
-                                  ),
-                                  child: IconButton(
-                                    icon: Icon(Icons.android),
-                                    color: Colors.lightBlue,
-                                    onPressed: () {
-                                      print('hasa');
-                                    },
-                                  )),
+                              Material(
+                                // Needed to make ink work as Material is doing the splashing
+                                child: Ink(
+                                    decoration: ShapeDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      shape: CircleBorder(),
+                                    ),
+                                    child: IconButton(
+                                      icon: Icon(Icons.remove),
+                                      color: Colors.white,
+                                      onPressed: () {
+                                        print('hasa');
+                                      },
+                                    )),
+                              ),
                               Text(
                                 field.value.toString(),
                                 style: Theme.of(context)
@@ -61,6 +64,21 @@ class CartItemCard extends StatelessWidget {
                                     .headline6
                                     .copyWith(
                                         color: Theme.of(context).primaryColor),
+                              ),
+                              Material(
+                                // Needed to make ink work as Material is doing the splashing
+                                child: Ink(
+                                    decoration: ShapeDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      shape: CircleBorder(),
+                                    ),
+                                    child: IconButton(
+                                      icon: Icon(Icons.add),
+                                      color: Colors.white,
+                                      onPressed: () {
+                                        print('hasa');
+                                      },
+                                    )),
                               ),
                             ]);
                           },
