@@ -1,0 +1,5 @@
+query findUserById($id:String!) {
+  findUserById(id: $id) {
+    ...UserData
+  }
+}

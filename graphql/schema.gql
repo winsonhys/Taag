@@ -3,6 +3,7 @@ type Query {
   shopItems(where: ShopItemWhereInput, orderBy: ShopItemOrderByInput, cursor: ShopItemWhereUniqueInput, take: Int, skip: Int): [ShopItem!]!
   user(where: UserWhereUniqueInput!): User
   findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiCartByUserIdInput!): MultiCart!
+  findUserById(id: String!): User!
 }
 
 input ShopItemWhereUniqueInput {

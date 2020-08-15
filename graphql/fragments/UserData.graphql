@@ -3,5 +3,4 @@ fragment UserData on User {
   cart {
     id
   }
-  
 }

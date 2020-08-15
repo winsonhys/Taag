@@ -34,7 +34,6 @@ class ItemDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   AddToCartButton(
-                    buyerId: "asd",
                     itemId: item.id,
                   ),
                   AddAFriendButton()

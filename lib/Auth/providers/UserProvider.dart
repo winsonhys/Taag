@@ -1,15 +1,29 @@
+import 'package:Taag/common/exceptions/UnauthorizedException.dart';
 import 'package:Taag/graphql/GraphqlContainer.dart';
-import 'package:Taag/graphql/mutations.graphql.dart';
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class UserProvider {
-  BuildContext context;
+  final BuildContext context;
   UserDataMixin user;
 
   UserProvider({@required this.context});
+
+  Future<void> getUser() async {
+    final firebaseUser = await FirebaseAuth.instance.currentUser();
+    print(firebaseUser);
+    if (firebaseUser == null) {
+      throw UnauthorizedException(message: "User is not signed in");
+    }
+    final client = GraphQLProvider.of(context).value;
+    final result = await client.query(QueryOptions(
+        documentNode: FindUserByIdQuery().document,
+        variables: {"id": firebaseUser.uid}));
+    user = FindUserById$Query.fromJson(result.data).findUserById;
+  }
 
   Future<String> login(LoginData data) async {
     FirebaseUser user;
@@ -27,7 +41,7 @@ class UserProvider {
   }
 
   Future<String> signUp(SignupData data) async {
-    final client = GraphQLProvider.of(this.context).value;
+    final client = GraphQLProvider.of(context).value;
     final result = await client.mutate(MutationOptions(
         documentNode: SignUpUserMutation().document,
         variables: {

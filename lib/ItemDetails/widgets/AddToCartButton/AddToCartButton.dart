@@ -1,15 +1,15 @@
-import 'package:Taag/graphql/mutations.graphql.dart';
+import 'package:Taag/Auth/providers/UserProvider.dart';
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/ItemDetails/widgets/AddToCartButton/AddToCartButtonView.dart';
+import 'package:provider/provider.dart';
 
 class AddToCartButton extends StatelessWidget {
   final String itemId;
-  final String buyerId;
 
   const AddToCartButton({
     @required this.itemId,
-    @required this.buyerId,
     Key key,
   }) : super(key: key);
 
@@ -23,7 +23,11 @@ class AddToCartButton extends StatelessWidget {
           return AddToCartButtonView(
               loading: result.loading,
               addToCart: () {
-                runMutation({"itemId": this.itemId, "buyerId": this.buyerId});
+                print(context.read<UserProvider>().user.id);
+                // runMutation({
+                //   "itemId": this.itemId,
+                //   "buyerId": context.read<UserProvider>().user.id
+                // });
               });
         });
   }

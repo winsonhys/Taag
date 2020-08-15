@@ -10,9 +10,5 @@ targets:
             schema_mapping:
                 - output: lib/graphql/api.graphql.dart
                   schema: graphql/schema.gql
-                  queries_glob: graphql/queries/**.graphql
-                  naming_scheme: pathedWithFields
-                - output: lib/graphql/mutations.graphql.dart
-                  schema: graphql/schema.gql
-                  queries_glob: graphql/mutations/*.graphql
+                  queries_glob: graphql/{mutations,queries,subscriptions}/**.graphql
                   naming_scheme: pathedWithFields
