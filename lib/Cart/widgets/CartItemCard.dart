@@ -12,14 +12,64 @@ class CartItemCard extends StatelessWidget {
     return Container(
         child: Container(
             constraints: BoxConstraints(maxHeight: 140),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
+              color: Colors.white,
             ),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: CachedNetworkImage(
-                    imageUrl: cartItemCount.shopItem.imageUrl,
-                    placeholder: (context, url) =>
-                        Lottie.asset("assets/lottie/corgi.json")))));
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: CachedNetworkImage(
+                          imageUrl: cartItemCount.shopItem.imageUrl,
+                          placeholder: (context, url) =>
+                              Lottie.asset("assets/lottie/corgi.json"))),
+                ),
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        cartItemCount.shopItem.name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                      Expanded(
+                        child: FormField(
+                          initialValue: cartItemCount.count,
+                          builder: (field) {
+                            return Row(children: <Widget>[
+                              Ink(
+                                  decoration: ShapeDecoration(
+                                    color: Colors.lightBlue,
+                                    shape: CircleBorder(),
+                                  ),
+                                  child: IconButton(
+                                    icon: Icon(Icons.android),
+                                    color: Colors.lightBlue,
+                                    onPressed: () {
+                                      print('hasa');
+                                    },
+                                  )),
+                              Text(
+                                field.value.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                        color: Theme.of(context).primaryColor),
+                              ),
+                            ]);
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            )));
   }
 }
