@@ -23,11 +23,10 @@ class AddToCartButton extends StatelessWidget {
           return AddToCartButtonView(
               loading: result.loading,
               addToCart: () {
-                print(context.read<UserProvider>().user.id);
-                // runMutation({
-                //   "itemId": this.itemId,
-                //   "buyerId": context.read<UserProvider>().user.id
-                // });
+                runMutation({
+                  "itemId": this.itemId,
+                  "buyerId": context.read<UserProvider>().user.id
+                });
               });
         });
   }
