@@ -66,7 +66,7 @@ class ThreeDimensionalDrawerState extends State<ThreeDimensionalDrawer>
                       ..setEntry(3, 2, 0.001)
                       ..rotateY(math.pi / 2 * (1 - animationController.value)),
                     alignment: Alignment.centerRight,
-                    child: MyDrawer(),
+                    child: MyDrawer(toggleDrawer: toggle),
                   ),
                 ),
                 Transform.translate(
@@ -137,6 +137,8 @@ class ThreeDimensionalDrawerState extends State<ThreeDimensionalDrawer>
 }
 
 class MyDrawer extends StatelessWidget {
+  final Function toggleDrawer;
+  MyDrawer({@required this.toggleDrawer});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -154,7 +156,10 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.shopping_cart),
                   title: Text('Cart'),
-                  onTap: () => Get.toNamed("Cart"),
+                  onTap: () {
+                    toggleDrawer();
+                    Get.toNamed("Cart");
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.star),
