@@ -14,4 +14,9 @@ class ChangePasswordProvider {
   set newPassword(String newPassword) {
     _newPassword = newPassword;
   }
+
+  Future<void> changePassword(Function callback) async {
+    // TODO: Change password
+    callback();
+  }
 }

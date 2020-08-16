@@ -1,11 +1,12 @@
+import 'package:Taag/UserProfile/widgets/ChangePasswordListTile.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatelessWidget {
   static const route = 'UserProfile';
   const UserProfile({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final widgets = [ChangePasswordListTile()];
     return Scaffold(
         backgroundColor: Theme.of(context).accentColor,
         appBar: AppBar(
@@ -18,10 +19,12 @@ class UserProfile extends StatelessWidget {
         body: Padding(
             padding: EdgeInsets.symmetric(vertical: 20),
             child: ListView.separated(
-                itemBuilder: null,
+                itemBuilder: (context, index) {
+                  return widgets[index];
+                },
                 separatorBuilder: (context, index) {
                   return const Divider();
                 },
-                itemCount: null)));
+                itemCount: widgets.length)));
   }
 }

@@ -161,6 +161,11 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('Profile'),
+                  onTap: () => Get.toNamed('UserProfile'),
+                ),
+                ListTile(
                   leading: Icon(Icons.star),
                   title: Text('Favourites'),
                 ),
@@ -171,10 +176,6 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text('Settings'),
-                ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Profile'),
                 ),
               ],
             ),

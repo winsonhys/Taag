@@ -2,14 +2,14 @@ import 'package:Taag/UserProfile/providers/ChangePasswordProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ResetPasswordListTile extends StatefulWidget {
-  const ResetPasswordListTile({Key key}) : super(key: key);
+class ChangePasswordListTile extends StatefulWidget {
+  const ChangePasswordListTile({Key key}) : super(key: key);
 
   @override
-  _ResetPasswordListTileState createState() => _ResetPasswordListTileState();
+  _ChangePasswordListTileState createState() => _ChangePasswordListTileState();
 }
 
-class _ResetPasswordListTileState extends State<ResetPasswordListTile> {
+class _ChangePasswordListTileState extends State<ChangePasswordListTile> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,14 @@ class _ResetPasswordListTileState extends State<ResetPasswordListTile> {
       child: Form(
         key: _formKey,
         child: ExpansionTile(
-          title: Text('Reset Password'),
+          title: Text(
+            'Reset Password',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                .copyWith(color: Colors.white),
+          ),
+          childrenPadding: EdgeInsets.symmetric(horizontal: 20),
           children: [
             TextFormField(
                 onSaved: (newValue) => context
@@ -44,12 +51,19 @@ class _ResetPasswordListTileState extends State<ResetPasswordListTile> {
                     ? 'Please enter some your current password'
                     : null),
             RaisedButton(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                   }
                 },
-                child: Text('Change Password'))
+                child: Text(
+                  'Change Password',
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ))
           ],
         ),
       ),
