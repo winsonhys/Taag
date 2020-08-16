@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Taag/Home/screens/ItemTable/itemTable.dart';
+import 'package:Taag/Home/widgets/ItemTable/ItemTable.dart';
 import 'package:Taag/common/widgets/ThreeDimensionalDrawer.dart';
 
 class HomePage extends StatelessWidget {
