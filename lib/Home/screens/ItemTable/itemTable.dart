@@ -5,8 +5,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/Home/screens/ItemTable/widgets/ItemCard.dart';
 
 class ItemTable extends StatelessWidget {
-  final Function toggleDrawer;
-  const ItemTable({Key key, @required this.toggleDrawer}) : super(key: key);
+  const ItemTable({Key key}) : super(key: key);
 
   Widget _buildGridItem(ShopItemMixin item) {
     return Itemcard(item: item);

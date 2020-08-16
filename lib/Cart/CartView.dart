@@ -1,32 +1,52 @@
-import 'package:Taag/Cart/widgets/CartItemCard.dart';
+import 'package:Taag/Cart/widgets/CartItemCard/CartItemCard.dart';
+import 'package:Taag/Cart/widgets/CheckoutHeader.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CartView extends StatelessWidget {
   final FindCartFromOwnerId$Query data;
-  const CartView({@required this.data, Key key}) : super(key: key);
+  CartView({@required this.data, Key key}) : super(key: key);
 
-  List<Widget> _buildChildren() {
+  final _panelController = PanelController();
+
+  Widget _buildChildren(int index) {
     final List<CartItemCountMixin> cartItemCounts =
         data.findCartFromOwnerId.cartItemCounts;
-    final widgets = cartItemCounts
-        .map((cartItemCount) => CartItemCard(
-              cartItemCount: cartItemCount,
-            ))
-        .toList();
-    return widgets;
+    return CartItemCard(cartItemCount: cartItemCounts[index]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+    final List<CartItemCountMixin> cartItemCounts =
+        data.findCartFromOwnerId.cartItemCounts;
+    return SlidingUpPanel(
+      // color: Colors.black,
+      backdropEnabled: true,
+      controller: _panelController,
+      collapsed: CheckoutHeader(),
+      panel: Center(
+        child: Text("This is the sliding Widget",
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                .copyWith(color: Colors.black)),
       ),
-      body: GridView.count(
-        crossAxisCount: 1,
-        children: _buildChildren(),
+      borderRadius: BorderRadiusDirectional.circular(24),
+      body: Scaffold(
+        backgroundColor: Theme.of(context).accentColor,
+        appBar: AppBar(
+          title: Text(
+            'Cart',
+            style: Theme.of(context).textTheme.headline4,
+            textAlign: TextAlign.center,
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        body: ListView.builder(
+          itemCount: cartItemCounts.length,
+          itemBuilder: (context, index) => _buildChildren(index),
+        ),
       ),
     );
   }

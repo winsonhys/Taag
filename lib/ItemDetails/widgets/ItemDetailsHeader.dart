@@ -22,7 +22,7 @@ class ItemDetailsHeader extends StatelessWidget {
     ]));
   }
 
-  getPriceText(ShopItemMixin item, ThemeData themeData) {
+  Widget getPriceText(ShopItemMixin item, ThemeData themeData) {
     return AutoSizeText.rich(
       TextSpan(children: [
         TextSpan(
