@@ -21,14 +21,18 @@ class _ResetPasswordListTileState extends State<ResetPasswordListTile> {
           title: Text('Reset Password'),
           children: [
             TextFormField(
-              onSaved: 
+                onSaved: (newValue) => context
+                    .watch<ChangePasswordProvider>()
+                    .currentPassword = newValue,
                 obscureText: true,
                 decoration: InputDecoration(hintText: 'Current Password'),
                 validator: (value) => value.isEmpty
                     ? 'Please enter some your current password'
-                    : null
-            )
+                    : null),
             TextFormField(
+                onSaved: (newValue) => context
+                    .watch<ChangePasswordProvider>()
+                    .newPassword = newValue,
                 decoration: InputDecoration(hintText: 'New Password'),
                 validator: (value) => value.isEmpty
                     ? 'Please enter some your current password'
