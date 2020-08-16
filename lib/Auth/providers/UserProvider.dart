@@ -16,12 +16,12 @@ class UserProvider {
     final firebaseUser = await FirebaseAuth.instance.currentUser();
     print(firebaseUser);
     if (firebaseUser == null) {
-      throw UnauthorizedException(message: "User is not signed in");
+      throw UnauthorizedException(message: 'User is not signed in');
     }
     final client = GraphQLProvider.of(context).value;
     final result = await client.query(QueryOptions(
         documentNode: FindUserByIdQuery().document,
-        variables: {"id": firebaseUser.uid}));
+        variables: {'id': firebaseUser.uid}));
     user = FindUserById$Query.fromJson(result.data).findUserById;
   }
 
@@ -32,7 +32,7 @@ class UserProvider {
               email: data.email, password: data.password))
           .user;
     } catch (e) {
-      return Future.value("Invalid username password combination");
+      return Future.value('Invalid username password combination');
     }
 
     final userToken = (await user.getIdToken()).token;
@@ -45,15 +45,15 @@ class UserProvider {
     final result = await client.mutate(MutationOptions(
         documentNode: SignUpUserMutation().document,
         variables: {
-          "email": data.email,
-          "password": data.password,
-          "displayName": data.firstName + data.lastName,
-          "firstName": data.firstName,
-          "lastName": data.lastName,
-          "dob": data.dob.toIso8601String()
+          'email': data.email,
+          'password': data.password,
+          'displayName': data.firstName + data.lastName,
+          'firstName': data.firstName,
+          'lastName': data.lastName,
+          'dob': data.dob.toIso8601String()
         }));
     if (result.exception != null) {
-      Future.value(result.exception.graphqlErrors[0].message);
+      return Future.value(result.exception.graphqlErrors[0].message);
     }
 
     user = SignUpUser$Mutation.fromJson(result.data).signUp;
@@ -64,7 +64,7 @@ class UserProvider {
               email: data.email, password: data.password))
           .user;
     } catch (e) {
-      return Future.value("Failed signing in. Please try again later.");
+      return Future.value('Failed signing in. Please try again later.');
     }
 
     final userToken = (await firebaseUser.getIdToken()).token;

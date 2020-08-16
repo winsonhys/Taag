@@ -6,9 +6,14 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CartView extends StatelessWidget {
   final FindCartFromOwnerId$Query data;
-  CartView({@required this.data, Key key}) : super(key: key);
-
   final _panelController = PanelController();
+  CartView({@required this.data, Key key}) : super(key: key) {
+    final List<CartItemCountMixin> cartItemCounts =
+        data.findCartFromOwnerId.cartItemCounts;
+    if (cartItemCounts.isEmpty) {
+      _panelController.hide();
+    }
+  }
 
   Widget _buildChildren(int index) {
     final List<CartItemCountMixin> cartItemCounts =
@@ -21,12 +26,12 @@ class CartView extends StatelessWidget {
     final List<CartItemCountMixin> cartItemCounts =
         data.findCartFromOwnerId.cartItemCounts;
     return SlidingUpPanel(
-      // color: Colors.black,
       backdropEnabled: true,
       controller: _panelController,
-      collapsed: CheckoutHeader(),
+      minHeight: 80,
+      collapsed: CheckoutHeader(totalPrice: data.findCartFromOwnerId.price),
       panel: Center(
-        child: Text("This is the sliding Widget",
+        child: Text('This is the sliding Widget',
             style: Theme.of(context)
                 .textTheme
                 .headline5

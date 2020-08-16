@@ -18,7 +18,7 @@ class ItemTable extends StatelessWidget {
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
           if (result.loading) {
-            return new Text("Loading");
+            return Text('Loading');
           }
           final List<ShopItemMixin> items =
               AllShopItems$Query.fromJson(result.data).shopItems;

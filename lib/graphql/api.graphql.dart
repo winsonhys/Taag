@@ -283,6 +283,8 @@ class AddToCartArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [itemId, buyerId];
+
+  @override
   Map<String, dynamic> toJson() => _$AddToCartArgumentsToJson(this);
 }
 
@@ -507,6 +509,8 @@ class SignUpUserArguments extends JsonSerializable with EquatableMixin {
   @override
   List<Object> get props =>
       [email, password, displayName, firstName, lastName, dob];
+
+  @override
   Map<String, dynamic> toJson() => _$SignUpUserArgumentsToJson(this);
 }
 
@@ -827,6 +831,8 @@ class FindOneShopItemArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [id];
+  
+  @override
   Map<String, dynamic> toJson() => _$FindOneShopItemArgumentsToJson(this);
 }
 

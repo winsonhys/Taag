@@ -16,6 +16,7 @@ class Itemcard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var price = item.price;
     return GestureDetector(
       onTap: () => goToItemPage(context),
       child: Column(
@@ -30,7 +31,7 @@ class Itemcard extends StatelessWidget {
                   child: CachedNetworkImage(
                       imageUrl: item.imageUrl,
                       placeholder: (context, url) =>
-                          Lottie.asset("assets/lottie/corgi.json")))),
+                          Lottie.asset('assets/lottie/corgi.json')))),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
             child: Text(
@@ -38,7 +39,7 @@ class Itemcard extends StatelessWidget {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          Text("\$${item.price}",
+          Text('\$${price}',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
         ],
       ),

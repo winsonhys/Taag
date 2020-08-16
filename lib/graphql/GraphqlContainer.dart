@@ -4,11 +4,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class GraphQLContainer extends StatefulWidget {
   static Link link;
   static HttpLink httpLink = HttpLink(
-    uri: "http://localhost:4000/",
+    uri: 'http://localhost:4000/',
   );
 
   static void setToken(String token) {
-    AuthLink alink = AuthLink(getToken: () async => 'Bearer ' + token);
+    final alink = AuthLink(getToken: () async => 'Bearer ' + token);
     GraphQLContainer.link = alink.concat(GraphQLContainer.httpLink);
   }
 
@@ -21,8 +21,8 @@ class GraphQLContainer extends StatefulWidget {
 
   static String uuidFromObject(Object object) {
     if (object is Map<String, Object>) {
-      final String typeName = object['__typename'] as String;
-      final String id = object['id'].toString();
+      final typeName = object['__typename'] as String;
+      final id = object['id'].toString();
       if (typeName != null && id != null) {
         return <String>[typeName, id].join('/');
       }
@@ -31,8 +31,8 @@ class GraphQLContainer extends StatefulWidget {
   }
 
   @override
-  _GraphQLContainerState createState() => _GraphQLContainerState(
-      link: link != null ? link : httpLink, child: child);
+  _GraphQLContainerState createState() =>
+      _GraphQLContainerState(link: link ?? httpLink, child: child);
 }
 
 class _GraphQLContainerState extends State<GraphQLContainer> {
@@ -42,7 +42,7 @@ class _GraphQLContainerState extends State<GraphQLContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<GraphQLClient> client = ValueNotifier(GraphQLClient(
+    final client = ValueNotifier(GraphQLClient(
       cache: OptimisticCache(
         dataIdFromObject: GraphQLContainer.uuidFromObject,
       ),

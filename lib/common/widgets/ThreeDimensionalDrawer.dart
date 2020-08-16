@@ -15,8 +15,7 @@ class ThreeDimensionalDrawer extends StatefulWidget {
       context.findAncestorStateOfType<ThreeDimensionalDrawerState>();
 
   @override
-  ThreeDimensionalDrawerState createState() =>
-      new ThreeDimensionalDrawerState();
+  ThreeDimensionalDrawerState createState() => ThreeDimensionalDrawerState();
 }
 
 class ThreeDimensionalDrawerState extends State<ThreeDimensionalDrawer>
@@ -104,27 +103,27 @@ class ThreeDimensionalDrawerState extends State<ThreeDimensionalDrawer>
   }
 
   void _onDragStart(DragStartDetails details) {
-    bool isDragOpenFromLeft = animationController.isDismissed;
-    bool isDragCloseFromRight = animationController.isCompleted;
+    final isDragOpenFromLeft = animationController.isDismissed;
+    final isDragCloseFromRight = animationController.isCompleted;
     _canBeDragged = isDragOpenFromLeft || isDragCloseFromRight;
   }
 
   void _onDragUpdate(DragUpdateDetails details) {
     if (_canBeDragged) {
-      double delta = details.primaryDelta / maxSlide;
+      final delta = details.primaryDelta / maxSlide;
       animationController.value += delta;
     }
   }
 
   void _onDragEnd(DragEndDetails details) {
     //I have no idea what it means, copied from Drawer
-    double _kMinFlingVelocity = 365.0;
+    final _kMinFlingVelocity = 365.0;
 
     if (animationController.isDismissed || animationController.isCompleted) {
       return;
     }
     if (details.velocity.pixelsPerSecond.dx.abs() >= _kMinFlingVelocity) {
-      double visualVelocity = details.velocity.pixelsPerSecond.dx /
+      final visualVelocity = details.velocity.pixelsPerSecond.dx /
           MediaQuery.of(context).size.width;
 
       animationController.fling(velocity: visualVelocity);
@@ -158,7 +157,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text('Cart'),
                   onTap: () {
                     toggleDrawer();
-                    Get.toNamed("Cart");
+                    Get.toNamed('Cart');
                   },
                 ),
                 ListTile(

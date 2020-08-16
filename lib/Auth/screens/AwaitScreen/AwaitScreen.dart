@@ -6,21 +6,21 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class AwaitScreen extends StatelessWidget {
-  loadToken(BuildContext context) async {
+  void loadToken(BuildContext context) async {
     try {
       await context.watch<UserProvider>().getUser();
     } on UnauthorizedException {
-      Get.offNamed("Login");
+      await Get.offNamed('Login');
       return;
     }
-    Get.offNamed("Home");
+    await Get.offNamed('Home');
   }
 
   @override
   Widget build(BuildContext context) {
     loadToken(context);
     return Center(
-      child: Lottie.asset("assets/lottie/corgi.json"),
+      child: Lottie.asset('assets/lottie/corgi.json'),
     );
   }
 }

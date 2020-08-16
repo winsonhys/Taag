@@ -19,7 +19,7 @@ class AddToCartButton extends StatelessWidget {
     return Mutation(
         options: MutationOptions(
           onCompleted: (_) {
-            Get.snackbar("Item added", "Item has been added to cart");
+            Get.snackbar('Item added', 'Item has been added to cart');
           },
           documentNode: AddToCartMutation().document,
         ),
@@ -28,8 +28,8 @@ class AddToCartButton extends StatelessWidget {
               loading: result.loading,
               addToCart: () {
                 runMutation({
-                  "itemId": this.itemId,
-                  "buyerId": context.read<UserProvider>().user.id
+                  'itemId': itemId,
+                  'buyerId': context.read<UserProvider>().user.id
                 });
               });
         });

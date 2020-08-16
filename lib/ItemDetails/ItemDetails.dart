@@ -13,7 +13,7 @@ class ItemDetailsArguments {
 
 class ItemDetails extends StatelessWidget {
   ItemDetails({Key key}) : super(key: key);
-  static const route = "/details";
+  static const route = '/details';
   final ItemDetailsArguments args = Get.arguments;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ItemDetails extends StatelessWidget {
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
           if (result.loading) {
-            return new Text("Loading");
+            return Text('Loading');
           }
           final ShopItemMixin item =
               FindOneShopItem$Query.fromJson(result.data).shopItem;

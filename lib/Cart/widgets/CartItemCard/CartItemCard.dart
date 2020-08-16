@@ -25,7 +25,7 @@ class CartItemCard extends StatelessWidget {
                 child: CachedNetworkImage(
                     imageUrl: cartItemCount.shopItem.imageUrl,
                     placeholder: (context, url) =>
-                        Lottie.asset("assets/lottie/corgi.json"))),
+                        Lottie.asset('assets/lottie/corgi.json'))),
             Expanded(
               child: Column(
                 children: <Widget>[

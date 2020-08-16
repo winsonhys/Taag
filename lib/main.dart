@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // ignore: todo
   // TODO:Move this into await screen
   await Firebase.initializeApp();
   runApp(GraphQLContainer(
@@ -34,12 +35,12 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               textTheme: GoogleFonts.ibmPlexSansTextTheme()
                   .apply(bodyColor: Colors.white, displayColor: Colors.white)),
-          initialRoute: "Await",
+          initialRoute: 'Await',
           getPages: [
-            GetPage(name: "Cart", page: () => Cart()),
-            GetPage(name: "Await", page: () => AwaitScreen()),
-            GetPage(name: "Home", page: () => HomePage()),
-            GetPage(name: "Login", page: () => LoginScreen()),
+            GetPage(name: 'Cart', page: () => Cart()),
+            GetPage(name: 'Await', page: () => AwaitScreen()),
+            GetPage(name: 'Home', page: () => HomePage()),
+            GetPage(name: 'Login', page: () => LoginScreen()),
             GetPage(
                 name: ItemDetails.route,
                 page: () => ItemDetails(),

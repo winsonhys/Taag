@@ -12,13 +12,13 @@ class ItemDetailsHeader extends StatelessWidget {
 
   final ShopItemMixin item;
 
-  getHeaderText(ShopItemMixin item, ThemeData themeData) {
+  Widget getHeaderText(ShopItemMixin item, ThemeData themeData) {
     return RichText(
         text: TextSpan(children: [
       TextSpan(
           style: themeData.textTheme.headline5.copyWith(
               color: themeData.primaryColor, fontWeight: FontWeight.bold),
-          text: "${item.name}\n")
+          text: '${item.name}\n')
     ]));
   }
 
@@ -28,11 +28,11 @@ class ItemDetailsHeader extends StatelessWidget {
         TextSpan(
             style: themeData.textTheme.headline6
                 .copyWith(color: themeData.primaryColor),
-            text: "Price\n"),
+            text: 'Price\n'),
         TextSpan(
             style: themeData.textTheme.headline3.copyWith(
                 color: themeData.primaryColor, fontWeight: FontWeight.bold),
-            text: "\$${item.price}")
+            text: '\$${item.price}')
       ]),
       maxLines: 2,
       minFontSize: 6,
@@ -56,7 +56,7 @@ class ItemDetailsHeader extends StatelessWidget {
                 child: CachedNetworkImage(
                     imageUrl: item.imageUrl,
                     placeholder: (context, url) =>
-                        Lottie.asset("assets/lottie/corgi.json")))),
+                        Lottie.asset('assets/lottie/corgi.json')))),
         Positioned.fill(
           right: 300,
           child: Padding(

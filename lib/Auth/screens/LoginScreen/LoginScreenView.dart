@@ -23,9 +23,9 @@ class LoginScreenView extends StatelessWidget {
         theme: LoginTheme(
           pageColorDark: Color.fromRGBO(244, 151, 108, 1),
         ),
-        logo: "assets/images/login_logo.png",
-        title: "Taag",
-        onSubmitAnimationCompleted: () => Get.offAllNamed("Home"),
+        logo: 'assets/images/login_logo.png',
+        title: 'Taag',
+        onSubmitAnimationCompleted: () => Get.offAllNamed('Home'),
       ),
     );
   }

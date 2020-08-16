@@ -13,7 +13,7 @@ class Cart extends StatelessWidget {
     return Query(
         options: QueryOptions(
             documentNode: FindCartFromOwnerIdQuery().document,
-            variables: {"ownerId": context.watch<UserProvider>().user.id}),
+            variables: {'ownerId': context.watch<UserProvider>().user.id}),
         builder: (result, {fetchMore, refetch}) {
           if (result.loading) {
             return CircularProgressIndicator();
