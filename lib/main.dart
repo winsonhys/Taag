@@ -2,7 +2,7 @@ import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
 import 'package:Taag/Cart/Cart.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
-import 'package:Taag/UserProfile/screens/PaymentMethodsScreen.dart';
+import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: 'Await', page: () => AwaitScreen()),
             GetPage(name: 'Home', page: () => HomePage()),
             GetPage(name: 'Login', page: () => LoginScreen()),
-            GetPage(name: 'PaymentMethods', page: () => PaymentMethods()),
+            GetPage(name: 'AddCreditCard', page: () => AddCreditCard()),
             GetPage(
                 name: ItemDetails.route,
                 page: () => ItemDetails(),

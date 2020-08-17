@@ -7,7 +7,7 @@ class PaymentMethodsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        onTap: () => Get.toNamed('PaymentMethods'),
+        onTap: () => Get.toNamed('AddCreditCard'),
         title: Text(
           'Add/Modify Payment Methods',
           style: Theme.of(context).textTheme.headline6,

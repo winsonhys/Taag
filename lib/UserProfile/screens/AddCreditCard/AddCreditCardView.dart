@@ -1,8 +1,12 @@
+import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
 import 'package:credit_card_input_form/credit_card_input_form.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PaymentMethods extends StatelessWidget {
-  const PaymentMethods({Key key}) : super(key: key);
+class AddCreditCardView extends StatelessWidget {
+  const AddCreditCardView({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +20,7 @@ class PaymentMethods extends StatelessWidget {
           Theme.of(context).accentColor
         ]),
         borderRadius: BorderRadius.all(Radius.circular(15)));
+
     final nextPrevBoxDeco = BoxDecoration(
       boxShadow: <BoxShadow>[
         BoxShadow(color: Colors.black54, blurRadius: 5.0, offset: Offset(0, 5))
@@ -33,20 +38,24 @@ class PaymentMethods extends StatelessWidget {
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp),
     );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Payment Information',
+          'Add Credit/Debit Card',
           style: Theme.of(context).textTheme.headline5,
           textAlign: TextAlign.center,
         ),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: CreditCardInputForm(
           cardHeight: 170,
           onStateChange: (currentState, cardInfo) {
-            print(currentState);
-            print(cardInfo);
+            context.read<CreditCardProvider>().cardNumber = cardInfo.cardNumber;
+            context.read<CreditCardProvider>().name = cardInfo.name;
+            context.read<CreditCardProvider>().cvv = cardInfo.cvv;
+            context.read<CreditCardProvider>().valid = cardInfo.validate;
           },
           backCardDecoration: creditCardBoxDeco,
           frontCardDecoration: creditCardBoxDeco,

@@ -14,7 +14,6 @@ class UserProvider {
 
   Future<void> getUser() async {
     final firebaseUser = await FirebaseAuth.instance.currentUser();
-    print(firebaseUser);
     if (firebaseUser == null) {
       throw UnauthorizedException(message: 'User is not signed in');
     }
