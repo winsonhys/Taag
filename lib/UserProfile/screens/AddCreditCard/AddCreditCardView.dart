@@ -50,7 +50,7 @@ class AddCreditCardView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: CreditCardInputForm(
-          cardHeight: 170,
+          cardHeight: 200,
           onStateChange: (currentState, cardInfo) {
             context.read<CreditCardProvider>().cardNumber = cardInfo.cardNumber;
             context.read<CreditCardProvider>().name = cardInfo.name;
