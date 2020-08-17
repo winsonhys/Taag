@@ -2,6 +2,7 @@ import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
 import 'package:Taag/Cart/Cart.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
+import 'package:Taag/UserProfile/screens/PaymentMethodsScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               primaryColor: Color.fromRGBO(239, 181, 163, 1),
               accentColor: Color.fromRGBO(245, 126, 126, 1),
+              iconTheme: IconThemeData(color: Colors.white),
+              accentIconTheme: IconThemeData(color: Colors.white),
               visualDensity: VisualDensity.adaptivePlatformDensity,
+              dividerColor: Colors.white,
               textTheme: GoogleFonts.ibmPlexSansTextTheme()
                   .apply(bodyColor: Colors.white, displayColor: Colors.white)),
           initialRoute: 'Await',
@@ -43,6 +47,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: 'Await', page: () => AwaitScreen()),
             GetPage(name: 'Home', page: () => HomePage()),
             GetPage(name: 'Login', page: () => LoginScreen()),
+            GetPage(name: 'PaymentMethods', page: () => PaymentMethods()),
             GetPage(
                 name: ItemDetails.route,
                 page: () => ItemDetails(),
