@@ -70,4 +70,12 @@ class UserProvider {
     GraphQLContainer.setToken(userToken);
     return Future.value(null);
   }
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      throw Exception('Cannot sign out, please try again');
+    }
+  }
 }

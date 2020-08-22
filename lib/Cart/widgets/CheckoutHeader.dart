@@ -13,7 +13,7 @@ class CheckoutHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Lottie.asset('assets/lottie/checkout.json'),
-          Text('Checkout',
+          Text('Ship it!',
               style: Theme.of(context)
                   .textTheme
                   .headline5

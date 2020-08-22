@@ -1,23 +1,26 @@
+import 'package:Taag/Auth/providers/UserProvider.dart';
+import 'package:Taag/Home/widgets/HomeView.dart';
+import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
-import 'package:Taag/Home/widgets/ItemTable/ItemTable.dart';
-import 'package:Taag/common/widgets/ThreeDimensionalDrawer.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ThreeDimensionalDrawer(
-      titleWidget: Text(
-        'Taag',
-        style: Theme.of(context).textTheme.headline4,
-        textAlign: TextAlign.center,
-      ),
-      child: Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: ItemTable(),
-          )),
-    );
+    return Query(
+        options: QueryOptions(
+            documentNode: FindCartFromOwnerIdQuery().document,
+            variables: {'ownerId': context.watch<UserProvider>().user.id}),
+        builder: (result, {fetchMore, refetch}) {
+          if (result.loading) {
+            return CircularProgressIndicator();
+          }
+          final data = FindCartFromOwnerId$Query.fromJson(result.data);
+          final price = data.findCartFromOwnerId.price;
+          return HomeView(subtotal: price);
+        });
   }
 }
