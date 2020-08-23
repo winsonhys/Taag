@@ -6,13 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class UserProvider {
+class UserProvider extends ChangeNotifier {
   final BuildContext context;
   UserDataMixin user;
 
   UserProvider({@required this.context});
 
-  Future<void> getUser() async {
+  void notifyUserChange() {
+    notifyListeners();
+  }
+
+  Future<void> setUser() async {
     final firebaseUser = await FirebaseAuth.instance.currentUser();
     if (firebaseUser == null) {
       throw UnauthorizedException(message: 'User is not signed in');
@@ -25,17 +29,18 @@ class UserProvider {
   }
 
   Future<String> login(LoginData data) async {
-    FirebaseUser user;
+    FirebaseUser firebaseUser;
     try {
-      user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+      firebaseUser = (await FirebaseAuth.instance.signInWithEmailAndPassword(
               email: data.email, password: data.password))
           .user;
     } catch (e) {
       return Future.value('Invalid username password combination');
     }
 
-    final userToken = (await user.getIdToken()).token;
+    final userToken = (await firebaseUser.getIdToken()).token;
     GraphQLContainer.setToken(userToken);
+    await setUser();
     return Future.value(null);
   }
 
@@ -74,6 +79,7 @@ class UserProvider {
   Future<void> signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
+      user = null;
     } catch (e) {
       throw Exception('Cannot sign out, please try again');
     }

@@ -28,9 +28,7 @@ class ItemCountButtons extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.remove),
                         color: Colors.white,
-                        onPressed: () {
-                          print('hasa');
-                        },
+                        onPressed: () {},
                       )),
                 ),
                 Text(
@@ -50,9 +48,7 @@ class ItemCountButtons extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.add),
                         color: Colors.white,
-                        onPressed: () {
-                          print('hasa');
-                        },
+                        onPressed: () {},
                       )),
                 ),
               ]);

@@ -27,7 +27,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<UserProvider>(
+    return ChangeNotifierProvider<UserProvider>(
         create: (context) => UserProvider(context: context),
         child: GetMaterialApp(
           title: 'Taag',

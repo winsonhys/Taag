@@ -1,6 +1,8 @@
+import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:get/route_manager.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreenView extends StatelessWidget {
   final Function signUpUser;
@@ -25,7 +27,10 @@ class LoginScreenView extends StatelessWidget {
         ),
         logo: 'assets/images/login_logo.png',
         title: 'Taag',
-        onSubmitAnimationCompleted: () => Get.offAllNamed('Home'),
+        onSubmitAnimationCompleted: () {
+          context.read<UserProvider>().notifyUserChange();
+          Get.offAllNamed('Home');
+        },
       ),
     );
   }

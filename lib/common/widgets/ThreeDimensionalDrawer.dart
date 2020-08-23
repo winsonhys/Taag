@@ -1,8 +1,11 @@
 // 3d drawer. Obtained from https://github.com/MarcinusX/drawer_challenge/blob/master/lib/custom_drawer_guitar.dart.
 import 'dart:math' as math;
 
+import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/route_manager.dart';
+import 'package:provider/provider.dart';
 
 class ThreeDimensionalDrawer extends StatefulWidget {
   final Widget child;
@@ -153,8 +156,8 @@ class MyDrawer extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 ListTile(
-                  leading: Icon(Icons.shopping_cart),
-                  title: Text('Cart'),
+                  leading: Icon(FontAwesome5Solid.file_invoice_dollar),
+                  title: Text('Orders'),
                   onTap: () {
                     toggleDrawer();
                     Get.toNamed('Cart');
@@ -164,6 +167,14 @@ class MyDrawer extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text('Profile'),
                   onTap: () => Get.toNamed('UserProfile'),
+                ),
+                ListTile(
+                  leading: Icon(FontAwesome5Solid.sign_out_alt),
+                  title: Text('Sign Out'),
+                  onTap: () {
+                    Get.offAllNamed('Login');
+                    context.read<UserProvider>().signOut();
+                  },
                 ),
               ],
             ),

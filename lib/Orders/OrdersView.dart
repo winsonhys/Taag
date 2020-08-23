@@ -1,4 +1,4 @@
-import 'package:Taag/Orders/widgets/CartItemCard/CartItemCard.dart';
+import 'package:Taag/Orders/widgets/OrderCard/OrderCard.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class OrdersView extends StatelessWidget {
       backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
         title: Text(
-          'Cart',
+          'Orders',
           style: Theme.of(context).textTheme.headline4,
           textAlign: TextAlign.center,
         ),

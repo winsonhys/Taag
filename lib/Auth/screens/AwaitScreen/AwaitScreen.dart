@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class AwaitScreen extends StatelessWidget {
   void loadToken(BuildContext context) async {
     try {
-      await context.watch<UserProvider>().getUser();
+      await context.watch<UserProvider>().setUser();
     } on UnauthorizedException {
       await Get.offNamed('Login');
       return;
