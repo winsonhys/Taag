@@ -21,7 +21,7 @@ class AddToCartButton extends StatelessWidget {
           onCompleted: (_) {
             Get.snackbar('Item added', 'Item has been added to cart');
           },
-          documentNode: AddToCartMutation().document,
+          documentNode: AddToOrderMutation().document,
         ),
         builder: (RunMutation runMutation, result) {
           return AddToCartButtonView(

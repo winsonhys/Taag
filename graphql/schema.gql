@@ -1,14 +1,378 @@
 type Query {
-  shopItem(where: ShopItemWhereUniqueInput!): ShopItem
-  shopItems(where: ShopItemWhereInput, orderBy: ShopItemOrderByInput, cursor: ShopItemWhereUniqueInput, take: Int, skip: Int): [ShopItem!]!
-  user(where: UserWhereUniqueInput!): User
-  findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiCartByUserIdInput!): MultiCart!
-  findCartFromOwnerId(ownerId: String!): Cart!
   findUserById(id: String!): User!
+  findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiOrderByUserIdInput!): MultiOrder!
+  findOrdersFromOwnerId(ownerId: String!): [Order!]!
+  shopItem(where: ShopItemWhereUniqueInput!): ShopItem
+  shopItems(where: ShopItemWhereInput, orderBy: [ShopItemOrderByInput!], cursor: ShopItemWhereUniqueInput, take: Int, skip: Int, distinct: [ShopItemDistinctFieldEnum!]): [ShopItem!]!
+  user(where: UserWhereUniqueInput!): User
 }
 
-input ShopItemWhereUniqueInput {
+type User {
+  id: String!
+  email: String!
+  username: String!
+  password: String!
+  dob: DateTime!
+  stripe_cust_id: String!
+  orders(where: OrderWhereInput, orderBy: [OrderOrderByInput!], cursor: OrderWhereUniqueInput, take: Int, skip: Int, distinct: [OrderDistinctFieldEnum!]): [Order!]
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+input OrderWhereInput {
+  AND: [OrderWhereInput!]
+  OR: [OrderWhereInput!]
+  NOT: [OrderWhereInput!]
+  id: StringFilter
+  ownerId: StringFilter
+  owner: UserWhereInput
+  paymentIntentId: StringNullableFilter
+  price: FloatFilter
+  cartItemCount: CartItemCountWhereInput
+  MultiOrder: MultiOrderWhereInput
+  multiOrderId: StringNullableFilter
+  PaymentOrder: PaymentOrderWhereInput
+  deletedAt: DateTimeNullableFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  email: StringFilter
+  username: StringFilter
+  password: StringFilter
+  dob: DateTimeFilter
+  orders: OrderListRelationFilter
+  stripe_cust_id: StringFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input OrderListRelationFilter {
+  every: OrderWhereInput
+  some: OrderWhereInput
+  none: OrderWhereInput
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input FloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input NestedFloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input CartItemCountWhereInput {
+  AND: [CartItemCountWhereInput!]
+  OR: [CartItemCountWhereInput!]
+  NOT: [CartItemCountWhereInput!]
+  id: StringFilter
+  orderId: StringFilter
+  order: OrderWhereInput
+  itemId: StringFilter
+  shopItem: ShopItemWhereInput
+  price: FloatFilter
+  count: IntFilter
+  deletedAt: DateTimeNullableFilter
+}
+
+input ShopItemWhereInput {
+  AND: [ShopItemWhereInput!]
+  OR: [ShopItemWhereInput!]
+  NOT: [ShopItemWhereInput!]
+  id: StringFilter
+  createdAt: DateTimeFilter
+  name: StringFilter
+  description: StringFilter
+  price: FloatFilter
+  imageUrl: StringFilter
+  shop: ShopWhereInput
+  shopId: StringFilter
+  cartItemCounts: CartItemCountListRelationFilter
+  refunds: RefundListRelationFilter
+}
+
+input ShopWhereInput {
+  AND: [ShopWhereInput!]
+  OR: [ShopWhereInput!]
+  NOT: [ShopWhereInput!]
+  id: StringFilter
+  email: StringFilter
+  username: StringFilter
+  password: StringFilter
+  shopItems: ShopItemListRelationFilter
+}
+
+input ShopItemListRelationFilter {
+  every: ShopItemWhereInput
+  some: ShopItemWhereInput
+  none: ShopItemWhereInput
+}
+
+input CartItemCountListRelationFilter {
+  every: CartItemCountWhereInput
+  some: CartItemCountWhereInput
+  none: CartItemCountWhereInput
+}
+
+input RefundListRelationFilter {
+  every: RefundWhereInput
+  some: RefundWhereInput
+  none: RefundWhereInput
+}
+
+input RefundWhereInput {
+  AND: [RefundWhereInput!]
+  OR: [RefundWhereInput!]
+  NOT: [RefundWhereInput!]
+  id: StringFilter
+  shopItem: ShopItemWhereInput
+  shopItemId: StringFilter
+  description: StringFilter
+  paymentIntentId: StringFilter
+  stripeRefundId: StringFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+}
+
+input MultiOrderWhereInput {
+  AND: [MultiOrderWhereInput!]
+  OR: [MultiOrderWhereInput!]
+  NOT: [MultiOrderWhereInput!]
+  id: StringFilter
+  orders: OrderListRelationFilter
+  paymentIntentId: StringNullableFilter
+  PaymentMultiOrder: PaymentMultiOrderWhereInput
+}
+
+input PaymentMultiOrderWhereInput {
+  AND: [PaymentMultiOrderWhereInput!]
+  OR: [PaymentMultiOrderWhereInput!]
+  NOT: [PaymentMultiOrderWhereInput!]
+  id: StringFilter
+  paymentStatus: EnumPaymentStatusFilter
+  multiOrderId: StringFilter
+  multiOrder: MultiOrderWhereInput
+  paymentIntentId: StringFilter
+}
+
+input EnumPaymentStatusFilter {
+  equals: PaymentStatus
+  in: [PaymentStatus!]
+  notIn: [PaymentStatus!]
+  not: NestedEnumPaymentStatusFilter
+}
+
+enum PaymentStatus {
+  UNPAID
+  AWAITING_CATURE
+  PAID
+  REFUNDED
+}
+
+input NestedEnumPaymentStatusFilter {
+  equals: PaymentStatus
+  in: [PaymentStatus!]
+  notIn: [PaymentStatus!]
+  not: NestedEnumPaymentStatusFilter
+}
+
+input PaymentOrderWhereInput {
+  AND: [PaymentOrderWhereInput!]
+  OR: [PaymentOrderWhereInput!]
+  NOT: [PaymentOrderWhereInput!]
+  id: StringFilter
+  paymentStatus: EnumPaymentStatusFilter
+  orderId: StringFilter
+  order: OrderWhereInput
+  paymentIntentId: StringFilter
+}
+
+input OrderOrderByInput {
+  id: SortOrder
+  ownerId: SortOrder
+  paymentIntentId: SortOrder
+  price: SortOrder
+  multiOrderId: SortOrder
+  deletedAt: SortOrder
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input OrderWhereUniqueInput {
   id: String
+}
+
+enum OrderDistinctFieldEnum {
+  id
+  ownerId
+  paymentIntentId
+  price
+  multiOrderId
+  deletedAt
+}
+
+type Order {
+  id: String!
+  ownerId: String!
+  paymentIntentId: String
+  price: Float!
+  multiOrderId: String
+  deletedAt: DateTime
+  owner: User!
+  cartItemCount: CartItemCount!
+  MultiOrder: MultiOrder
+  PaymentOrder: PaymentOrder
+}
+
+type CartItemCount {
+  id: String!
+  orderId: String!
+  itemId: String!
+  price: Float!
+  count: Int!
+  deletedAt: DateTime
+  shopItem: ShopItem!
 }
 
 type ShopItem {
@@ -20,13 +384,9 @@ type ShopItem {
   imageUrl: String!
   shopId: String!
   shop: Shop!
-  cartItemCounts(where: CartItemCountWhereInput, orderBy: CartItemCountOrderByInput, cursor: CartItemCountWhereUniqueInput, take: Int, skip: Int): [CartItemCount!]
+  cartItemCounts(where: CartItemCountWhereInput, orderBy: [CartItemCountOrderByInput!], cursor: CartItemCountWhereUniqueInput, take: Int, skip: Int, distinct: [CartItemCountDistinctFieldEnum!]): [CartItemCount!]
+  refunds(where: RefundWhereInput, orderBy: [RefundOrderByInput!], cursor: RefundWhereUniqueInput, take: Int, skip: Int, distinct: [RefundDistinctFieldEnum!]): [Refund!]
 }
-
-"""
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
-"""
-scalar DateTime
 
 type Shop {
   id: String!
@@ -35,221 +395,103 @@ type Shop {
   password: String!
 }
 
-input CartItemCountWhereInput {
-  id: UUIDFilter
-  cartId: StringFilter
-  itemId: StringFilter
-  price: FloatFilter
-  count: IntFilter
-  deletedAt: NullableDateTimeFilter
-  AND: [CartItemCountWhereInput!]
-  OR: [CartItemCountWhereInput!]
-  NOT: [CartItemCountWhereInput!]
-  cart: CartWhereInput
-  shopItem: ShopItemWhereInput
-}
-
-input UUIDFilter {
-  equals: String
-  not: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-}
-
-input StringFilter {
-  equals: String
-  not: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-}
-
-input FloatFilter {
-  equals: Float
-  not: Float
-  in: [Float!]
-  notIn: [Float!]
-  lt: Float
-  lte: Float
-  gt: Float
-  gte: Float
-}
-
-input IntFilter {
-  equals: Int
-  not: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-}
-
-input NullableDateTimeFilter {
-  equals: DateTime
-  not: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-}
-
-input CartWhereInput {
-  id: UUIDFilter
-  ownerId: StringFilter
-  chargeId: NullableStringFilter
-  price: FloatFilter
-  cartItemCounts: CartItemCountFilter
-  multiCartId: NullableStringFilter
-  AND: [CartWhereInput!]
-  OR: [CartWhereInput!]
-  NOT: [CartWhereInput!]
-  owner: UserWhereInput
-  MultiCart: MultiCartWhereInput
-}
-
-input NullableStringFilter {
-  equals: String
-  not: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-}
-
-input CartItemCountFilter {
-  every: CartItemCountWhereInput
-  some: CartItemCountWhereInput
-  none: CartItemCountWhereInput
-}
-
-input UserWhereInput {
-  id: UUIDFilter
-  email: StringFilter
-  username: StringFilter
-  password: StringFilter
-  dob: DateTimeFilter
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  cart: CartWhereInput
-}
-
-input DateTimeFilter {
-  equals: DateTime
-  not: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-}
-
-input MultiCartWhereInput {
-  id: UUIDFilter
-  carts: CartFilter
-  chargeId: NullableStringFilter
-  AND: [MultiCartWhereInput!]
-  OR: [MultiCartWhereInput!]
-  NOT: [MultiCartWhereInput!]
-}
-
-input CartFilter {
-  every: CartWhereInput
-  some: CartWhereInput
-  none: CartWhereInput
-}
-
-input ShopItemWhereInput {
-  id: UUIDFilter
-  createdAt: DateTimeFilter
-  name: StringFilter
-  description: StringFilter
-  price: FloatFilter
-  imageUrl: StringFilter
-  shopId: StringFilter
-  cartItemCounts: CartItemCountFilter
-  AND: [ShopItemWhereInput!]
-  OR: [ShopItemWhereInput!]
-  NOT: [ShopItemWhereInput!]
-  shop: ShopWhereInput
-}
-
-input ShopWhereInput {
-  id: UUIDFilter
-  email: StringFilter
-  username: StringFilter
-  password: StringFilter
-  shopItems: ShopItemFilter
-  AND: [ShopWhereInput!]
-  OR: [ShopWhereInput!]
-  NOT: [ShopWhereInput!]
-}
-
-input ShopItemFilter {
-  every: ShopItemWhereInput
-  some: ShopItemWhereInput
-  none: ShopItemWhereInput
-}
-
 input CartItemCountOrderByInput {
-  id: OrderByArg
-  cartId: OrderByArg
-  itemId: OrderByArg
-  price: OrderByArg
-  count: OrderByArg
-  deletedAt: OrderByArg
-}
-
-enum OrderByArg {
-  asc
-  desc
+  id: SortOrder
+  orderId: SortOrder
+  itemId: SortOrder
+  price: SortOrder
+  count: SortOrder
+  deletedAt: SortOrder
 }
 
 input CartItemCountWhereUniqueInput {
   id: String
 }
 
-type CartItemCount {
+enum CartItemCountDistinctFieldEnum {
+  id
+  orderId
+  itemId
+  price
+  count
+  deletedAt
+}
+
+input RefundOrderByInput {
+  id: SortOrder
+  shopItemId: SortOrder
+  description: SortOrder
+  paymentIntentId: SortOrder
+  stripeRefundId: SortOrder
+}
+
+input RefundWhereUniqueInput {
+  id: String
+}
+
+enum RefundDistinctFieldEnum {
+  id
+  shopItemId
+  description
+  paymentIntentId
+  stripeRefundId
+}
+
+type Refund {
   id: String!
-  cartId: String!
-  itemId: String!
-  price: Float!
-  count: Int!
-  deletedAt: DateTime
-  shopItem: ShopItem!
+  shopItemId: String!
+  description: String!
+  paymentIntentId: String!
+  stripeRefundId: String!
+}
+
+type MultiOrder {
+  id: String!
+  paymentIntentId: String
+  orders(where: OrderWhereInput, orderBy: [OrderOrderByInput!], cursor: OrderWhereUniqueInput, take: Int, skip: Int, distinct: [OrderDistinctFieldEnum!]): [Order!]
+  PaymentMultiOrder: PaymentMultiOrder
+}
+
+type PaymentMultiOrder {
+  id: String!
+  paymentStatus: PaymentStatus!
+  multiOrderId: String!
+  paymentIntentId: String!
+}
+
+type PaymentOrder {
+  id: String!
+  paymentStatus: PaymentStatus!
+  orderId: String!
+  paymentIntentId: String!
+}
+
+input FindMultiOrderByUserIdInput {
+  user_id: String!
+}
+
+input ShopItemWhereUniqueInput {
+  id: String
 }
 
 input ShopItemOrderByInput {
-  id: OrderByArg
-  createdAt: OrderByArg
-  name: OrderByArg
-  description: OrderByArg
-  price: OrderByArg
-  imageUrl: OrderByArg
-  shopId: OrderByArg
+  id: SortOrder
+  createdAt: SortOrder
+  name: SortOrder
+  description: SortOrder
+  price: SortOrder
+  imageUrl: SortOrder
+  shopId: SortOrder
+}
+
+enum ShopItemDistinctFieldEnum {
+  id
+  createdAt
+  name
+  description
+  price
+  imageUrl
+  shopId
 }
 
 input UserWhereUniqueInput {
@@ -258,54 +500,38 @@ input UserWhereUniqueInput {
   username: String
 }
 
-type User {
-  id: String!
-  email: String!
-  username: String!
-  password: String!
-  dob: DateTime!
-  cart: Cart!
-}
-
-type Cart {
-  id: String!
-  ownerId: String!
-  chargeId: String
-  price: Float!
-  multiCartId: String
-  owner: User!
-  cartItemCounts(where: CartItemCountWhereInput, orderBy: CartItemCountOrderByInput, cursor: CartItemCountWhereUniqueInput, take: Int, skip: Int): [CartItemCount!]
-  MultiCart: MultiCart
-}
-
-type MultiCart {
-  id: String!
-  chargeId: String
-  carts(where: CartWhereInput, orderBy: CartOrderByInput, cursor: CartWhereUniqueInput, take: Int, skip: Int): [Cart!]
-}
-
-input CartOrderByInput {
-  id: OrderByArg
-  ownerId: OrderByArg
-  chargeId: OrderByArg
-  price: OrderByArg
-  multiCartId: OrderByArg
-}
-
-input CartWhereUniqueInput {
-  id: String
-}
-
-input FindMultiCartByUserIdInput {
-  user_id: String!
-}
-
 type Mutation {
+  signUp(signUpInput: SignUpInput!): User!
+  payCurrentOrder(payCurrentOrderInput: PayCurrentOrderInput!): Order!
+  removeFromOrder(removeFromOrderInput: RemoveFromOrderInput!): Order
+  addToOrder(addToOrderInput: AddToOrderInput!): [Order!]!
   createShop(data: ShopCreateInput!): Shop!
   createShopItem(data: ShopItemCreateInput!): ShopItem!
-  removeFromCart(removeFromCartInput: RemoveFromCartInput!): Cart!
-  addToCart(addToCartInput: AddToCartInput!): Cart!
-  signUp(signUpInput: SignUpInput!): User!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  displayName: String!
+  firstName: String!
+  lastName: String!
+  dob: DateTime!
+}
+
+input PayCurrentOrderInput {
+  user_id: String!
+  order_id: String!
+  payment_method_id: String!
+}
+
+input RemoveFromOrderInput {
+  item_id: String!
+  buyer_id: String!
+}
+
+input AddToOrderInput {
+  item_id: String!
+  buyer_id: String!
 }
 
 input ShopCreateInput {
@@ -329,6 +555,7 @@ input ShopItemCreateWithoutShopInput {
   price: Float!
   imageUrl: String!
   cartItemCounts: CartItemCountCreateManyWithoutShopItemInput
+  refunds: RefundCreateManyWithoutShopItemInput
 }
 
 input CartItemCountCreateManyWithoutShopItemInput {
@@ -341,47 +568,93 @@ input CartItemCountCreateWithoutShopItemInput {
   price: Float!
   count: Int!
   deletedAt: DateTime
-  cart: CartCreateOneWithoutCartItemCountsInput!
+  order: OrderCreateOneWithoutCartItemCountInput!
 }
 
-input CartCreateOneWithoutCartItemCountsInput {
-  create: CartCreateWithoutCartItemCountsInput
-  connect: CartWhereUniqueInput
+input OrderCreateOneWithoutCartItemCountInput {
+  create: OrderCreateWithoutCartItemCountInput
+  connect: OrderWhereUniqueInput
 }
 
-input CartCreateWithoutCartItemCountsInput {
+input OrderCreateWithoutCartItemCountInput {
   id: String
-  chargeId: String
+  paymentIntentId: String
   price: Float
-  owner: UserCreateOneWithoutCartInput!
-  MultiCart: MultiCartCreateOneWithoutCartsInput
+  deletedAt: DateTime
+  owner: UserCreateOneWithoutOrdersInput!
+  MultiOrder: MultiOrderCreateOneWithoutOrdersInput
+  PaymentOrder: PaymentOrderCreateOneWithoutOrderInput
 }
 
-input UserCreateOneWithoutCartInput {
-  create: UserCreateWithoutCartInput
+input UserCreateOneWithoutOrdersInput {
+  create: UserCreateWithoutOrdersInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutCartInput {
+input UserCreateWithoutOrdersInput {
   id: String
   email: String!
   username: String!
   password: String!
   dob: DateTime!
+  stripe_cust_id: String
 }
 
-input MultiCartCreateOneWithoutCartsInput {
-  create: MultiCartCreateWithoutCartsInput
-  connect: MultiCartWhereUniqueInput
+input MultiOrderCreateOneWithoutOrdersInput {
+  create: MultiOrderCreateWithoutOrdersInput
+  connect: MultiOrderWhereUniqueInput
 }
 
-input MultiCartCreateWithoutCartsInput {
+input MultiOrderCreateWithoutOrdersInput {
   id: String
-  chargeId: String
+  paymentIntentId: String
+  PaymentMultiOrder: PaymentMultiOrderCreateOneWithoutMultiOrderInput
 }
 
-input MultiCartWhereUniqueInput {
+input PaymentMultiOrderCreateOneWithoutMultiOrderInput {
+  create: PaymentMultiOrderCreateWithoutMultiOrderInput
+  connect: PaymentMultiOrderWhereUniqueInput
+}
+
+input PaymentMultiOrderCreateWithoutMultiOrderInput {
   id: String
+  paymentStatus: PaymentStatus
+  paymentIntentId: String!
+}
+
+input PaymentMultiOrderWhereUniqueInput {
+  id: String
+}
+
+input MultiOrderWhereUniqueInput {
+  id: String
+}
+
+input PaymentOrderCreateOneWithoutOrderInput {
+  create: PaymentOrderCreateWithoutOrderInput
+  connect: PaymentOrderWhereUniqueInput
+}
+
+input PaymentOrderCreateWithoutOrderInput {
+  id: String
+  paymentStatus: PaymentStatus
+  paymentIntentId: String!
+}
+
+input PaymentOrderWhereUniqueInput {
+  id: String
+}
+
+input RefundCreateManyWithoutShopItemInput {
+  create: [RefundCreateWithoutShopItemInput!]
+  connect: [RefundWhereUniqueInput!]
+}
+
+input RefundCreateWithoutShopItemInput {
+  id: String
+  description: String!
+  paymentIntentId: String!
+  stripeRefundId: String!
 }
 
 input ShopItemCreateInput {
@@ -393,6 +666,7 @@ input ShopItemCreateInput {
   imageUrl: String!
   shop: ShopCreateOneWithoutShopItemsInput!
   cartItemCounts: CartItemCountCreateManyWithoutShopItemInput
+  refunds: RefundCreateManyWithoutShopItemInput
 }
 
 input ShopCreateOneWithoutShopItemsInput {
@@ -411,28 +685,4 @@ input ShopWhereUniqueInput {
   id: String
   email: String
   username: String
-}
-
-input RemoveFromCartInput {
-  item_id: String!
-  buyer_id: String!
-}
-
-input AddToCartInput {
-  item_id: String!
-  buyer_id: String!
-}
-
-input SignUpInput {
-  email: String!
-  password: String!
-  displayName: String!
-  firstName: String!
-  lastName: String!
-  dob: DateTime!
-}
-
-input SignInInput {
-  email: String!
-  password: String!
 }

@@ -1,26 +1,17 @@
 import 'package:Taag/Cart/widgets/CartItemCard/CartItemCard.dart';
-import 'package:Taag/Cart/widgets/CheckoutHeader.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CartView extends StatelessWidget {
-  final FindCartFromOwnerId$Query data;
-  CartView({@required this.data, Key key}) : super(key: key) {
-    final List<CartItemCountMixin> cartItemCounts =
-        data.findCartFromOwnerId.cartItemCounts;
-  }
+  List<OrderMixin> orders;
+  CartView({@required this.orders, Key key}) : super(key: key);
 
   Widget _buildChildren(int index) {
-    final List<CartItemCountMixin> cartItemCounts =
-        data.findCartFromOwnerId.cartItemCounts;
-    return CartItemCard(cartItemCount: cartItemCounts[index]);
+    return OrderCard(order: orders[index]);
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<CartItemCountMixin> cartItemCounts =
-        data.findCartFromOwnerId.cartItemCounts;
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
@@ -32,7 +23,7 @@ class CartView extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: ListView.builder(
-        itemCount: cartItemCounts.length,
+        itemCount: orders.length,
         itemBuilder: (context, index) => _buildChildren(index),
       ),
     );

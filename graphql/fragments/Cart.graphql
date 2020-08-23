@@ -1,8 +1,0 @@
-fragment Cart on Cart {
-  id
-  cartItemCounts {
-    ...CartItemCount
-  }
-  price
-  chargeId
-}

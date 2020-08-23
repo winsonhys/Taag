@@ -6,47 +6,50 @@ part of 'api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddToCart$Mutation$AddToCart _$AddToCart$Mutation$AddToCartFromJson(
+AddToOrder$Mutation$AddToOrder _$AddToOrder$Mutation$AddToOrderFromJson(
     Map<String, dynamic> json) {
-  return AddToCart$Mutation$AddToCart()
+  return AddToOrder$Mutation$AddToOrder()
     ..id = json['id'] as String
-    ..cartItemCounts = (json['cartItemCounts'] as List)
-        ?.map((e) => e == null
-            ? null
-            : CartMixin$CartItemCounts.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..ownerId = json['ownerId'] as String
+    ..cartItemCount = json['cartItemCount'] == null
+        ? null
+        : OrderMixin$CartItemCount.fromJson(
+            json['cartItemCount'] as Map<String, dynamic>)
     ..price = (json['price'] as num)?.toDouble()
-    ..chargeId = json['chargeId'] as String;
+    ..paymentIntentId = json['paymentIntentId'] as String;
 }
 
-Map<String, dynamic> _$AddToCart$Mutation$AddToCartToJson(
-        AddToCart$Mutation$AddToCart instance) =>
+Map<String, dynamic> _$AddToOrder$Mutation$AddToOrderToJson(
+        AddToOrder$Mutation$AddToOrder instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'cartItemCounts':
-          instance.cartItemCounts?.map((e) => e?.toJson())?.toList(),
+      'ownerId': instance.ownerId,
+      'cartItemCount': instance.cartItemCount?.toJson(),
       'price': instance.price,
-      'chargeId': instance.chargeId,
+      'paymentIntentId': instance.paymentIntentId,
     };
 
-AddToCart$Mutation _$AddToCart$MutationFromJson(Map<String, dynamic> json) {
-  return AddToCart$Mutation()
-    ..addToCart = json['addToCart'] == null
-        ? null
-        : AddToCart$Mutation$AddToCart.fromJson(
-            json['addToCart'] as Map<String, dynamic>);
+AddToOrder$Mutation _$AddToOrder$MutationFromJson(Map<String, dynamic> json) {
+  return AddToOrder$Mutation()
+    ..addToOrder = (json['addToOrder'] as List)
+        ?.map((e) => e == null
+            ? null
+            : AddToOrder$Mutation$AddToOrder.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
 }
 
-Map<String, dynamic> _$AddToCart$MutationToJson(AddToCart$Mutation instance) =>
+Map<String, dynamic> _$AddToOrder$MutationToJson(
+        AddToOrder$Mutation instance) =>
     <String, dynamic>{
-      'addToCart': instance.addToCart?.toJson(),
+      'addToOrder': instance.addToOrder?.map((e) => e?.toJson())?.toList(),
     };
 
-CartMixin$CartItemCounts _$CartMixin$CartItemCountsFromJson(
+OrderMixin$CartItemCount _$OrderMixin$CartItemCountFromJson(
     Map<String, dynamic> json) {
-  return CartMixin$CartItemCounts()
+  return OrderMixin$CartItemCount()
     ..id = json['id'] as String
-    ..cartId = json['cartId'] as String
+    ..orderId = json['orderId'] as String
     ..price = (json['price'] as num)?.toDouble()
     ..count = json['count'] as int
     ..shopItem = json['shopItem'] == null
@@ -55,11 +58,11 @@ CartMixin$CartItemCounts _$CartMixin$CartItemCountsFromJson(
             json['shopItem'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$CartMixin$CartItemCountsToJson(
-        CartMixin$CartItemCounts instance) =>
+Map<String, dynamic> _$OrderMixin$CartItemCountToJson(
+        OrderMixin$CartItemCount instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'cartId': instance.cartId,
+      'orderId': instance.orderId,
       'price': instance.price,
       'count': instance.count,
       'shopItem': instance.shopItem?.toJson(),
@@ -105,16 +108,14 @@ SignUpUser$Mutation$SignUp _$SignUpUser$Mutation$SignUpFromJson(
     Map<String, dynamic> json) {
   return SignUpUser$Mutation$SignUp()
     ..id = json['id'] as String
-    ..cart = json['cart'] == null
-        ? null
-        : UserDataMixin$Cart.fromJson(json['cart'] as Map<String, dynamic>);
+    ..stripe_cust_id = json['stripe_cust_id'] as String;
 }
 
 Map<String, dynamic> _$SignUpUser$Mutation$SignUpToJson(
         SignUpUser$Mutation$SignUp instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'cart': instance.cart?.toJson(),
+      'stripe_cust_id': instance.stripe_cust_id,
     };
 
 SignUpUser$Mutation _$SignUpUser$MutationFromJson(Map<String, dynamic> json) {
@@ -129,15 +130,6 @@ Map<String, dynamic> _$SignUpUser$MutationToJson(
         SignUpUser$Mutation instance) =>
     <String, dynamic>{
       'signUp': instance.signUp?.toJson(),
-    };
-
-UserDataMixin$Cart _$UserDataMixin$CartFromJson(Map<String, dynamic> json) {
-  return UserDataMixin$Cart()..id = json['id'] as String;
-}
-
-Map<String, dynamic> _$UserDataMixin$CartToJson(UserDataMixin$Cart instance) =>
-    <String, dynamic>{
-      'id': instance.id,
     };
 
 AllShopItems$Query$ShopItems _$AllShopItems$Query$ShopItemsFromJson(
@@ -178,20 +170,60 @@ Map<String, dynamic> _$AllShopItems$QueryToJson(AllShopItems$Query instance) =>
       'shopItems': instance.shopItems?.map((e) => e?.toJson())?.toList(),
     };
 
+FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
+    _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdFromJson(
+        Map<String, dynamic> json) {
+  return FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId()
+    ..id = json['id'] as String
+    ..ownerId = json['ownerId'] as String
+    ..cartItemCount = json['cartItemCount'] == null
+        ? null
+        : OrderMixin$CartItemCount.fromJson(
+            json['cartItemCount'] as Map<String, dynamic>)
+    ..price = (json['price'] as num)?.toDouble()
+    ..paymentIntentId = json['paymentIntentId'] as String;
+}
+
+Map<String, dynamic> _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(
+        FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'ownerId': instance.ownerId,
+      'cartItemCount': instance.cartItemCount?.toJson(),
+      'price': instance.price,
+      'paymentIntentId': instance.paymentIntentId,
+    };
+
+FindOrdersFromOwnerId$Query _$FindOrdersFromOwnerId$QueryFromJson(
+    Map<String, dynamic> json) {
+  return FindOrdersFromOwnerId$Query()
+    ..findOrdersFromOwnerId = (json['findOrdersFromOwnerId'] as List)
+        ?.map((e) => e == null
+            ? null
+            : FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$FindOrdersFromOwnerId$QueryToJson(
+        FindOrdersFromOwnerId$Query instance) =>
+    <String, dynamic>{
+      'findOrdersFromOwnerId':
+          instance.findOrdersFromOwnerId?.map((e) => e?.toJson())?.toList(),
+    };
+
 FindUserById$Query$FindUserById _$FindUserById$Query$FindUserByIdFromJson(
     Map<String, dynamic> json) {
   return FindUserById$Query$FindUserById()
     ..id = json['id'] as String
-    ..cart = json['cart'] == null
-        ? null
-        : UserDataMixin$Cart.fromJson(json['cart'] as Map<String, dynamic>);
+    ..stripe_cust_id = json['stripe_cust_id'] as String;
 }
 
 Map<String, dynamic> _$FindUserById$Query$FindUserByIdToJson(
         FindUserById$Query$FindUserById instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'cart': instance.cart?.toJson(),
+      'stripe_cust_id': instance.stripe_cust_id,
     };
 
 FindUserById$Query _$FindUserById$QueryFromJson(Map<String, dynamic> json) {
@@ -246,78 +278,15 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
       'shopItem': instance.shopItem?.toJson(),
     };
 
-FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
-    _$FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCountsFromJson(
-        Map<String, dynamic> json) {
-  return FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts()
-    ..id = json['id'] as String
-    ..cartId = json['cartId'] as String
-    ..price = (json['price'] as num)?.toDouble()
-    ..count = json['count'] as int
-    ..shopItem = json['shopItem'] == null
-        ? null
-        : CartItemCountMixin$ShopItem.fromJson(
-            json['shopItem'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic>
-    _$FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCountsToJson(
-            FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
-                instance) =>
-        <String, dynamic>{
-          'id': instance.id,
-          'cartId': instance.cartId,
-          'price': instance.price,
-          'count': instance.count,
-          'shopItem': instance.shopItem?.toJson(),
-        };
-
-FindCartFromOwnerId$Query$FindCartFromOwnerId
-    _$FindCartFromOwnerId$Query$FindCartFromOwnerIdFromJson(
-        Map<String, dynamic> json) {
-  return FindCartFromOwnerId$Query$FindCartFromOwnerId()
-    ..id = json['id'] as String
-    ..price = (json['price'] as num)?.toDouble()
-    ..cartItemCounts = (json['cartItemCounts'] as List)
-        ?.map((e) => e == null
-            ? null
-            : FindCartFromOwnerId$Query$FindCartFromOwnerId$CartItemCounts
-                .fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$FindCartFromOwnerId$Query$FindCartFromOwnerIdToJson(
-        FindCartFromOwnerId$Query$FindCartFromOwnerId instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'price': instance.price,
-      'cartItemCounts':
-          instance.cartItemCounts?.map((e) => e?.toJson())?.toList(),
-    };
-
-FindCartFromOwnerId$Query _$FindCartFromOwnerId$QueryFromJson(
-    Map<String, dynamic> json) {
-  return FindCartFromOwnerId$Query()
-    ..findCartFromOwnerId = json['findCartFromOwnerId'] == null
-        ? null
-        : FindCartFromOwnerId$Query$FindCartFromOwnerId.fromJson(
-            json['findCartFromOwnerId'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$FindCartFromOwnerId$QueryToJson(
-        FindCartFromOwnerId$Query instance) =>
-    <String, dynamic>{
-      'findCartFromOwnerId': instance.findCartFromOwnerId?.toJson(),
-    };
-
-AddToCartArguments _$AddToCartArgumentsFromJson(Map<String, dynamic> json) {
-  return AddToCartArguments(
+AddToOrderArguments _$AddToOrderArgumentsFromJson(Map<String, dynamic> json) {
+  return AddToOrderArguments(
     itemId: json['itemId'] as String,
     buyerId: json['buyerId'] as String,
   );
 }
 
-Map<String, dynamic> _$AddToCartArgumentsToJson(AddToCartArguments instance) =>
+Map<String, dynamic> _$AddToOrderArgumentsToJson(
+        AddToOrderArguments instance) =>
     <String, dynamic>{
       'itemId': instance.itemId,
       'buyerId': instance.buyerId,
@@ -345,6 +314,19 @@ Map<String, dynamic> _$SignUpUserArgumentsToJson(
       'dob': instance.dob?.toIso8601String(),
     };
 
+FindOrdersFromOwnerIdArguments _$FindOrdersFromOwnerIdArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return FindOrdersFromOwnerIdArguments(
+    ownerId: json['ownerId'] as String,
+  );
+}
+
+Map<String, dynamic> _$FindOrdersFromOwnerIdArgumentsToJson(
+        FindOrdersFromOwnerIdArguments instance) =>
+    <String, dynamic>{
+      'ownerId': instance.ownerId,
+    };
+
 FindUserByIdArguments _$FindUserByIdArgumentsFromJson(
     Map<String, dynamic> json) {
   return FindUserByIdArguments(
@@ -369,17 +351,4 @@ Map<String, dynamic> _$FindOneShopItemArgumentsToJson(
         FindOneShopItemArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
-    };
-
-FindCartFromOwnerIdArguments _$FindCartFromOwnerIdArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return FindCartFromOwnerIdArguments(
-    ownerId: json['ownerId'] as String,
-  );
-}
-
-Map<String, dynamic> _$FindCartFromOwnerIdArgumentsToJson(
-        FindCartFromOwnerIdArguments instance) =>
-    <String, dynamic>{
-      'ownerId': instance.ownerId,
     };

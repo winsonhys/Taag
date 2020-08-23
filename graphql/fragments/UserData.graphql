@@ -1,6 +1,4 @@
 fragment UserData on User {
   id,
-  cart {
-    id
-  }
+  stripe_cust_id
 }

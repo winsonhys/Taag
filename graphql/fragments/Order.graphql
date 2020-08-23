@@ -1,0 +1,9 @@
+fragment Order on Order {
+  id
+  ownerId
+  cartItemCount {
+    ...CartItemCount
+  }
+  price
+  paymentIntentId
+}

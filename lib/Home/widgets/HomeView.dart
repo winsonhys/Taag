@@ -7,16 +7,11 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 class HomeView extends StatelessWidget {
   final _panelController = PanelController();
   final double subtotal;
-  HomeView({Key key, @required this.subtotal}) : super(key: key) {
-    if (subtotal == 0) {
-      _panelController.hide();
-    }
-  }
+  HomeView({Key key, @required this.subtotal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(subtotal);
-    return SlidingUpPanel(
+    final panel = SlidingUpPanel(
         backdropEnabled: false,
         controller: _panelController,
         minHeight: 80,
@@ -43,5 +38,6 @@ class HomeView extends StatelessWidget {
                 child: ItemTable(),
               )),
         ));
+    return panel;
   }
 }

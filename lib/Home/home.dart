@@ -12,14 +12,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query(
         options: QueryOptions(
-            documentNode: FindCartFromOwnerIdQuery().document,
+            documentNode: FindOrdersFromOwnerIdQuery().document,
             variables: {'ownerId': context.watch<UserProvider>().user.id}),
         builder: (result, {fetchMore, refetch}) {
           if (result.loading) {
             return CircularProgressIndicator();
           }
-          final data = FindCartFromOwnerId$Query.fromJson(result.data);
-          final price = data.findCartFromOwnerId.price;
+          final data = FindOrdersFromOwnerId$Query.fromJson(result.data);
+          final price = data.findOrdersFromOwnerId
+              .fold(0, (previousValue, order) => previousValue + order.price);
           return HomeView(subtotal: price);
         });
   }

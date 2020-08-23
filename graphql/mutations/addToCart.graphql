@@ -1,5 +1,0 @@
-mutation addToCart($itemId: String!, $buyerId: String!) {
-  addToCart(addToCartInput: { item_id: $itemId, buyer_id: $buyerId }) {
-    ...Cart
-	}
-}

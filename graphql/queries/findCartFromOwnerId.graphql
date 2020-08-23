@@ -1,9 +1,0 @@
-query findCartFromOwnerId($ownerId: String!){
-  findCartFromOwnerId(ownerId: $ownerId) {
-    id
-    price
-    cartItemCounts {
-      ...CartItemCount
-    }
-  }
-}
