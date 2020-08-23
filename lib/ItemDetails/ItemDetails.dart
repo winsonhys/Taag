@@ -30,14 +30,17 @@ class ItemDetails extends StatelessWidget {
               FindOneShopItem$Query.fromJson(result.data).shopItem;
           return Scaffold(
               backgroundColor: Theme.of(context).accentColor,
-              floatingActionButton: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  BuyNowButton(
-                    itemId: item.id,
-                  ),
-                  AddAFriendButton()
-                ],
+              floatingActionButton: Padding(
+                padding: const EdgeInsets.only(left: 36.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    BuyNowButton(
+                      itemId: item.id,
+                    ),
+                    AddAFriendButton()
+                  ],
+                ),
               ),
               appBar: AppBar(
                 elevation: 0,

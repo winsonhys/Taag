@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class BuyNowButtonView extends StatelessWidget {
   final Function addToCart;
@@ -15,15 +16,16 @@ class BuyNowButtonView extends StatelessWidget {
     return Container(
       width: 125,
       child: SizedBox(
-        child: FloatingActionButton(
+        child: FloatingActionButton.extended(
           heroTag: 'unq1',
           onPressed: addToCart,
           materialTapTargetSize: MaterialTapTargetSize.padded,
           backgroundColor: Colors.white,
           foregroundColor: Theme.of(context).accentColor,
-          child: loading
+          label: Text('Buy Now'),
+          icon: loading
               ? CircularProgressIndicator()
-              : const Icon(Icons.add_shopping_cart, size: 36.0),
+              : const Icon(FontAwesome5.money_bill_alt, size: 24.0),
         ),
       ),
     );

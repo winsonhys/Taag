@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           }
           final data = FindOrdersFromOwnerId$Query.fromJson(result.data);
           final price = data.findOrdersFromOwnerId
-              .fold(0, (previousValue, order) => previousValue + order.price);
+              .fold(0.0, (previousValue, order) => previousValue + order.price);
           return HomeView(subtotal: price);
         });
   }

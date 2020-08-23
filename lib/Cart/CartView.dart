@@ -3,7 +3,7 @@ import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
-  List<OrderMixin> orders;
+  final List<OrderMixin> orders;
   CartView({@required this.orders, Key key}) : super(key: key);
 
   Widget _buildChildren(int index) {
