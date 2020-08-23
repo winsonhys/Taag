@@ -1,13 +1,13 @@
 import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
 import 'package:Taag/Cart/Cart.dart';
+import 'package:Taag/Home/home.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:Taag/Home/Home.dart';
 import 'package:Taag/ItemDetails/ItemDetails.dart';
 import 'package:Taag/Auth/screens/LoginScreen/LoginScreen.dart';
 import 'package:Taag/graphql/GraphqlContainer.dart';
