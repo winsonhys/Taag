@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/ItemDetails/widgets/AddAFriendButton/AddAFriendButton.dart';
-import 'package:Taag/ItemDetails/widgets/AddToCartButton/AddToCartButton.dart';
+import 'package:Taag/ItemDetails/widgets/AddToCartButton/BuyNowButton.dart';
 import 'package:Taag/ItemDetails/widgets/ItemDetailsBody.dart';
 
 class ItemDetailsArguments {
@@ -33,7 +33,7 @@ class ItemDetails extends StatelessWidget {
               floatingActionButton: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  AddToCartButton(
+                  BuyNowButton(
                     itemId: item.id,
                   ),
                   AddAFriendButton()

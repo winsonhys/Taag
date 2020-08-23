@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AddToCartButtonView extends StatelessWidget {
+class BuyNowButtonView extends StatelessWidget {
   final Function addToCart;
   final bool loading;
 
-  const AddToCartButtonView({
+  const BuyNowButtonView({
     @required this.addToCart,
     @required this.loading,
     Key key,
