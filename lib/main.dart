@@ -1,6 +1,6 @@
 import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
-import 'package:Taag/Cart/Cart.dart';
+import 'package:Taag/Orders/Orders.dart';
 import 'package:Taag/Home/home.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCard.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           initialRoute: 'Await',
           getPages: [
             GetPage(name: UserProfile.route, page: () => UserProfile()),
-            GetPage(name: 'Cart', page: () => Cart()),
+            GetPage(name: 'Cart', page: () => Orders()),
             GetPage(name: 'Await', page: () => AwaitScreen()),
             GetPage(name: 'Home', page: () => HomePage()),
             GetPage(name: 'Login', page: () => LoginScreen()),

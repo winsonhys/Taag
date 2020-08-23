@@ -1,12 +1,12 @@
 import 'package:Taag/Auth/providers/UserProvider.dart';
-import 'package:Taag/Cart/CartView.dart';
+import 'package:Taag/Orders/OrdersView.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({Key key}) : super(key: key);
+class Orders extends StatelessWidget {
+  const Orders({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Cart extends StatelessWidget {
             return CircularProgressIndicator();
           }
           final data = FindOrdersFromOwnerId$Query.fromJson(result.data);
-          return CartView(orders: data.findOrdersFromOwnerId);
+          return OrdersView(orders: data.findOrdersFromOwnerId);
         });
   }
 }

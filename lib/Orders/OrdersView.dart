@@ -1,10 +1,10 @@
-import 'package:Taag/Cart/widgets/CartItemCard/CartItemCard.dart';
+import 'package:Taag/Orders/widgets/CartItemCard/CartItemCard.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 
-class CartView extends StatelessWidget {
+class OrdersView extends StatelessWidget {
   final List<OrderMixin> orders;
-  CartView({@required this.orders, Key key}) : super(key: key);
+  OrdersView({@required this.orders, Key key}) : super(key: key);
 
   Widget _buildChildren(int index) {
     return OrderCard(order: orders[index]);

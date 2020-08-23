@@ -1,4 +1,4 @@
-import 'package:Taag/Cart/widgets/CartItemCard/widgets/ItemCountButtons.dart';
+import 'package:Taag/Orders/widgets/CartItemCard/widgets/ItemCountButtons.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
