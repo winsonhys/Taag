@@ -1,4 +1,6 @@
+import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SubmitCreditCardButtonWidget extends StatelessWidget {
   final Function() onSubmitPressed;
@@ -7,6 +9,8 @@ class SubmitCreditCardButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loading = context.watch<CreditCardProvider>().isAddingCreditCard;
+    print(loading);
     return RaisedButton(
         padding: const EdgeInsets.all(0),
         elevation: 10.0,
@@ -24,12 +28,12 @@ class SubmitCreditCardButtonWidget extends StatelessWidget {
                     Theme.of(context).accentColor
                   ],
                 )),
-            child: Text(
-              'Submit',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-            )));
+            child: loading
+                ? CircularProgressIndicator()
+                : Text(
+                    'Submit',
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  )));
   }
 }

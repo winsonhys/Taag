@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/widgets/SubmitCreditCard/SubmitCreditCardButtonWidget.dart';
@@ -7,37 +5,29 @@ import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/route_manager.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 import 'package:pedantic/pedantic.dart';
 
 class SubmitCreditCardButton extends StatelessWidget {
-  SubmitCreditCardButton({Key key}) : super(key: key) {
-    StripePayment.setOptions(StripeOptions(
-        publishableKey:
-            'pk_test_51HH3hmCGEU6tzG7r99C67z0EPX0PoBDtlE5ScZtuQZkiryDlA5fA3Pauo2a2lRT8Wd5wMHxEocMjNjpZr1H55g05005fQI4X3Q',
-        merchantId: 'test',
-        androidPayMode: 'test'));
-  }
+  SubmitCreditCardButton({Key key}) : super(key: key);
 
   void onSubmitPressed(BuildContext context) async {
-    final card = context.read<CreditCardProvider>().getCreditCard();
     PaymentMethod paymentMethod;
+    context.read<CreditCardProvider>().isAddingCreditCard = true;
     try {
-      paymentMethod = await StripePayment.createPaymentMethod(
-        PaymentMethodRequest(
-          card: card,
-        ),
-      );
+      paymentMethod =
+          await context.read<CreditCardProvider>().createPaymentMethod();
     } on PlatformException catch (e) {
+      context.read<CreditCardProvider>().isAddingCreditCard = false;
       unawaited(FlushbarHelper.createError(message: e.message).show(context));
       return;
     }
 
     final stripeCustId = context.read<UserProvider>().user.stripe_cust_id;
     final client = GraphQLProvider.of(context).value;
-    inspect(card);
     final result = await client.mutate(MutationOptions(
         documentNode: AddPaymentInfoMutation().document,
         variables: AddPaymentInfoArguments(
@@ -47,10 +37,15 @@ class SubmitCreditCardButton extends StatelessWidget {
       unawaited(FlushbarHelper.createError(
               message: result.exception.graphqlErrors[0].message)
           .show(context));
+      context.read<CreditCardProvider>().isAddingCreditCard = false;
       return;
     }
-    unawaited(FlushbarHelper.createSuccess(message: 'Card has been added')
-        .show(context));
+
+    await FlushbarHelper.createSuccess(
+            message: 'Card has been added',
+            duration: Duration(milliseconds: 200))
+        .show(context)
+        .whenComplete(() => Get.back());
   }
 
   @override
