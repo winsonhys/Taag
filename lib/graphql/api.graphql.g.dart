@@ -6,6 +6,56 @@ part of 'api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+AddPaymentInfo$Mutation$AddPaymentInfo$Card
+    _$AddPaymentInfo$Mutation$AddPaymentInfo$CardFromJson(
+        Map<String, dynamic> json) {
+  return AddPaymentInfo$Mutation$AddPaymentInfo$Card()
+    ..brand = json['brand'] as String
+    ..exp_month = (json['exp_month'] as num)?.toDouble()
+    ..exp_year = (json['exp_year'] as num)?.toDouble()
+    ..last4 = json['last4'] as String;
+}
+
+Map<String, dynamic> _$AddPaymentInfo$Mutation$AddPaymentInfo$CardToJson(
+        AddPaymentInfo$Mutation$AddPaymentInfo$Card instance) =>
+    <String, dynamic>{
+      'brand': instance.brand,
+      'exp_month': instance.exp_month,
+      'exp_year': instance.exp_year,
+      'last4': instance.last4,
+    };
+
+AddPaymentInfo$Mutation$AddPaymentInfo
+    _$AddPaymentInfo$Mutation$AddPaymentInfoFromJson(
+        Map<String, dynamic> json) {
+  return AddPaymentInfo$Mutation$AddPaymentInfo()
+    ..card = json['card'] == null
+        ? null
+        : AddPaymentInfo$Mutation$AddPaymentInfo$Card.fromJson(
+            json['card'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AddPaymentInfo$Mutation$AddPaymentInfoToJson(
+        AddPaymentInfo$Mutation$AddPaymentInfo instance) =>
+    <String, dynamic>{
+      'card': instance.card?.toJson(),
+    };
+
+AddPaymentInfo$Mutation _$AddPaymentInfo$MutationFromJson(
+    Map<String, dynamic> json) {
+  return AddPaymentInfo$Mutation()
+    ..addPaymentInfo = json['addPaymentInfo'] == null
+        ? null
+        : AddPaymentInfo$Mutation$AddPaymentInfo.fromJson(
+            json['addPaymentInfo'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AddPaymentInfo$MutationToJson(
+        AddPaymentInfo$Mutation instance) =>
+    <String, dynamic>{
+      'addPaymentInfo': instance.addPaymentInfo?.toJson(),
+    };
+
 AddToOrder$Mutation$AddToOrder _$AddToOrder$Mutation$AddToOrderFromJson(
     Map<String, dynamic> json) {
   return AddToOrder$Mutation$AddToOrder()
@@ -170,6 +220,94 @@ Map<String, dynamic> _$AllShopItems$QueryToJson(AllShopItems$Query instance) =>
       'shopItems': instance.shopItems?.map((e) => e?.toJson())?.toList(),
     };
 
+GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address
+    _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressFromJson(
+        Map<String, dynamic> json) {
+  return GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address()
+    ..line1 = json['line1'] as String
+    ..line2 = json['line2'] as String;
+}
+
+Map<String,
+    dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressToJson(
+        GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address instance) =>
+    <String, dynamic>{
+      'line1': instance.line1,
+      'line2': instance.line2,
+    };
+
+GetPaymentInfo$Query$GetPaymentInfo$BillingDetails
+    _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsFromJson(
+        Map<String, dynamic> json) {
+  return GetPaymentInfo$Query$GetPaymentInfo$BillingDetails()
+    ..address = json['address'] == null
+        ? null
+        : GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address.fromJson(
+            json['address'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsToJson(
+        GetPaymentInfo$Query$GetPaymentInfo$BillingDetails instance) =>
+    <String, dynamic>{
+      'address': instance.address?.toJson(),
+    };
+
+GetPaymentInfo$Query$GetPaymentInfo$Card
+    _$GetPaymentInfo$Query$GetPaymentInfo$CardFromJson(
+        Map<String, dynamic> json) {
+  return GetPaymentInfo$Query$GetPaymentInfo$Card()
+    ..brand = json['brand'] as String
+    ..exp_month = (json['exp_month'] as num)?.toDouble()
+    ..exp_year = (json['exp_year'] as num)?.toDouble()
+    ..last4 = json['last4'] as String;
+}
+
+Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$CardToJson(
+        GetPaymentInfo$Query$GetPaymentInfo$Card instance) =>
+    <String, dynamic>{
+      'brand': instance.brand,
+      'exp_month': instance.exp_month,
+      'exp_year': instance.exp_year,
+      'last4': instance.last4,
+    };
+
+GetPaymentInfo$Query$GetPaymentInfo
+    _$GetPaymentInfo$Query$GetPaymentInfoFromJson(Map<String, dynamic> json) {
+  return GetPaymentInfo$Query$GetPaymentInfo()
+    ..billing_details = json['billing_details'] == null
+        ? null
+        : GetPaymentInfo$Query$GetPaymentInfo$BillingDetails.fromJson(
+            json['billing_details'] as Map<String, dynamic>)
+    ..card = json['card'] == null
+        ? null
+        : GetPaymentInfo$Query$GetPaymentInfo$Card.fromJson(
+            json['card'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfoToJson(
+        GetPaymentInfo$Query$GetPaymentInfo instance) =>
+    <String, dynamic>{
+      'billing_details': instance.billing_details?.toJson(),
+      'card': instance.card?.toJson(),
+    };
+
+GetPaymentInfo$Query _$GetPaymentInfo$QueryFromJson(Map<String, dynamic> json) {
+  return GetPaymentInfo$Query()
+    ..getPaymentInfo = (json['getPaymentInfo'] as List)
+        ?.map((e) => e == null
+            ? null
+            : GetPaymentInfo$Query$GetPaymentInfo.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$GetPaymentInfo$QueryToJson(
+        GetPaymentInfo$Query instance) =>
+    <String, dynamic>{
+      'getPaymentInfo':
+          instance.getPaymentInfo?.map((e) => e?.toJson())?.toList(),
+    };
+
 FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
     _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdFromJson(
         Map<String, dynamic> json) {
@@ -278,6 +416,21 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
       'shopItem': instance.shopItem?.toJson(),
     };
 
+AddPaymentInfoArguments _$AddPaymentInfoArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return AddPaymentInfoArguments(
+    token: json['token'] as String,
+    stripeCustId: json['stripeCustId'] as String,
+  );
+}
+
+Map<String, dynamic> _$AddPaymentInfoArgumentsToJson(
+        AddPaymentInfoArguments instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'stripeCustId': instance.stripeCustId,
+    };
+
 AddToOrderArguments _$AddToOrderArgumentsFromJson(Map<String, dynamic> json) {
   return AddToOrderArguments(
     itemId: json['itemId'] as String,
@@ -312,6 +465,19 @@ Map<String, dynamic> _$SignUpUserArgumentsToJson(
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'dob': instance.dob?.toIso8601String(),
+    };
+
+GetPaymentInfoArguments _$GetPaymentInfoArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return GetPaymentInfoArguments(
+    stripe_cust_id: json['stripe_cust_id'] as String,
+  );
+}
+
+Map<String, dynamic> _$GetPaymentInfoArgumentsToJson(
+        GetPaymentInfoArguments instance) =>
+    <String, dynamic>{
+      'stripe_cust_id': instance.stripe_cust_id,
     };
 
 FindOrdersFromOwnerIdArguments _$FindOrdersFromOwnerIdArgumentsFromJson(

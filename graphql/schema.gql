@@ -5,6 +5,7 @@ type Query {
   shopItem(where: ShopItemWhereUniqueInput!): ShopItem
   shopItems(where: ShopItemWhereInput, orderBy: [ShopItemOrderByInput!], cursor: ShopItemWhereUniqueInput, take: Int, skip: Int, distinct: [ShopItemDistinctFieldEnum!]): [ShopItem!]!
   user(where: UserWhereUniqueInput!): User
+  getPaymentInfo(getPaymentInfoInput: GetPaymentInfoInput!): [PaymentMethod!]!
 }
 
 type User {
@@ -500,6 +501,59 @@ input UserWhereUniqueInput {
   username: String
 }
 
+input GetPaymentInfoInput {
+  stripe_cust_id: String!
+}
+
+type PaymentMethod {
+  id: String!
+  billing_details: StripeCardBillingDetails!
+  card: StripeCard!
+  created: Float!
+  customer: String!
+  livemode: Boolean!
+}
+
+type StripeCardBillingDetails {
+  address: StripeCardBillingAddress!
+  email: String!
+  name: String!
+  phone: String!
+}
+
+type StripeCardBillingAddress {
+  city: String!
+  country: String!
+  line1: String!
+  line2: String!
+  postal_code: String!
+  state: String!
+}
+
+type StripeCard {
+  brand: String!
+  country: String!
+  description: String!
+  exp_month: Float!
+  exp_year: Float!
+  fingerprint: String!
+  funding: String!
+  iin: String!
+  issuer: String!
+  last4: String!
+  networks: StripeCardNetworks!
+  three_d_secure_usage: StripeCardThreeDSecureUsage!
+}
+
+type StripeCardNetworks {
+  available: [String!]!
+  preferred: String!
+}
+
+type StripeCardThreeDSecureUsage {
+  supported: Boolean!
+}
+
 type Mutation {
   signUp(signUpInput: SignUpInput!): User!
   payCurrentOrder(payCurrentOrderInput: PayCurrentOrderInput!): Order!
@@ -507,6 +561,7 @@ type Mutation {
   addToOrder(addToOrderInput: AddToOrderInput!): [Order!]!
   createShop(data: ShopCreateInput!): Shop!
   createShopItem(data: ShopItemCreateInput!): ShopItem!
+  addPaymentInfo(addPaymentInfoInput: AddPaymentInfoInput!): PaymentMethod!
 }
 
 input SignUpInput {
@@ -685,4 +740,9 @@ input ShopWhereUniqueInput {
   id: String
   email: String
   username: String
+}
+
+input AddPaymentInfoInput {
+  stripe_cust_id: String!
+  token: String!
 }

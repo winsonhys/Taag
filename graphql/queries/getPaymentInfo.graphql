@@ -1,16 +1,9 @@
-query getPaymentInfo($stripe_cust_id:String!){
-  getPaymentInfo(getPaymentInfoInput: {stripe_cust_id: $stripe_cust_id}) {
-    billing_details {
-      address {
-        line1
-        line2
-      }
-    }
+query getPaymentInfo(stripeCustId: String!){
+  getPaymentInfo(getPaymentInfoInput: {
+    stripe_cust_id: $stripeCustId
+  }) {
     card {
-      brand
-      exp_month
-      exp_year
-      last4
+      ...CreditCard
     }
   }
 }

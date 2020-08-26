@@ -1,9 +1,12 @@
 import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
+import 'package:Taag/UserProfile/screens/AddCreditCard/widgets/SubmitCreditCard/SubmitCreditCard.dart';
+import 'package:credit_card_input_form/constants/constanst.dart';
 import 'package:credit_card_input_form/credit_card_input_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
-class AddCreditCardView extends StatelessWidget {
+class AddCreditCardView extends HookWidget {
   const AddCreditCardView({
     Key key,
   }) : super(key: key);
@@ -38,7 +41,15 @@ class AddCreditCardView extends StatelessWidget {
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp),
     );
-
+    final submitButtonAnimationController =
+        useAnimationController(duration: Duration(milliseconds: 200));
+    final Animation<double> submitButtonAnimation = CurvedAnimation(
+        parent: submitButtonAnimationController, curve: Curves.easeIn);
+    if (context.watch<CreditCardProvider>().state == InputState.DONE) {
+      submitButtonAnimationController.forward();
+    } else {
+      submitButtonAnimationController.reverse();
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -49,18 +60,28 @@ class AddCreditCardView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: CreditCardInputForm(
-          cardHeight: 200,
-          onStateChange: (currentState, cardInfo) {
-            context.read<CreditCardProvider>().cardNumber = cardInfo.cardNumber;
-            context.read<CreditCardProvider>().name = cardInfo.name;
-            context.read<CreditCardProvider>().cvv = cardInfo.cvv;
-            context.read<CreditCardProvider>().valid = cardInfo.validate;
-          },
-          backCardDecoration: creditCardBoxDeco,
-          frontCardDecoration: creditCardBoxDeco,
-          nextButtonDecoration: nextPrevBoxDeco,
-          prevButtonDecoration: nextPrevBoxDeco,
+        child: Column(
+          children: [
+            CreditCardInputForm(
+              cardHeight: 200,
+              onStateChange: (currentState, cardInfo) {
+                context.read<CreditCardProvider>().cardNumber =
+                    cardInfo.cardNumber;
+                context.read<CreditCardProvider>().name = cardInfo.name;
+                context.read<CreditCardProvider>().cvv = cardInfo.cvv;
+                context.read<CreditCardProvider>().valid = cardInfo.validate;
+                context.read<CreditCardProvider>().state = currentState;
+              },
+              backCardDecoration: creditCardBoxDeco,
+              frontCardDecoration: creditCardBoxDeco,
+              nextButtonDecoration: nextPrevBoxDeco,
+              prevButtonDecoration: nextPrevBoxDeco,
+              resetButtonDecoration: nextPrevBoxDeco,
+            ),
+            FadeTransition(
+                opacity: submitButtonAnimation,
+                child: SubmitCreditCardButton()),
+          ],
         ),
       ),
     );

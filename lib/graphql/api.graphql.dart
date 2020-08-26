@@ -7,6 +7,12 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'api.graphql.g.dart';
 
+mixin CreditCardMixin {
+  String brand;
+  double exp_month;
+  double exp_year;
+  String last4;
+}
 mixin OrderMixin {
   String id;
   String ownerId;
@@ -32,6 +38,51 @@ mixin ShopItemMixin {
 mixin UserDataMixin {
   String id;
   String stripe_cust_id;
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddPaymentInfo$Mutation$AddPaymentInfo$Card
+    with EquatableMixin, CreditCardMixin {
+  AddPaymentInfo$Mutation$AddPaymentInfo$Card();
+
+  factory AddPaymentInfo$Mutation$AddPaymentInfo$Card.fromJson(
+          Map<String, dynamic> json) =>
+      _$AddPaymentInfo$Mutation$AddPaymentInfo$CardFromJson(json);
+
+  @override
+  List<Object> get props => [brand, exp_month, exp_year, last4];
+  Map<String, dynamic> toJson() =>
+      _$AddPaymentInfo$Mutation$AddPaymentInfo$CardToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddPaymentInfo$Mutation$AddPaymentInfo with EquatableMixin {
+  AddPaymentInfo$Mutation$AddPaymentInfo();
+
+  factory AddPaymentInfo$Mutation$AddPaymentInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$AddPaymentInfo$Mutation$AddPaymentInfoFromJson(json);
+
+  AddPaymentInfo$Mutation$AddPaymentInfo$Card card;
+
+  @override
+  List<Object> get props => [card];
+  Map<String, dynamic> toJson() =>
+      _$AddPaymentInfo$Mutation$AddPaymentInfoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddPaymentInfo$Mutation with EquatableMixin {
+  AddPaymentInfo$Mutation();
+
+  factory AddPaymentInfo$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$AddPaymentInfo$MutationFromJson(json);
+
+  AddPaymentInfo$Mutation$AddPaymentInfo addPaymentInfo;
+
+  @override
+  List<Object> get props => [addPaymentInfo];
+  Map<String, dynamic> toJson() => _$AddPaymentInfo$MutationToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -154,6 +205,96 @@ class AllShopItems$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address
+    with EquatableMixin {
+  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address();
+
+  factory GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressFromJson(
+          json);
+
+  String line1;
+
+  String line2;
+
+  @override
+  List<Object> get props => [line1, line2];
+  Map<String, dynamic> toJson() =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query$GetPaymentInfo$BillingDetails with EquatableMixin {
+  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails();
+
+  factory GetPaymentInfo$Query$GetPaymentInfo$BillingDetails.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsFromJson(json);
+
+  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address address;
+
+  @override
+  List<Object> get props => [address];
+  Map<String, dynamic> toJson() =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query$GetPaymentInfo$Card with EquatableMixin {
+  GetPaymentInfo$Query$GetPaymentInfo$Card();
+
+  factory GetPaymentInfo$Query$GetPaymentInfo$Card.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$CardFromJson(json);
+
+  String brand;
+
+  double exp_month;
+
+  double exp_year;
+
+  String last4;
+
+  @override
+  List<Object> get props => [brand, exp_month, exp_year, last4];
+  Map<String, dynamic> toJson() =>
+      _$GetPaymentInfo$Query$GetPaymentInfo$CardToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query$GetPaymentInfo with EquatableMixin {
+  GetPaymentInfo$Query$GetPaymentInfo();
+
+  factory GetPaymentInfo$Query$GetPaymentInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetPaymentInfo$Query$GetPaymentInfoFromJson(json);
+
+  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails billing_details;
+
+  GetPaymentInfo$Query$GetPaymentInfo$Card card;
+
+  @override
+  List<Object> get props => [billing_details, card];
+  Map<String, dynamic> toJson() =>
+      _$GetPaymentInfo$Query$GetPaymentInfoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query with EquatableMixin {
+  GetPaymentInfo$Query();
+
+  factory GetPaymentInfo$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetPaymentInfo$QueryFromJson(json);
+
+  List<GetPaymentInfo$Query$GetPaymentInfo> getPaymentInfo;
+
+  @override
+  List<Object> get props => [getPaymentInfo];
+  Map<String, dynamic> toJson() => _$GetPaymentInfo$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
     with EquatableMixin, OrderMixin {
   FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId();
@@ -234,6 +375,123 @@ class FindOneShopItem$Query with EquatableMixin {
   @override
   List<Object> get props => [shopItem];
   Map<String, dynamic> toJson() => _$FindOneShopItem$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddPaymentInfoArguments extends JsonSerializable with EquatableMixin {
+  AddPaymentInfoArguments({@required this.token, @required this.stripeCustId});
+
+  factory AddPaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
+      _$AddPaymentInfoArgumentsFromJson(json);
+
+  final String token;
+
+  final String stripeCustId;
+
+  @override
+  List<Object> get props => [token, stripeCustId];
+  Map<String, dynamic> toJson() => _$AddPaymentInfoArgumentsToJson(this);
+}
+
+class AddPaymentInfoMutation
+    extends GraphQLQuery<AddPaymentInfo$Mutation, AddPaymentInfoArguments> {
+  AddPaymentInfoMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'addPaymentInfo'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'token')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'stripeCustId')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'addPaymentInfo'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'getPaymentInfoInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'token'),
+                          value: VariableNode(name: NameNode(value: 'token'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'stripe_cust_id'),
+                          value: VariableNode(
+                              name: NameNode(value: 'stripeCustId')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'card'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FragmentSpreadNode(
+                          name: NameNode(value: 'CreditCard'), directives: [])
+                    ]))
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'CreditCard'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'StripeCard'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'brand'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'exp_month'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'exp_year'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'last4'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'addPaymentInfo';
+
+  @override
+  final AddPaymentInfoArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  AddPaymentInfo$Mutation parse(Map<String, dynamic> json) =>
+      AddPaymentInfo$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -692,6 +950,128 @@ class AllShopItemsQuery
   @override
   AllShopItems$Query parse(Map<String, dynamic> json) =>
       AllShopItems$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfoArguments extends JsonSerializable with EquatableMixin {
+  GetPaymentInfoArguments({@required this.stripe_cust_id});
+
+  factory GetPaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetPaymentInfoArgumentsFromJson(json);
+
+  final String stripe_cust_id;
+
+  @override
+  List<Object> get props => [stripe_cust_id];
+  Map<String, dynamic> toJson() => _$GetPaymentInfoArgumentsToJson(this);
+}
+
+class GetPaymentInfoQuery
+    extends GraphQLQuery<GetPaymentInfo$Query, GetPaymentInfoArguments> {
+  GetPaymentInfoQuery({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'getPaymentInfo'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'stripe_cust_id')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'getPaymentInfo'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'getPaymentInfoInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'stripe_cust_id'),
+                          value: VariableNode(
+                              name: NameNode(value: 'stripe_cust_id')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'billing_details'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'address'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'line1'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null),
+                            FieldNode(
+                                name: NameNode(value: 'line2'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ]))
+                    ])),
+                FieldNode(
+                    name: NameNode(value: 'card'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'brand'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'exp_month'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'exp_year'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'last4'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
+                    ]))
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'getPaymentInfo';
+
+  @override
+  final GetPaymentInfoArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  GetPaymentInfo$Query parse(Map<String, dynamic> json) =>
+      GetPaymentInfo$Query.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
