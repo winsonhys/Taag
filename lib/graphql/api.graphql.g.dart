@@ -220,38 +220,6 @@ Map<String, dynamic> _$AllShopItems$QueryToJson(AllShopItems$Query instance) =>
       'shopItems': instance.shopItems?.map((e) => e?.toJson())?.toList(),
     };
 
-GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address
-    _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressFromJson(
-        Map<String, dynamic> json) {
-  return GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address()
-    ..line1 = json['line1'] as String
-    ..line2 = json['line2'] as String;
-}
-
-Map<String,
-    dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressToJson(
-        GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address instance) =>
-    <String, dynamic>{
-      'line1': instance.line1,
-      'line2': instance.line2,
-    };
-
-GetPaymentInfo$Query$GetPaymentInfo$BillingDetails
-    _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsFromJson(
-        Map<String, dynamic> json) {
-  return GetPaymentInfo$Query$GetPaymentInfo$BillingDetails()
-    ..address = json['address'] == null
-        ? null
-        : GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address.fromJson(
-            json['address'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsToJson(
-        GetPaymentInfo$Query$GetPaymentInfo$BillingDetails instance) =>
-    <String, dynamic>{
-      'address': instance.address?.toJson(),
-    };
-
 GetPaymentInfo$Query$GetPaymentInfo$Card
     _$GetPaymentInfo$Query$GetPaymentInfo$CardFromJson(
         Map<String, dynamic> json) {
@@ -274,10 +242,6 @@ Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfo$CardToJson(
 GetPaymentInfo$Query$GetPaymentInfo
     _$GetPaymentInfo$Query$GetPaymentInfoFromJson(Map<String, dynamic> json) {
   return GetPaymentInfo$Query$GetPaymentInfo()
-    ..billing_details = json['billing_details'] == null
-        ? null
-        : GetPaymentInfo$Query$GetPaymentInfo$BillingDetails.fromJson(
-            json['billing_details'] as Map<String, dynamic>)
     ..card = json['card'] == null
         ? null
         : GetPaymentInfo$Query$GetPaymentInfo$Card.fromJson(
@@ -287,7 +251,6 @@ GetPaymentInfo$Query$GetPaymentInfo
 Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfoToJson(
         GetPaymentInfo$Query$GetPaymentInfo instance) =>
     <String, dynamic>{
-      'billing_details': instance.billing_details?.toJson(),
       'card': instance.card?.toJson(),
     };
 
@@ -470,14 +433,14 @@ Map<String, dynamic> _$SignUpUserArgumentsToJson(
 GetPaymentInfoArguments _$GetPaymentInfoArgumentsFromJson(
     Map<String, dynamic> json) {
   return GetPaymentInfoArguments(
-    stripe_cust_id: json['stripe_cust_id'] as String,
+    stripeCustId: json['stripeCustId'] as String,
   );
 }
 
 Map<String, dynamic> _$GetPaymentInfoArgumentsToJson(
         GetPaymentInfoArguments instance) =>
     <String, dynamic>{
-      'stripe_cust_id': instance.stripe_cust_id,
+      'stripeCustId': instance.stripeCustId,
     };
 
 FindOrdersFromOwnerIdArguments _$FindOrdersFromOwnerIdArgumentsFromJson(

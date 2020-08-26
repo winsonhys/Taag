@@ -205,56 +205,13 @@ class AllShopItems$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address
-    with EquatableMixin {
-  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address();
-
-  factory GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressFromJson(
-          json);
-
-  String line1;
-
-  String line2;
-
-  @override
-  List<Object> get props => [line1, line2];
-  Map<String, dynamic> toJson() =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$AddressToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo$BillingDetails with EquatableMixin {
-  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails();
-
-  factory GetPaymentInfo$Query$GetPaymentInfo$BillingDetails.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsFromJson(json);
-
-  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails$Address address;
-
-  @override
-  List<Object> get props => [address];
-  Map<String, dynamic> toJson() =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$BillingDetailsToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo$Card with EquatableMixin {
+class GetPaymentInfo$Query$GetPaymentInfo$Card
+    with EquatableMixin, CreditCardMixin {
   GetPaymentInfo$Query$GetPaymentInfo$Card();
 
   factory GetPaymentInfo$Query$GetPaymentInfo$Card.fromJson(
           Map<String, dynamic> json) =>
       _$GetPaymentInfo$Query$GetPaymentInfo$CardFromJson(json);
-
-  String brand;
-
-  double exp_month;
-
-  double exp_year;
-
-  String last4;
 
   @override
   List<Object> get props => [brand, exp_month, exp_year, last4];
@@ -270,12 +227,10 @@ class GetPaymentInfo$Query$GetPaymentInfo with EquatableMixin {
           Map<String, dynamic> json) =>
       _$GetPaymentInfo$Query$GetPaymentInfoFromJson(json);
 
-  GetPaymentInfo$Query$GetPaymentInfo$BillingDetails billing_details;
-
   GetPaymentInfo$Query$GetPaymentInfo$Card card;
 
   @override
-  List<Object> get props => [billing_details, card];
+  List<Object> get props => [card];
   Map<String, dynamic> toJson() =>
       _$GetPaymentInfo$Query$GetPaymentInfoToJson(this);
 }
@@ -423,7 +378,7 @@ class AddPaymentInfoMutation
               alias: null,
               arguments: [
                 ArgumentNode(
-                    name: NameNode(value: 'getPaymentInfoInput'),
+                    name: NameNode(value: 'addPaymentInfoInput'),
                     value: ObjectValueNode(fields: [
                       ObjectFieldNode(
                           name: NameNode(value: 'token'),
@@ -954,15 +909,15 @@ class AllShopItemsQuery
 
 @JsonSerializable(explicitToJson: true)
 class GetPaymentInfoArguments extends JsonSerializable with EquatableMixin {
-  GetPaymentInfoArguments({@required this.stripe_cust_id});
+  GetPaymentInfoArguments({@required this.stripeCustId});
 
   factory GetPaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
       _$GetPaymentInfoArgumentsFromJson(json);
 
-  final String stripe_cust_id;
+  final String stripeCustId;
 
   @override
-  List<Object> get props => [stripe_cust_id];
+  List<Object> get props => [stripeCustId];
   Map<String, dynamic> toJson() => _$GetPaymentInfoArgumentsToJson(this);
 }
 
@@ -977,7 +932,7 @@ class GetPaymentInfoQuery
         name: NameNode(value: 'getPaymentInfo'),
         variableDefinitions: [
           VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'stripe_cust_id')),
+              variable: VariableNode(name: NameNode(value: 'stripeCustId')),
               type: NamedTypeNode(
                   name: NameNode(value: 'String'), isNonNull: true),
               defaultValue: DefaultValueNode(value: null),
@@ -995,69 +950,53 @@ class GetPaymentInfoQuery
                       ObjectFieldNode(
                           name: NameNode(value: 'stripe_cust_id'),
                           value: VariableNode(
-                              name: NameNode(value: 'stripe_cust_id')))
+                              name: NameNode(value: 'stripeCustId')))
                     ]))
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'billing_details'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'address'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: SelectionSetNode(selections: [
-                            FieldNode(
-                                name: NameNode(value: 'line1'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null),
-                            FieldNode(
-                                name: NameNode(value: 'line2'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null)
-                          ]))
-                    ])),
                 FieldNode(
                     name: NameNode(value: 'card'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'brand'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'exp_month'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'exp_year'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'last4'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null)
+                      FragmentSpreadNode(
+                          name: NameNode(value: 'CreditCard'), directives: [])
                     ]))
               ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'CreditCard'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'StripeCard'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'brand'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'exp_month'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'exp_year'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'last4'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
         ]))
   ]);
 

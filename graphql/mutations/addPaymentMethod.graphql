@@ -1,5 +1,5 @@
 mutation addPaymentInfo($token: String!, $stripeCustId: String!){
-  addPaymentInfo(getPaymentInfoInput:{token: $token, stripe_cust_id: $stripeCustId}) {
+  addPaymentInfo(addPaymentInfoInput:{token: $token, stripe_cust_id: $stripeCustId}) {
       card {
       ...CreditCard
     }
