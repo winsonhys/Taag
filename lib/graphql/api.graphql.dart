@@ -7,6 +7,10 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'api.graphql.g.dart';
 
+mixin PaymentMethodMixin {
+  String id;
+  PaymentMethodMixin$Card card;
+}
 mixin CreditCardMixin {
   String brand;
   double exp_month;
@@ -41,32 +45,16 @@ mixin UserDataMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AddPaymentInfo$Mutation$AddPaymentInfo$Card
-    with EquatableMixin, CreditCardMixin {
-  AddPaymentInfo$Mutation$AddPaymentInfo$Card();
-
-  factory AddPaymentInfo$Mutation$AddPaymentInfo$Card.fromJson(
-          Map<String, dynamic> json) =>
-      _$AddPaymentInfo$Mutation$AddPaymentInfo$CardFromJson(json);
-
-  @override
-  List<Object> get props => [brand, exp_month, exp_year, last4];
-  Map<String, dynamic> toJson() =>
-      _$AddPaymentInfo$Mutation$AddPaymentInfo$CardToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AddPaymentInfo$Mutation$AddPaymentInfo with EquatableMixin {
+class AddPaymentInfo$Mutation$AddPaymentInfo
+    with EquatableMixin, PaymentMethodMixin {
   AddPaymentInfo$Mutation$AddPaymentInfo();
 
   factory AddPaymentInfo$Mutation$AddPaymentInfo.fromJson(
           Map<String, dynamic> json) =>
       _$AddPaymentInfo$Mutation$AddPaymentInfoFromJson(json);
 
-  AddPaymentInfo$Mutation$AddPaymentInfo$Card card;
-
   @override
-  List<Object> get props => [card];
+  List<Object> get props => [id, card];
   Map<String, dynamic> toJson() =>
       _$AddPaymentInfo$Mutation$AddPaymentInfoToJson(this);
 }
@@ -83,6 +71,18 @@ class AddPaymentInfo$Mutation with EquatableMixin {
   @override
   List<Object> get props => [addPaymentInfo];
   Map<String, dynamic> toJson() => _$AddPaymentInfo$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaymentMethodMixin$Card with EquatableMixin, CreditCardMixin {
+  PaymentMethodMixin$Card();
+
+  factory PaymentMethodMixin$Card.fromJson(Map<String, dynamic> json) =>
+      _$PaymentMethodMixin$CardFromJson(json);
+
+  @override
+  List<Object> get props => [brand, exp_month, exp_year, last4];
+  Map<String, dynamic> toJson() => _$PaymentMethodMixin$CardToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -205,32 +205,16 @@ class AllShopItems$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo$Card
-    with EquatableMixin, CreditCardMixin {
-  GetPaymentInfo$Query$GetPaymentInfo$Card();
-
-  factory GetPaymentInfo$Query$GetPaymentInfo$Card.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$CardFromJson(json);
-
-  @override
-  List<Object> get props => [brand, exp_month, exp_year, last4];
-  Map<String, dynamic> toJson() =>
-      _$GetPaymentInfo$Query$GetPaymentInfo$CardToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo with EquatableMixin {
+class GetPaymentInfo$Query$GetPaymentInfo
+    with EquatableMixin, PaymentMethodMixin {
   GetPaymentInfo$Query$GetPaymentInfo();
 
   factory GetPaymentInfo$Query$GetPaymentInfo.fromJson(
           Map<String, dynamic> json) =>
       _$GetPaymentInfo$Query$GetPaymentInfoFromJson(json);
 
-  GetPaymentInfo$Query$GetPaymentInfo$Card card;
-
   @override
-  List<Object> get props => [card];
+  List<Object> get props => [id, card];
   Map<String, dynamic> toJson() =>
       _$GetPaymentInfo$Query$GetPaymentInfoToJson(this);
 }
@@ -333,6 +317,36 @@ class FindOneShopItem$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class DeletePaymentInfo$Mutation$DeletePaymentInfo with EquatableMixin {
+  DeletePaymentInfo$Mutation$DeletePaymentInfo();
+
+  factory DeletePaymentInfo$Mutation$DeletePaymentInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$DeletePaymentInfo$Mutation$DeletePaymentInfoFromJson(json);
+
+  String id;
+
+  @override
+  List<Object> get props => [id];
+  Map<String, dynamic> toJson() =>
+      _$DeletePaymentInfo$Mutation$DeletePaymentInfoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeletePaymentInfo$Mutation with EquatableMixin {
+  DeletePaymentInfo$Mutation();
+
+  factory DeletePaymentInfo$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$DeletePaymentInfo$MutationFromJson(json);
+
+  DeletePaymentInfo$Mutation$DeletePaymentInfo deletePaymentInfo;
+
+  @override
+  List<Object> get props => [deletePaymentInfo];
+  Map<String, dynamic> toJson() => _$DeletePaymentInfo$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class AddPaymentInfoArguments extends JsonSerializable with EquatableMixin {
   AddPaymentInfoArguments({@required this.token, @required this.stripeCustId});
 
@@ -391,15 +405,31 @@ class AddPaymentInfoMutation
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'card'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FragmentSpreadNode(
-                          name: NameNode(value: 'CreditCard'), directives: [])
-                    ]))
+                FragmentSpreadNode(
+                    name: NameNode(value: 'PaymentMethod'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'PaymentMethod'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'PaymentMethod'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'card'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'CreditCard'), directives: [])
               ]))
         ])),
     FragmentDefinitionNode(
@@ -955,15 +985,31 @@ class GetPaymentInfoQuery
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'card'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FragmentSpreadNode(
-                          name: NameNode(value: 'CreditCard'), directives: [])
-                    ]))
+                FragmentSpreadNode(
+                    name: NameNode(value: 'PaymentMethod'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'PaymentMethod'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'PaymentMethod'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'card'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'CreditCard'), directives: [])
               ]))
         ])),
     FragmentDefinitionNode(
@@ -1417,4 +1463,75 @@ class FindOneShopItemQuery
   @override
   FindOneShopItem$Query parse(Map<String, dynamic> json) =>
       FindOneShopItem$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeletePaymentInfoArguments extends JsonSerializable with EquatableMixin {
+  DeletePaymentInfoArguments({@required this.paymentMethodId});
+
+  factory DeletePaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
+      _$DeletePaymentInfoArgumentsFromJson(json);
+
+  final String paymentMethodId;
+
+  @override
+  List<Object> get props => [paymentMethodId];
+  Map<String, dynamic> toJson() => _$DeletePaymentInfoArgumentsToJson(this);
+}
+
+class DeletePaymentInfoMutation extends GraphQLQuery<DeletePaymentInfo$Mutation,
+    DeletePaymentInfoArguments> {
+  DeletePaymentInfoMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'deletePaymentInfo'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'paymentMethodId')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'deletePaymentInfo'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'deletePaymentInfoInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'paymentMethodId'),
+                          value: VariableNode(
+                              name: NameNode(value: 'paymentMethodId')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'deletePaymentInfo';
+
+  @override
+  final DeletePaymentInfoArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  DeletePaymentInfo$Mutation parse(Map<String, dynamic> json) =>
+      DeletePaymentInfo$Mutation.fromJson(json);
 }

@@ -43,7 +43,7 @@ class SubmitCreditCardButton extends StatelessWidget {
 
     await FlushbarHelper.createSuccess(
             message: 'Card has been added',
-            duration: Duration(milliseconds: 200))
+            duration: Duration(milliseconds: 1000))
         .show(context)
         .whenComplete(() => Get.back());
   }

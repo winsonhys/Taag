@@ -1,0 +1,6 @@
+fragment PaymentMethod on PaymentMethod {
+  id
+  card {
+    ...CreditCard
+  }
+}

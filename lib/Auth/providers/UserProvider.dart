@@ -25,6 +25,7 @@ class UserProvider extends ChangeNotifier {
     final result = await client.query(QueryOptions(
         documentNode: FindUserByIdQuery().document,
         variables: {'id': firebaseUser.uid}));
+
     user = FindUserById$Query.fromJson(result.data).findUserById;
   }
 

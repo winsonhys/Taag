@@ -1,0 +1,7 @@
+mutation deletePaymentInfo($paymentMethodId: String!){
+  deletePaymentInfo(deletePaymentInfoInput: {
+    paymentMethodId: $paymentMethodId
+  }) {
+    id
+  }
+}

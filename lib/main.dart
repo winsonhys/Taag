@@ -4,6 +4,7 @@ import 'package:Taag/Orders/Orders.dart';
 import 'package:Taag/Home/home.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCard.dart';
+import 'package:Taag/UserProfile/screens/PaymentMethods/PaymentMethods.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -37,9 +38,17 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.white),
               accentIconTheme: IconThemeData(color: Colors.white),
               visualDensity: VisualDensity.adaptivePlatformDensity,
+              buttonTheme: ButtonThemeData(
+                buttonColor: Color.fromRGBO(239, 181, 163, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+              ),
               dividerColor: Colors.white,
-              textTheme: GoogleFonts.ibmPlexSansTextTheme()
-                  .apply(bodyColor: Colors.white, displayColor: Colors.white)),
+              textTheme: GoogleFonts.ibmPlexSansTextTheme().apply(
+                  bodyColor: Colors.white,
+                  displayColor: Colors.white,
+                  decorationColor: Colors.white)),
           initialRoute: 'Await',
           getPages: [
             GetPage(name: UserProfile.route, page: () => UserProfile()),
@@ -47,6 +56,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: 'Await', page: () => AwaitScreen()),
             GetPage(name: 'Home', page: () => HomePage()),
             GetPage(name: 'Login', page: () => LoginScreen()),
+            GetPage(name: 'PaymentMethods', page: () => PaymentMethods()),
             GetPage(name: 'AddCreditCard', page: () => AddCreditCard()),
             GetPage(
                 name: ItemDetails.route,

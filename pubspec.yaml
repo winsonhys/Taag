@@ -48,6 +48,7 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_hooks: ^0.13.2
   stripe_payment: ^1.0.7
+  dartx: ^0.5.0
   credit_card_input_form:
     git:
       url: git@github.com:Randevoo/Flutter-Credit-Card-Input-Form.git
