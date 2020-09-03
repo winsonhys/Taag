@@ -5,6 +5,7 @@ type Query {
   findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiOrderByUserIdInput!): MultiOrder!
   findOrdersFromOwnerId(ownerId: String!): [Order!]!
   getPaymentInfo(getPaymentInfoInput: GetPaymentInfoInput!): [PaymentMethod!]!
+  getAddresses: [Address!]!
   findUserById(id: String!): User!
 }
 
@@ -165,12 +166,33 @@ input UserWhereInput {
   dob: DateTimeFilter
   orders: OrderListRelationFilter
   stripe_cust_id: StringFilter
+  addresses: AddressListRelationFilter
 }
 
 input OrderListRelationFilter {
   every: OrderWhereInput
   some: OrderWhereInput
   none: OrderWhereInput
+}
+
+input AddressListRelationFilter {
+  every: AddressWhereInput
+  some: AddressWhereInput
+  none: AddressWhereInput
+}
+
+input AddressWhereInput {
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+  id: StringFilter
+  city: StringFilter
+  line1: StringFilter
+  line2: StringFilter
+  postal: StringFilter
+  state: StringFilter
+  userId: StringFilter
+  user: UserWhereInput
 }
 
 input StringNullableFilter {
@@ -439,6 +461,7 @@ type User {
   dob: DateTime!
   stripe_cust_id: String!
   orders(where: OrderWhereInput, orderBy: [OrderOrderByInput!], cursor: OrderWhereUniqueInput, take: Int, skip: Int, distinct: [OrderDistinctFieldEnum!]): [Order!]
+  addresses(where: AddressWhereInput, orderBy: [AddressOrderByInput!], cursor: AddressWhereUniqueInput, take: Int, skip: Int, distinct: [AddressDistinctFieldEnum!]): [Address!]
 }
 
 input OrderOrderByInput {
@@ -495,6 +518,40 @@ type PaymentOrder {
   paymentStatus: PaymentStatus!
   orderId: String!
   paymentIntentId: String!
+}
+
+input AddressOrderByInput {
+  id: SortOrder
+  city: SortOrder
+  line1: SortOrder
+  line2: SortOrder
+  postal: SortOrder
+  state: SortOrder
+  userId: SortOrder
+}
+
+input AddressWhereUniqueInput {
+  id: String
+}
+
+enum AddressDistinctFieldEnum {
+  id
+  city
+  line1
+  line2
+  postal
+  state
+  userId
+}
+
+type Address {
+  id: String!
+  city: String!
+  line1: String!
+  line2: String!
+  postal: String!
+  state: String!
+  userId: String!
 }
 
 input FindMultiOrderByUserIdInput {
@@ -562,6 +619,7 @@ type Mutation {
   addPaymentInfo(addPaymentInfoInput: AddPaymentInfoInput!): PaymentMethod!
   deletePaymentInfo(deletePaymentInfoInput: DeletePaymentInfoInput!): PaymentMethod!
   payCurrentOrder(payCurrentOrderInput: PayCurrentOrderInput!): Order!
+  addAddress(addAddressInput: AddAddressInput!): [Address!]!
   signUp(signUpInput: SignUpInput!): User!
 }
 
@@ -629,6 +687,21 @@ input UserCreateWithoutOrdersInput {
   password: String!
   dob: DateTime!
   stripe_cust_id: String
+  addresses: AddressCreateManyWithoutUserInput
+}
+
+input AddressCreateManyWithoutUserInput {
+  create: [AddressCreateWithoutUserInput!]
+  connect: [AddressWhereUniqueInput!]
+}
+
+input AddressCreateWithoutUserInput {
+  id: String
+  city: String!
+  line1: String!
+  line2: String!
+  postal: String!
+  state: String!
 }
 
 input MultiOrderCreateOneWithoutOrdersInput {
@@ -742,6 +815,14 @@ input PayCurrentOrderInput {
   user_id: String!
   order_id: String!
   payment_method_id: String!
+}
+
+input AddAddressInput {
+  city: String!
+  state: String!
+  line1: String!
+  line2: String!
+  postal: String!
 }
 
 input SignUpInput {

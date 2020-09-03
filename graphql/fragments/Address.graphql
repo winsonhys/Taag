@@ -1,0 +1,7 @@
+fragment Address on Address {
+  line1
+  line2
+  postal
+  state
+  city
+}

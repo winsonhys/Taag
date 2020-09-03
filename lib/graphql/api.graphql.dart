@@ -43,6 +43,13 @@ mixin UserDataMixin {
   String id;
   String stripe_cust_id;
 }
+mixin AddressMixin {
+  String line1;
+  String line2;
+  String postal;
+  String state;
+  String city;
+}
 
 @JsonSerializable(explicitToJson: true)
 class AddPaymentInfo$Mutation$AddPaymentInfo
@@ -344,6 +351,59 @@ class DeletePaymentInfo$Mutation with EquatableMixin {
   @override
   List<Object> get props => [deletePaymentInfo];
   Map<String, dynamic> toJson() => _$DeletePaymentInfo$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddAddress$Mutation$AddAddress with EquatableMixin, AddressMixin {
+  AddAddress$Mutation$AddAddress();
+
+  factory AddAddress$Mutation$AddAddress.fromJson(Map<String, dynamic> json) =>
+      _$AddAddress$Mutation$AddAddressFromJson(json);
+
+  @override
+  List<Object> get props => [line1, line2, postal, state, city];
+  Map<String, dynamic> toJson() => _$AddAddress$Mutation$AddAddressToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddAddress$Mutation with EquatableMixin {
+  AddAddress$Mutation();
+
+  factory AddAddress$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$AddAddress$MutationFromJson(json);
+
+  List<AddAddress$Mutation$AddAddress> addAddress;
+
+  @override
+  List<Object> get props => [addAddress];
+  Map<String, dynamic> toJson() => _$AddAddress$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetAddresses$Query$GetAddresses with EquatableMixin, AddressMixin {
+  GetAddresses$Query$GetAddresses();
+
+  factory GetAddresses$Query$GetAddresses.fromJson(Map<String, dynamic> json) =>
+      _$GetAddresses$Query$GetAddressesFromJson(json);
+
+  @override
+  List<Object> get props => [line1, line2, postal, state, city];
+  Map<String, dynamic> toJson() =>
+      _$GetAddresses$Query$GetAddressesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetAddresses$Query with EquatableMixin {
+  GetAddresses$Query();
+
+  factory GetAddresses$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetAddresses$QueryFromJson(json);
+
+  List<GetAddresses$Query$GetAddresses> getAddresses;
+
+  @override
+  List<Object> get props => [getAddresses];
+  Map<String, dynamic> toJson() => _$GetAddresses$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1534,4 +1594,229 @@ class DeletePaymentInfoMutation extends GraphQLQuery<DeletePaymentInfo$Mutation,
   @override
   DeletePaymentInfo$Mutation parse(Map<String, dynamic> json) =>
       DeletePaymentInfo$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AddAddressArguments extends JsonSerializable with EquatableMixin {
+  AddAddressArguments(
+      {@required this.city,
+      @required this.line1,
+      @required this.line2,
+      @required this.postal,
+      @required this.state});
+
+  factory AddAddressArguments.fromJson(Map<String, dynamic> json) =>
+      _$AddAddressArgumentsFromJson(json);
+
+  final String city;
+
+  final String line1;
+
+  final String line2;
+
+  final String postal;
+
+  final String state;
+
+  @override
+  List<Object> get props => [city, line1, line2, postal, state];
+  Map<String, dynamic> toJson() => _$AddAddressArgumentsToJson(this);
+}
+
+class AddAddressMutation
+    extends GraphQLQuery<AddAddress$Mutation, AddAddressArguments> {
+  AddAddressMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'addAddress'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'city')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'line1')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'line2')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'postal')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'state')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'addAddress'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'addAddressInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'city'),
+                          value: VariableNode(name: NameNode(value: 'city'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'state'),
+                          value: VariableNode(name: NameNode(value: 'state'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'line1'),
+                          value: VariableNode(name: NameNode(value: 'line1'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'line2'),
+                          value: VariableNode(name: NameNode(value: 'line2'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'postal'),
+                          value: VariableNode(name: NameNode(value: 'postal')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'Address'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Address'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'Address'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'line1'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'line2'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'postal'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'state'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'city'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'addAddress';
+
+  @override
+  final AddAddressArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  AddAddress$Mutation parse(Map<String, dynamic> json) =>
+      AddAddress$Mutation.fromJson(json);
+}
+
+class GetAddressesQuery
+    extends GraphQLQuery<GetAddresses$Query, JsonSerializable> {
+  GetAddressesQuery();
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'getAddresses'),
+        variableDefinitions: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'getAddresses'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'Address'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Address'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'Address'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'line1'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'line2'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'postal'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'state'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'city'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'getAddresses';
+
+  @override
+  List<Object> get props => [document, operationName];
+  @override
+  GetAddresses$Query parse(Map<String, dynamic> json) =>
+      GetAddresses$Query.fromJson(json);
 }

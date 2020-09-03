@@ -9,7 +9,7 @@ class PaymentMethodsListTile extends StatelessWidget {
     return ListTile(
         onTap: () => Get.toNamed('PaymentMethods'),
         title: Text(
-          'Payment Methods',
+          'Addresses',
           style: Theme.of(context).textTheme.headline6,
         ));
   }
