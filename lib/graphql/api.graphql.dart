@@ -51,6 +51,15 @@ mixin AddressMixin {
   String state;
   String city;
   String country;
+}
+mixin AddressWithDefaultMixin {
+  String id;
+  String line1;
+  String line2;
+  String postal_code;
+  String state;
+  String city;
+  String country;
   bool isDefault;
 }
 
@@ -197,7 +206,7 @@ class AddAddress$Mutation$AddAddress with EquatableMixin, AddressMixin {
 
   @override
   List<Object> get props =>
-      [id, line1, line2, postal_code, state, city, country, isDefault];
+      [id, line1, line2, postal_code, state, city, country];
   Map<String, dynamic> toJson() => _$AddAddress$Mutation$AddAddressToJson(this);
 }
 
@@ -331,7 +340,8 @@ class FindOrdersFromOwnerId$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class GetAddresses$Query$GetAddresses with EquatableMixin, AddressMixin {
+class GetAddresses$Query$GetAddresses
+    with EquatableMixin, AddressWithDefaultMixin {
   GetAddresses$Query$GetAddresses();
 
   factory GetAddresses$Query$GetAddresses.fromJson(Map<String, dynamic> json) =>
@@ -1116,12 +1126,6 @@ class AddAddressMutation
               alias: null,
               arguments: [],
               directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'default'),
-              alias: NameNode(value: 'isDefault'),
-              arguments: [],
-              directives: [],
               selectionSet: null)
         ]))
   ]);
@@ -1644,14 +1648,14 @@ class GetAddressesQuery
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                    name: NameNode(value: 'Address'), directives: [])
+                    name: NameNode(value: 'AddressWithDefault'), directives: [])
               ]))
         ])),
     FragmentDefinitionNode(
-        name: NameNode(value: 'Address'),
+        name: NameNode(value: 'AddressWithDefault'),
         typeCondition: TypeConditionNode(
             on: NamedTypeNode(
-                name: NameNode(value: 'Address'), isNonNull: false)),
+                name: NameNode(value: 'AddressWithDefault'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(

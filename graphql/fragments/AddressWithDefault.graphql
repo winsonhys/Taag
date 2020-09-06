@@ -1,0 +1,10 @@
+fragment AddressWithDefault on AddressWithDefault {
+  id
+  line1
+  line2
+  postal_code
+  state
+  city
+  country
+  isDefault: default
+}

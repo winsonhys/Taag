@@ -192,8 +192,7 @@ AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
     ..postal_code = json['postal_code'] as String
     ..state = json['state'] as String
     ..city = json['city'] as String
-    ..country = json['country'] as String
-    ..isDefault = json['isDefault'] as bool;
+    ..country = json['country'] as String;
 }
 
 Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
@@ -206,7 +205,6 @@ Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
       'state': instance.state,
       'city': instance.city,
       'country': instance.country,
-      'isDefault': instance.isDefault,
     };
 
 AddAddress$Mutation _$AddAddress$MutationFromJson(Map<String, dynamic> json) {

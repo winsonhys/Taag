@@ -6,5 +6,4 @@ fragment Address on Address {
   state
   city
   country
-  isDefault: default
 }
