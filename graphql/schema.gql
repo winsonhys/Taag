@@ -186,13 +186,25 @@ input AddressWhereInput {
   OR: [AddressWhereInput!]
   NOT: [AddressWhereInput!]
   id: StringFilter
+  country: StringFilter
   city: StringFilter
+  state: StringFilter
   line1: StringFilter
   line2: StringFilter
-  postal: StringFilter
-  state: StringFilter
+  postal_code: StringFilter
   userId: StringFilter
   user: UserWhereInput
+  default: BoolFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
 }
 
 input StringNullableFilter {
@@ -522,12 +534,14 @@ type PaymentOrder {
 
 input AddressOrderByInput {
   id: SortOrder
+  country: SortOrder
   city: SortOrder
+  state: SortOrder
   line1: SortOrder
   line2: SortOrder
-  postal: SortOrder
-  state: SortOrder
+  postal_code: SortOrder
   userId: SortOrder
+  default: SortOrder
 }
 
 input AddressWhereUniqueInput {
@@ -536,22 +550,26 @@ input AddressWhereUniqueInput {
 
 enum AddressDistinctFieldEnum {
   id
+  country
   city
+  state
   line1
   line2
-  postal
-  state
+  postal_code
   userId
+  default
 }
 
 type Address {
   id: String!
+  country: String!
   city: String!
+  state: String!
   line1: String!
   line2: String!
-  postal: String!
-  state: String!
+  postal_code: String!
   userId: String!
+  default: Boolean!
 }
 
 input FindMultiOrderByUserIdInput {
@@ -697,11 +715,13 @@ input AddressCreateManyWithoutUserInput {
 
 input AddressCreateWithoutUserInput {
   id: String
+  country: String!
   city: String!
+  state: String!
   line1: String!
   line2: String!
-  postal: String!
-  state: String!
+  postal_code: String!
+  default: Boolean
 }
 
 input MultiOrderCreateOneWithoutOrdersInput {
@@ -818,11 +838,13 @@ input PayCurrentOrderInput {
 }
 
 input AddAddressInput {
+  country: String!
   city: String!
   state: String!
   line1: String!
   line2: String!
-  postal: String!
+  postal_code: String!
+  default: Boolean!
 }
 
 input SignUpInput {

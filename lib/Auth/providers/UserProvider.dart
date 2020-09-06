@@ -43,7 +43,7 @@ class UserProvider extends ChangeNotifier {
     }
 
     final userToken = (await firebaseUser.getIdToken()).token;
-    context.watch<GraphqlContainerProvider>().setToken(userToken);
+    context.read<GraphqlContainerProvider>().setToken(userToken);
     await setUser();
     return Future.value(null);
   }

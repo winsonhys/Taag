@@ -183,6 +183,74 @@ Map<String, dynamic> _$SignUpUser$MutationToJson(
       'signUp': instance.signUp?.toJson(),
     };
 
+AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
+    Map<String, dynamic> json) {
+  return AddAddress$Mutation$AddAddress()
+    ..line1 = json['line1'] as String
+    ..line2 = json['line2'] as String
+    ..postal_code = json['postal_code'] as String
+    ..state = json['state'] as String
+    ..city = json['city'] as String
+    ..country = json['country'] as String
+    ..isDefault = json['isDefault'] as bool;
+}
+
+Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
+        AddAddress$Mutation$AddAddress instance) =>
+    <String, dynamic>{
+      'line1': instance.line1,
+      'line2': instance.line2,
+      'postal_code': instance.postal_code,
+      'state': instance.state,
+      'city': instance.city,
+      'country': instance.country,
+      'isDefault': instance.isDefault,
+    };
+
+AddAddress$Mutation _$AddAddress$MutationFromJson(Map<String, dynamic> json) {
+  return AddAddress$Mutation()
+    ..addAddress = (json['addAddress'] as List)
+        ?.map((e) => e == null
+            ? null
+            : AddAddress$Mutation$AddAddress.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$AddAddress$MutationToJson(
+        AddAddress$Mutation instance) =>
+    <String, dynamic>{
+      'addAddress': instance.addAddress?.map((e) => e?.toJson())?.toList(),
+    };
+
+DeletePaymentInfo$Mutation$DeletePaymentInfo
+    _$DeletePaymentInfo$Mutation$DeletePaymentInfoFromJson(
+        Map<String, dynamic> json) {
+  return DeletePaymentInfo$Mutation$DeletePaymentInfo()
+    ..id = json['id'] as String;
+}
+
+Map<String, dynamic> _$DeletePaymentInfo$Mutation$DeletePaymentInfoToJson(
+        DeletePaymentInfo$Mutation$DeletePaymentInfo instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+DeletePaymentInfo$Mutation _$DeletePaymentInfo$MutationFromJson(
+    Map<String, dynamic> json) {
+  return DeletePaymentInfo$Mutation()
+    ..deletePaymentInfo = json['deletePaymentInfo'] == null
+        ? null
+        : DeletePaymentInfo$Mutation$DeletePaymentInfo.fromJson(
+            json['deletePaymentInfo'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$DeletePaymentInfo$MutationToJson(
+        DeletePaymentInfo$Mutation instance) =>
+    <String, dynamic>{
+      'deletePaymentInfo': instance.deletePaymentInfo?.toJson(),
+    };
+
 AllShopItems$Query$ShopItems _$AllShopItems$Query$ShopItemsFromJson(
     Map<String, dynamic> json) {
   return AllShopItems$Query$ShopItems()
@@ -297,6 +365,45 @@ Map<String, dynamic> _$FindOrdersFromOwnerId$QueryToJson(
           instance.findOrdersFromOwnerId?.map((e) => e?.toJson())?.toList(),
     };
 
+GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
+    Map<String, dynamic> json) {
+  return GetAddresses$Query$GetAddresses()
+    ..line1 = json['line1'] as String
+    ..line2 = json['line2'] as String
+    ..postal_code = json['postal_code'] as String
+    ..state = json['state'] as String
+    ..city = json['city'] as String
+    ..country = json['country'] as String
+    ..isDefault = json['isDefault'] as bool;
+}
+
+Map<String, dynamic> _$GetAddresses$Query$GetAddressesToJson(
+        GetAddresses$Query$GetAddresses instance) =>
+    <String, dynamic>{
+      'line1': instance.line1,
+      'line2': instance.line2,
+      'postal_code': instance.postal_code,
+      'state': instance.state,
+      'city': instance.city,
+      'country': instance.country,
+      'isDefault': instance.isDefault,
+    };
+
+GetAddresses$Query _$GetAddresses$QueryFromJson(Map<String, dynamic> json) {
+  return GetAddresses$Query()
+    ..getAddresses = (json['getAddresses'] as List)
+        ?.map((e) => e == null
+            ? null
+            : GetAddresses$Query$GetAddresses.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$GetAddresses$QueryToJson(GetAddresses$Query instance) =>
+    <String, dynamic>{
+      'getAddresses': instance.getAddresses?.map((e) => e?.toJson())?.toList(),
+    };
+
 FindUserById$Query$FindUserById _$FindUserById$Query$FindUserByIdFromJson(
     Map<String, dynamic> json) {
   return FindUserById$Query$FindUserById()
@@ -363,105 +470,6 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
       'shopItem': instance.shopItem?.toJson(),
     };
 
-DeletePaymentInfo$Mutation$DeletePaymentInfo
-    _$DeletePaymentInfo$Mutation$DeletePaymentInfoFromJson(
-        Map<String, dynamic> json) {
-  return DeletePaymentInfo$Mutation$DeletePaymentInfo()
-    ..id = json['id'] as String;
-}
-
-Map<String, dynamic> _$DeletePaymentInfo$Mutation$DeletePaymentInfoToJson(
-        DeletePaymentInfo$Mutation$DeletePaymentInfo instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-    };
-
-DeletePaymentInfo$Mutation _$DeletePaymentInfo$MutationFromJson(
-    Map<String, dynamic> json) {
-  return DeletePaymentInfo$Mutation()
-    ..deletePaymentInfo = json['deletePaymentInfo'] == null
-        ? null
-        : DeletePaymentInfo$Mutation$DeletePaymentInfo.fromJson(
-            json['deletePaymentInfo'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$DeletePaymentInfo$MutationToJson(
-        DeletePaymentInfo$Mutation instance) =>
-    <String, dynamic>{
-      'deletePaymentInfo': instance.deletePaymentInfo?.toJson(),
-    };
-
-AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
-    Map<String, dynamic> json) {
-  return AddAddress$Mutation$AddAddress()
-    ..line1 = json['line1'] as String
-    ..line2 = json['line2'] as String
-    ..postal = json['postal'] as String
-    ..state = json['state'] as String
-    ..city = json['city'] as String;
-}
-
-Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
-        AddAddress$Mutation$AddAddress instance) =>
-    <String, dynamic>{
-      'line1': instance.line1,
-      'line2': instance.line2,
-      'postal': instance.postal,
-      'state': instance.state,
-      'city': instance.city,
-    };
-
-AddAddress$Mutation _$AddAddress$MutationFromJson(Map<String, dynamic> json) {
-  return AddAddress$Mutation()
-    ..addAddress = (json['addAddress'] as List)
-        ?.map((e) => e == null
-            ? null
-            : AddAddress$Mutation$AddAddress.fromJson(
-                e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$AddAddress$MutationToJson(
-        AddAddress$Mutation instance) =>
-    <String, dynamic>{
-      'addAddress': instance.addAddress?.map((e) => e?.toJson())?.toList(),
-    };
-
-GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
-    Map<String, dynamic> json) {
-  return GetAddresses$Query$GetAddresses()
-    ..line1 = json['line1'] as String
-    ..line2 = json['line2'] as String
-    ..postal = json['postal'] as String
-    ..state = json['state'] as String
-    ..city = json['city'] as String;
-}
-
-Map<String, dynamic> _$GetAddresses$Query$GetAddressesToJson(
-        GetAddresses$Query$GetAddresses instance) =>
-    <String, dynamic>{
-      'line1': instance.line1,
-      'line2': instance.line2,
-      'postal': instance.postal,
-      'state': instance.state,
-      'city': instance.city,
-    };
-
-GetAddresses$Query _$GetAddresses$QueryFromJson(Map<String, dynamic> json) {
-  return GetAddresses$Query()
-    ..getAddresses = (json['getAddresses'] as List)
-        ?.map((e) => e == null
-            ? null
-            : GetAddresses$Query$GetAddresses.fromJson(
-                e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$GetAddresses$QueryToJson(GetAddresses$Query instance) =>
-    <String, dynamic>{
-      'getAddresses': instance.getAddresses?.map((e) => e?.toJson())?.toList(),
-    };
-
 AddPaymentInfoArguments _$AddPaymentInfoArgumentsFromJson(
     Map<String, dynamic> json) {
   return AddPaymentInfoArguments(
@@ -511,6 +519,43 @@ Map<String, dynamic> _$SignUpUserArgumentsToJson(
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'dob': instance.dob?.toIso8601String(),
+    };
+
+AddAddressArguments _$AddAddressArgumentsFromJson(Map<String, dynamic> json) {
+  return AddAddressArguments(
+    country: json['country'] as String,
+    city: json['city'] as String,
+    line1: json['line1'] as String,
+    line2: json['line2'] as String,
+    postalCode: json['postalCode'] as String,
+    state: json['state'] as String,
+    isDefault: json['isDefault'] as bool,
+  );
+}
+
+Map<String, dynamic> _$AddAddressArgumentsToJson(
+        AddAddressArguments instance) =>
+    <String, dynamic>{
+      'country': instance.country,
+      'city': instance.city,
+      'line1': instance.line1,
+      'line2': instance.line2,
+      'postalCode': instance.postalCode,
+      'state': instance.state,
+      'isDefault': instance.isDefault,
+    };
+
+DeletePaymentInfoArguments _$DeletePaymentInfoArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return DeletePaymentInfoArguments(
+    paymentMethodId: json['paymentMethodId'] as String,
+  );
+}
+
+Map<String, dynamic> _$DeletePaymentInfoArgumentsToJson(
+        DeletePaymentInfoArguments instance) =>
+    <String, dynamic>{
+      'paymentMethodId': instance.paymentMethodId,
     };
 
 GetPaymentInfoArguments _$GetPaymentInfoArgumentsFromJson(
@@ -563,37 +608,4 @@ Map<String, dynamic> _$FindOneShopItemArgumentsToJson(
         FindOneShopItemArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
-    };
-
-DeletePaymentInfoArguments _$DeletePaymentInfoArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return DeletePaymentInfoArguments(
-    paymentMethodId: json['paymentMethodId'] as String,
-  );
-}
-
-Map<String, dynamic> _$DeletePaymentInfoArgumentsToJson(
-        DeletePaymentInfoArguments instance) =>
-    <String, dynamic>{
-      'paymentMethodId': instance.paymentMethodId,
-    };
-
-AddAddressArguments _$AddAddressArgumentsFromJson(Map<String, dynamic> json) {
-  return AddAddressArguments(
-    city: json['city'] as String,
-    line1: json['line1'] as String,
-    line2: json['line2'] as String,
-    postal: json['postal'] as String,
-    state: json['state'] as String,
-  );
-}
-
-Map<String, dynamic> _$AddAddressArgumentsToJson(
-        AddAddressArguments instance) =>
-    <String, dynamic>{
-      'city': instance.city,
-      'line1': instance.line1,
-      'line2': instance.line2,
-      'postal': instance.postal,
-      'state': instance.state,
     };

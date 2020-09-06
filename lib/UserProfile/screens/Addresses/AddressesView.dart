@@ -15,7 +15,7 @@ class AddressView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 36.0),
         child: RaisedButton.icon(
             onPressed: () =>
-                Get.toNamed('AddCreditCard').then((value) => refetch()),
+                Get.toNamed('AddAddress').then((value) => refetch()),
             icon: Icon(Icons.add),
             label: Text('Add a new address')),
       );

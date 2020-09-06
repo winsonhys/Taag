@@ -1,5 +1,7 @@
 import 'package:Taag/UserProfile/screens/AddAddress/providers/AddressProvider.dart';
+import 'package:Taag/UserProfile/screens/AddAddress/widgets/AddAddressButton/AddAddressButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
@@ -9,61 +11,74 @@ class AddAddressView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _formKey = useState(GlobalKey<FormState>());
-    return Form(
+    final theme = Theme.of(context).copyWith(dividerColor: Colors.transparent);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32),
+      child: Form(
           key: _formKey.value,
           child: Theme(
             data: theme,
-            child: ExpansionTile(
-              title: Text('Reset Password',
-                  style: Theme.of(context).textTheme.headline6),
-              childrenPadding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
               children: [
                 TextFormField(
-                    onSaved: (newValue) => context
-                        .watch<AddressProvider>()
-                        .line1 = newValue,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: 'Line 1',
-                        hintStyle: TextStyle(color: Colors.white)),
-                    validator: (value) => value.isEmpty
-                        ? 'Please enter your address'
-                        : null),
+                  enabled: false,
+                  initialValue: context.watch<AddressProvider>().country,
+                  decoration: InputDecoration(
+                      labelText: 'Country',
+                      labelStyle: TextStyle(color: Colors.white)),
+                ),
                 TextFormField(
-                    onSaved: (newValue) => context
-                        .watch<AddressProvider>()
-                        .line2 = newValue,
-                    decoration: InputDecoration(
-                      hintText: 'New Password',
-                      hintStyle: TextStyle(color: Colors.white),
-                    ),
-                    validator: (value) => value.isEmpty
-                        ? 'Please enter some your current password'
-                        : null),
+                  enabled: false,
+                  initialValue: context.watch<AddressProvider>().city,
+                  decoration: InputDecoration(
+                      labelText: 'City',
+                      labelStyle: TextStyle(color: Colors.white)),
+                ),
                 TextFormField(
-                    obscureText: true,
+                  enabled: false,
+                  initialValue: context.watch<AddressProvider>().state,
+                  decoration: InputDecoration(
+                      labelText: 'State',
+                      labelStyle: TextStyle(color: Colors.white)),
+                ),
+                TextFormField(
+                    onSaved: (newValue) =>
+                        context.watch<AddressProvider>().line1 = newValue,
+                    keyboardType: TextInputType.streetAddress,
                     decoration: InputDecoration(
-                        hintText: 'Confirm New Password',
-                        hintStyle: TextStyle(color: Colors.white)),
-                    validator: (value) => value.isEmpty
-                        ? 'Please enter some your current password'
-                        : null),
-                RaisedButton(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                      }
-                    },
-                    child: Text(
-                      'Change Password',
-                      style: TextStyle(color: Theme.of(context).accentColor),
-                    ))
+                        labelText: 'Line 1',
+                        labelStyle: TextStyle(color: Colors.white)),
+                    validator: (value) =>
+                        value.isEmpty ? 'Please enter your address' : null),
+                TextFormField(
+                  keyboardType: TextInputType.streetAddress,
+                  onSaved: (newValue) =>
+                      context.watch<AddressProvider>().line2 = newValue,
+                  decoration: InputDecoration(
+                    labelText: 'Line 2',
+                    labelStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                TextFormField(
+                    keyboardType: TextInputType.number,
+                    onSaved: (newValue) =>
+                        context.watch<AddressProvider>().postal = newValue,
+                    decoration: InputDecoration(
+                        labelText: 'Postal Code',
+                        labelStyle: TextStyle(color: Colors.white)),
+                    validator: (value) =>
+                        value.isEmpty ? 'Please enter your postal code' : null),
+                Row(children: [
+                  Text("Set this as default address"),
+                  Switch(
+                      value: context.watch<AddressProvider>().isDefault,
+                      onChanged: (value) =>
+                          context.read<AddressProvider>().isDefault = value)
+                ]),
+                AddAddressButton(formKey: _formKey.value)
               ],
             ),
-          ))
+          )),
+    );
   }
 }

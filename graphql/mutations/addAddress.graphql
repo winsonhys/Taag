@@ -1,10 +1,12 @@
-mutation addAddress($city: String!, $line1: String!, $line2: String!, $postal: String!, $state: String!){
+mutation addAddress($country: String!, $city: String!, $line1: String!, $line2: String!, $postalCode: String!, $state: String!, $isDefault: Boolean!){
   addAddress(addAddressInput: {
     city:$city
     state:$state
     line1: $line1
     line2:$line2
-    postal:$postal
+    postal_code:$postalCode
+    default:$isDefault
+    country:$country
   }) {
     ...Address
   }

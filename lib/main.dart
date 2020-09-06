@@ -3,6 +3,7 @@ import 'package:Taag/Auth/screens/AwaitScreen/AwaitScreen.dart';
 import 'package:Taag/Orders/Orders.dart';
 import 'package:Taag/Home/home.dart';
 import 'package:Taag/UserProfile/UserProfile.dart';
+import 'package:Taag/UserProfile/screens/AddAddress/AddAddress.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCard.dart';
 import 'package:Taag/UserProfile/screens/Addresses/Addresses.dart';
 import 'package:Taag/UserProfile/screens/PaymentMethods/PaymentMethods.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: 'Home', page: () => HomePage()),
             GetPage(name: 'Login', page: () => LoginScreen()),
             GetPage(name: 'Addresses', page: () => Addresses()),
+            GetPage(name: 'AddAddress', page: () => AddAddress()),
             GetPage(name: 'PaymentMethods', page: () => PaymentMethods()),
             GetPage(name: 'AddCreditCard', page: () => AddCreditCard()),
             GetPage(
