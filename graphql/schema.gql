@@ -638,6 +638,7 @@ type Mutation {
   deletePaymentInfo(deletePaymentInfoInput: DeletePaymentInfoInput!): PaymentMethod!
   payCurrentOrder(payCurrentOrderInput: PayCurrentOrderInput!): Order!
   addAddress(addAddressInput: AddAddressInput!): [Address!]!
+  removeAddress(addAddressInput: DeleteAddressInput!): Address!
   signUp(signUpInput: SignUpInput!): User!
 }
 
@@ -845,6 +846,10 @@ input AddAddressInput {
   line2: String!
   postal_code: String!
   default: Boolean!
+}
+
+input DeleteAddressInput {
+  id: String!
 }
 
 input SignUpInput {

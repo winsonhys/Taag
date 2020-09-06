@@ -24,14 +24,18 @@ class AddressView extends StatelessWidget {
     final address = addresses[index];
     return AddressTile(
       address: address,
+      onAddressRemoved: refetch,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemCount: addresses.length + 1,
-        itemBuilder: _buildListItem,
-        separatorBuilder: (context, index) => const Divider());
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.separated(
+          itemCount: addresses.length + 1,
+          itemBuilder: _buildListItem,
+          separatorBuilder: (context, index) => const Divider()),
+    );
   }
 }

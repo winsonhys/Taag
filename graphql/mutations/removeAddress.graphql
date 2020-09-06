@@ -1,0 +1,7 @@
+mutation removeAddress($id: String!) {
+  removeAddress(addAddressInput: {
+    id: $id
+  }) {
+    id
+  }
+}

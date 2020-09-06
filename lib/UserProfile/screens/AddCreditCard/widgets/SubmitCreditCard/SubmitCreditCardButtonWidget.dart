@@ -10,7 +10,6 @@ class SubmitCreditCardButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loading = context.watch<CreditCardProvider>().isAddingCreditCard;
-    print(loading);
     return RaisedButton(
         padding: const EdgeInsets.all(0),
         elevation: 10.0,

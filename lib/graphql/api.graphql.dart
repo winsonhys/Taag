@@ -44,6 +44,7 @@ mixin UserDataMixin {
   String stripe_cust_id;
 }
 mixin AddressMixin {
+  String id;
   String line1;
   String line2;
   String postal_code;
@@ -196,7 +197,7 @@ class AddAddress$Mutation$AddAddress with EquatableMixin, AddressMixin {
 
   @override
   List<Object> get props =>
-      [line1, line2, postal_code, state, city, country, isDefault];
+      [id, line1, line2, postal_code, state, city, country, isDefault];
   Map<String, dynamic> toJson() => _$AddAddress$Mutation$AddAddressToJson(this);
 }
 
@@ -338,7 +339,7 @@ class GetAddresses$Query$GetAddresses with EquatableMixin, AddressMixin {
 
   @override
   List<Object> get props =>
-      [line1, line2, postal_code, state, city, country, isDefault];
+      [id, line1, line2, postal_code, state, city, country, isDefault];
   Map<String, dynamic> toJson() =>
       _$GetAddresses$Query$GetAddressesToJson(this);
 }
@@ -408,6 +409,36 @@ class FindOneShopItem$Query with EquatableMixin {
   @override
   List<Object> get props => [shopItem];
   Map<String, dynamic> toJson() => _$FindOneShopItem$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RemoveAddress$Mutation$RemoveAddress with EquatableMixin {
+  RemoveAddress$Mutation$RemoveAddress();
+
+  factory RemoveAddress$Mutation$RemoveAddress.fromJson(
+          Map<String, dynamic> json) =>
+      _$RemoveAddress$Mutation$RemoveAddressFromJson(json);
+
+  String id;
+
+  @override
+  List<Object> get props => [id];
+  Map<String, dynamic> toJson() =>
+      _$RemoveAddress$Mutation$RemoveAddressToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RemoveAddress$Mutation with EquatableMixin {
+  RemoveAddress$Mutation();
+
+  factory RemoveAddress$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$RemoveAddress$MutationFromJson(json);
+
+  RemoveAddress$Mutation$RemoveAddress removeAddress;
+
+  @override
+  List<Object> get props => [removeAddress];
+  Map<String, dynamic> toJson() => _$RemoveAddress$MutationToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1045,6 +1076,12 @@ class AddAddressMutation
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'line1'),
               alias: null,
               arguments: [],
@@ -1618,6 +1655,12 @@ class GetAddressesQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'line1'),
               alias: null,
               arguments: [],
@@ -1874,4 +1917,74 @@ class FindOneShopItemQuery
   @override
   FindOneShopItem$Query parse(Map<String, dynamic> json) =>
       FindOneShopItem$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RemoveAddressArguments extends JsonSerializable with EquatableMixin {
+  RemoveAddressArguments({@required this.id});
+
+  factory RemoveAddressArguments.fromJson(Map<String, dynamic> json) =>
+      _$RemoveAddressArgumentsFromJson(json);
+
+  final String id;
+
+  @override
+  List<Object> get props => [id];
+  Map<String, dynamic> toJson() => _$RemoveAddressArgumentsToJson(this);
+}
+
+class RemoveAddressMutation
+    extends GraphQLQuery<RemoveAddress$Mutation, RemoveAddressArguments> {
+  RemoveAddressMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'removeAddress'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'id')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'removeAddress'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'addAddressInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'id'),
+                          value: VariableNode(name: NameNode(value: 'id')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'removeAddress';
+
+  @override
+  final RemoveAddressArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  RemoveAddress$Mutation parse(Map<String, dynamic> json) =>
+      RemoveAddress$Mutation.fromJson(json);
 }

@@ -186,6 +186,7 @@ Map<String, dynamic> _$SignUpUser$MutationToJson(
 AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
     Map<String, dynamic> json) {
   return AddAddress$Mutation$AddAddress()
+    ..id = json['id'] as String
     ..line1 = json['line1'] as String
     ..line2 = json['line2'] as String
     ..postal_code = json['postal_code'] as String
@@ -198,6 +199,7 @@ AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
 Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
         AddAddress$Mutation$AddAddress instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'line1': instance.line1,
       'line2': instance.line2,
       'postal_code': instance.postal_code,
@@ -368,6 +370,7 @@ Map<String, dynamic> _$FindOrdersFromOwnerId$QueryToJson(
 GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
     Map<String, dynamic> json) {
   return GetAddresses$Query$GetAddresses()
+    ..id = json['id'] as String
     ..line1 = json['line1'] as String
     ..line2 = json['line2'] as String
     ..postal_code = json['postal_code'] as String
@@ -380,6 +383,7 @@ GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
 Map<String, dynamic> _$GetAddresses$Query$GetAddressesToJson(
         GetAddresses$Query$GetAddresses instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'line1': instance.line1,
       'line2': instance.line2,
       'postal_code': instance.postal_code,
@@ -468,6 +472,32 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
         FindOneShopItem$Query instance) =>
     <String, dynamic>{
       'shopItem': instance.shopItem?.toJson(),
+    };
+
+RemoveAddress$Mutation$RemoveAddress
+    _$RemoveAddress$Mutation$RemoveAddressFromJson(Map<String, dynamic> json) {
+  return RemoveAddress$Mutation$RemoveAddress()..id = json['id'] as String;
+}
+
+Map<String, dynamic> _$RemoveAddress$Mutation$RemoveAddressToJson(
+        RemoveAddress$Mutation$RemoveAddress instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+RemoveAddress$Mutation _$RemoveAddress$MutationFromJson(
+    Map<String, dynamic> json) {
+  return RemoveAddress$Mutation()
+    ..removeAddress = json['removeAddress'] == null
+        ? null
+        : RemoveAddress$Mutation$RemoveAddress.fromJson(
+            json['removeAddress'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RemoveAddress$MutationToJson(
+        RemoveAddress$Mutation instance) =>
+    <String, dynamic>{
+      'removeAddress': instance.removeAddress?.toJson(),
     };
 
 AddPaymentInfoArguments _$AddPaymentInfoArgumentsFromJson(
@@ -606,6 +636,19 @@ FindOneShopItemArguments _$FindOneShopItemArgumentsFromJson(
 
 Map<String, dynamic> _$FindOneShopItemArgumentsToJson(
         FindOneShopItemArguments instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+RemoveAddressArguments _$RemoveAddressArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return RemoveAddressArguments(
+    id: json['id'] as String,
+  );
+}
+
+Map<String, dynamic> _$RemoveAddressArgumentsToJson(
+        RemoveAddressArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
     };

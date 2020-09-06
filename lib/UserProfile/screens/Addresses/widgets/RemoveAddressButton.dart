@@ -3,26 +3,25 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class RemovePaymentMethodButton extends StatelessWidget {
-  final String paymentMethodId;
-  final Function onPaymentMethodRemoved;
-  const RemovePaymentMethodButton(
-      {Key key,
-      @required this.paymentMethodId,
-      @required this.onPaymentMethodRemoved})
+class RemoveAddressButton extends StatelessWidget {
+  final String addressId;
+  final Function onAddressRemoved;
+  const RemoveAddressButton(
+      {Key key, @required this.addressId, @required this.onAddressRemoved})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final deletePaymentInfoArgs =
-        DeletePaymentInfoArguments(paymentMethodId: paymentMethodId);
+    final removeAddressArguments = RemoveAddressArguments(id: addressId);
+
     return Mutation(
         options: MutationOptions(
-          documentNode: DeletePaymentInfoMutation().document,
+          documentNode: RemoveAddressMutation().document,
+          variables: removeAddressArguments.toJson(),
           onCompleted: (data) {
-            onPaymentMethodRemoved();
+            onAddressRemoved();
             FlushbarHelper.createSuccess(
-              message: 'Card has been removed',
+              message: 'Address has been removed',
             ).show(context);
           },
         ),
@@ -34,7 +33,7 @@ class RemovePaymentMethodButton extends StatelessWidget {
             ),
             onPressed: () {
               runMutation(
-                deletePaymentInfoArgs.toJson(),
+                removeAddressArguments.toJson(),
               );
             },
             child: Container(

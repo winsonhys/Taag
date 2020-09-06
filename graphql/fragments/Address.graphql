@@ -1,4 +1,5 @@
 fragment Address on Address {
+  id
   line1
   line2
   postal_code

@@ -24,15 +24,15 @@ class AddAddressButton extends StatelessWidget {
     );
     return Mutation(
         options: MutationOptions(
-            documentNode: AddAddressMutation().document,
-            onError: (error) {
-              FlushbarHelper.createError(
-                      message: error.graphqlErrors[0].message)
-                  .show(context);
-            },
-            onCompleted: (_) {
-              Get.back();
-            }),
+          documentNode: AddAddressMutation().document,
+          onError: (error) {
+            FlushbarHelper.createError(message: error.graphqlErrors[0].message)
+                .show(context);
+          },
+          onCompleted: (data) {
+            Get.back();
+          },
+        ),
         builder: (runMutation, result) {
           return AddAddressButtonView(
               formKey: formKey,

@@ -29,12 +29,12 @@ class AddressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _country = "Singapore";
+  String _country = "SG";
   String get country => _country;
 
   String _city = "Singapore";
   String get city => _city;
 
-  String _state = "SGP";
+  String _state = "Singapore";
   String get state => _state;
 }
