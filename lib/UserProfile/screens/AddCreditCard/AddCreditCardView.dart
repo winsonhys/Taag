@@ -1,4 +1,4 @@
-import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
+import 'package:Taag/UserProfile/screens/AddCreditCard/providers/CreditCardProvider.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/widgets/SubmitCreditCard/SubmitCreditCard.dart';
 import 'package:credit_card_input_form/constants/constanst.dart';
 import 'package:credit_card_input_form/credit_card_input_form.dart';

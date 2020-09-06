@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/common/widgets/ListLoadingState.dart';
 
-class PaymentMethods extends StatelessWidget {
-  const PaymentMethods({Key key}) : super(key: key);
+class Addresses extends StatelessWidget {
+  const Addresses({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScreenContainer(
-        title: 'Payment Methods',
+        title: 'Addresses',
         body: Query(
             options: QueryOptions(
               documentNode: GetAddressesQuery().document,
@@ -23,9 +23,7 @@ class PaymentMethods extends StatelessWidget {
               final List<AddressMixin> addresses =
                   GetAddresses$Query.fromJson(result.data).getAddresses;
 
-              return AddressView(
-                addresses: addresses,
-              );
+              return AddressView(addresses: addresses, refetch: refetch);
             }));
   }
 }

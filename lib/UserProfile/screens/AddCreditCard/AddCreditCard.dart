@@ -1,4 +1,4 @@
-import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
+import 'package:Taag/UserProfile/screens/AddCreditCard/providers/CreditCardProvider.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/AddCreditCardView.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

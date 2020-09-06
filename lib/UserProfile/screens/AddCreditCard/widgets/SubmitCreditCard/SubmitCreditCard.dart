@@ -1,5 +1,5 @@
 import 'package:Taag/Auth/providers/UserProvider.dart';
-import 'package:Taag/UserProfile/providers/CreditCardProvider.dart';
+import 'package:Taag/UserProfile/screens/AddCreditCard/providers/CreditCardProvider.dart';
 import 'package:Taag/UserProfile/screens/AddCreditCard/widgets/SubmitCreditCard/SubmitCreditCardButtonWidget.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flushbar/flushbar_helper.dart';

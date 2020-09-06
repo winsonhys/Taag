@@ -169,6 +169,11 @@ class MyDrawer extends StatelessWidget {
                   onTap: () => Get.toNamed('UserProfile'),
                 ),
                 ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text('Addresses'),
+                  onTap: () => Get.toNamed('Addresses'),
+                ),
+                ListTile(
                   leading: Icon(FontAwesome5Solid.sign_out_alt),
                   title: Text('Sign Out'),
                   onTap: () {

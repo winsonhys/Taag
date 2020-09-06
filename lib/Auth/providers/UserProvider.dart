@@ -1,10 +1,11 @@
 import 'package:Taag/common/exceptions/UnauthorizedException.dart';
-import 'package:Taag/graphql/GraphqlContainer.dart';
+import 'package:Taag/graphql/GraphqlContainerProvider.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
   final BuildContext context;
@@ -21,12 +22,14 @@ class UserProvider extends ChangeNotifier {
     if (firebaseUser == null) {
       throw UnauthorizedException(message: 'User is not signed in');
     }
+    final userToken = (await firebaseUser.getIdToken()).token;
     final client = GraphQLProvider.of(context).value;
     final result = await client.query(QueryOptions(
         documentNode: FindUserByIdQuery().document,
         variables: {'id': firebaseUser.uid}));
 
     user = FindUserById$Query.fromJson(result.data).findUserById;
+    context.read<GraphqlContainerProvider>().setToken(userToken);
   }
 
   Future<String> login(LoginData data) async {
@@ -40,7 +43,7 @@ class UserProvider extends ChangeNotifier {
     }
 
     final userToken = (await firebaseUser.getIdToken()).token;
-    GraphQLContainer.setToken(userToken);
+    context.watch<GraphqlContainerProvider>().setToken(userToken);
     await setUser();
     return Future.value(null);
   }
@@ -73,7 +76,7 @@ class UserProvider extends ChangeNotifier {
     }
 
     final userToken = (await firebaseUser.getIdToken()).token;
-    GraphQLContainer.setToken(userToken);
+    context.watch<GraphqlContainerProvider>().setToken(userToken);
     return Future.value(null);
   }
 
