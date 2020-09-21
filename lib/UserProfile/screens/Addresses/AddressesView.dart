@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class AddressView extends StatelessWidget {
-  final List<AddressMixin> addresses;
+  final List<AddressWithDefaultMixin> addresses;
   final Function refetch;
   const AddressView({Key key, @required this.addresses, @required this.refetch})
       : super(key: key);

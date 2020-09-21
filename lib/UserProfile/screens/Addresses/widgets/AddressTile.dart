@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class AddressTile extends StatelessWidget {
-  final AddressMixin address;
+  final AddressWithDefaultMixin address;
   final Function onAddressRemoved;
   const AddressTile(
       {Key key, @required this.address, @required this.onAddressRemoved})
@@ -30,8 +30,13 @@ class AddressTile extends StatelessWidget {
           minFontSize: 6,
           maxLines: 5,
         ),
-        RemoveAddressButton(
-            addressId: address.id, onAddressRemoved: onAddressRemoved)
+        Column(
+          children: [
+            RemoveAddressButton(
+                addressId: address.id, onAddressRemoved: onAddressRemoved),
+            if (address.isDefault) Text('Is Default')
+          ],
+        )
       ],
     );
   }

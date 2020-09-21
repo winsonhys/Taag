@@ -20,7 +20,7 @@ class Addresses extends StatelessWidget {
               if (result.loading) {
                 return ListLoadingState();
               }
-              final List<AddressMixin> addresses =
+              final List<AddressWithDefaultMixin> addresses =
                   GetAddresses$Query.fromJson(result.data).getAddresses;
 
               return AddressView(addresses: addresses, refetch: refetch);
