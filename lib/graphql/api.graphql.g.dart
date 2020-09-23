@@ -62,10 +62,10 @@ AddToOrder$Mutation$AddToOrder _$AddToOrder$Mutation$AddToOrderFromJson(
   return AddToOrder$Mutation$AddToOrder()
     ..id = json['id'] as String
     ..ownerId = json['ownerId'] as String
-    ..cartItemCount = json['cartItemCount'] == null
+    ..orderItemCount = json['orderItemCount'] == null
         ? null
-        : OrderMixin$CartItemCount.fromJson(
-            json['cartItemCount'] as Map<String, dynamic>)
+        : OrderMixin$OrderItemCount.fromJson(
+            json['orderItemCount'] as Map<String, dynamic>)
     ..price = (json['price'] as num)?.toDouble()
     ..paymentIntentId = json['paymentIntentId'] as String;
 }
@@ -75,7 +75,7 @@ Map<String, dynamic> _$AddToOrder$Mutation$AddToOrderToJson(
     <String, dynamic>{
       'id': instance.id,
       'ownerId': instance.ownerId,
-      'cartItemCount': instance.cartItemCount?.toJson(),
+      'orderItemCount': instance.orderItemCount?.toJson(),
       'price': instance.price,
       'paymentIntentId': instance.paymentIntentId,
     };
@@ -96,21 +96,21 @@ Map<String, dynamic> _$AddToOrder$MutationToJson(
       'addToOrder': instance.addToOrder?.map((e) => e?.toJson())?.toList(),
     };
 
-OrderMixin$CartItemCount _$OrderMixin$CartItemCountFromJson(
+OrderMixin$OrderItemCount _$OrderMixin$OrderItemCountFromJson(
     Map<String, dynamic> json) {
-  return OrderMixin$CartItemCount()
+  return OrderMixin$OrderItemCount()
     ..id = json['id'] as String
     ..orderId = json['orderId'] as String
     ..price = (json['price'] as num)?.toDouble()
     ..count = json['count'] as int
     ..shopItem = json['shopItem'] == null
         ? null
-        : CartItemCountMixin$ShopItem.fromJson(
+        : OrderItemCountMixin$ShopItem.fromJson(
             json['shopItem'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$OrderMixin$CartItemCountToJson(
-        OrderMixin$CartItemCount instance) =>
+Map<String, dynamic> _$OrderMixin$OrderItemCountToJson(
+        OrderMixin$OrderItemCount instance) =>
     <String, dynamic>{
       'id': instance.id,
       'orderId': instance.orderId,
@@ -119,9 +119,9 @@ Map<String, dynamic> _$OrderMixin$CartItemCountToJson(
       'shopItem': instance.shopItem?.toJson(),
     };
 
-CartItemCountMixin$ShopItem _$CartItemCountMixin$ShopItemFromJson(
+OrderItemCountMixin$ShopItem _$OrderItemCountMixin$ShopItemFromJson(
     Map<String, dynamic> json) {
-  return CartItemCountMixin$ShopItem()
+  return OrderItemCountMixin$ShopItem()
     ..id = json['id'] as String
     ..name = json['name'] as String
     ..description = json['description'] as String
@@ -132,8 +132,8 @@ CartItemCountMixin$ShopItem _$CartItemCountMixin$ShopItemFromJson(
         : ShopItemMixin$Shop.fromJson(json['shop'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$CartItemCountMixin$ShopItemToJson(
-        CartItemCountMixin$ShopItem instance) =>
+Map<String, dynamic> _$OrderItemCountMixin$ShopItemToJson(
+        OrderItemCountMixin$ShopItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -329,10 +329,10 @@ FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
   return FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId()
     ..id = json['id'] as String
     ..ownerId = json['ownerId'] as String
-    ..cartItemCount = json['cartItemCount'] == null
+    ..orderItemCount = json['orderItemCount'] == null
         ? null
-        : OrderMixin$CartItemCount.fromJson(
-            json['cartItemCount'] as Map<String, dynamic>)
+        : OrderMixin$OrderItemCount.fromJson(
+            json['orderItemCount'] as Map<String, dynamic>)
     ..price = (json['price'] as num)?.toDouble()
     ..paymentIntentId = json['paymentIntentId'] as String;
 }
@@ -342,7 +342,7 @@ Map<String, dynamic> _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(
     <String, dynamic>{
       'id': instance.id,
       'ownerId': instance.ownerId,
-      'cartItemCount': instance.cartItemCount?.toJson(),
+      'orderItemCount': instance.orderItemCount?.toJson(),
       'price': instance.price,
       'paymentIntentId': instance.paymentIntentId,
     };

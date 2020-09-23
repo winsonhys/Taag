@@ -2,7 +2,7 @@ type Query {
   shopItems(where: ShopItemWhereInput, orderBy: [ShopItemOrderByInput!], cursor: ShopItemWhereUniqueInput, take: Int, skip: Int, distinct: [ShopItemDistinctFieldEnum!]): [ShopItem!]!
   shopItem(where: ShopItemWhereUniqueInput!): ShopItem
   user(where: UserWhereUniqueInput!): User
-  findMultiCartsByUserId(findMultiCartByUserIdInput: FindMultiOrderByUserIdInput!): MultiOrder!
+  findMultiCartsByUserId(findMultiOrderByUserIdInput: FindMultiOrderByUserIdInput!): MultiOrder!
   findOrdersFromOwnerId(ownerId: String!): [Order!]!
   getPaymentInfo(getPaymentInfoInput: GetPaymentInfoInput!): [PaymentMethod!]!
   getAddresses: [AddressWithDefault!]!
@@ -21,7 +21,7 @@ input ShopItemWhereInput {
   imageUrl: StringFilter
   shop: ShopWhereInput
   shopId: StringFilter
-  cartItemCounts: CartItemCountListRelationFilter
+  orderItemCounts: OrderItemCountListRelationFilter
   refunds: RefundListRelationFilter
 }
 
@@ -119,16 +119,16 @@ input ShopItemListRelationFilter {
   none: ShopItemWhereInput
 }
 
-input CartItemCountListRelationFilter {
-  every: CartItemCountWhereInput
-  some: CartItemCountWhereInput
-  none: CartItemCountWhereInput
+input OrderItemCountListRelationFilter {
+  every: OrderItemCountWhereInput
+  some: OrderItemCountWhereInput
+  none: OrderItemCountWhereInput
 }
 
-input CartItemCountWhereInput {
-  AND: [CartItemCountWhereInput!]
-  OR: [CartItemCountWhereInput!]
-  NOT: [CartItemCountWhereInput!]
+input OrderItemCountWhereInput {
+  AND: [OrderItemCountWhereInput!]
+  OR: [OrderItemCountWhereInput!]
+  NOT: [OrderItemCountWhereInput!]
   id: StringFilter
   orderId: StringFilter
   order: OrderWhereInput
@@ -148,7 +148,7 @@ input OrderWhereInput {
   owner: UserWhereInput
   paymentIntentId: StringNullableFilter
   price: FloatFilter
-  cartItemCount: CartItemCountWhereInput
+  orderItemCount: OrderItemCountWhereInput
   MultiOrder: MultiOrderWhereInput
   multiOrderId: StringNullableFilter
   PaymentOrder: PaymentOrderWhereInput
@@ -378,7 +378,7 @@ type ShopItem {
   imageUrl: String!
   shopId: String!
   shop: Shop!
-  cartItemCounts(where: CartItemCountWhereInput, orderBy: [CartItemCountOrderByInput!], cursor: CartItemCountWhereUniqueInput, take: Int, skip: Int, distinct: [CartItemCountDistinctFieldEnum!]): [CartItemCount!]
+  orderItemCounts(where: OrderItemCountWhereInput, orderBy: [OrderItemCountOrderByInput!], cursor: OrderItemCountWhereUniqueInput, take: Int, skip: Int, distinct: [OrderItemCountDistinctFieldEnum!]): [OrderItemCount!]
   refunds(where: RefundWhereInput, orderBy: [RefundOrderByInput!], cursor: RefundWhereUniqueInput, take: Int, skip: Int, distinct: [RefundDistinctFieldEnum!]): [Refund!]
 }
 
@@ -389,7 +389,7 @@ type Shop {
   password: String!
 }
 
-input CartItemCountOrderByInput {
+input OrderItemCountOrderByInput {
   id: SortOrder
   orderId: SortOrder
   itemId: SortOrder
@@ -398,11 +398,11 @@ input CartItemCountOrderByInput {
   deletedAt: SortOrder
 }
 
-input CartItemCountWhereUniqueInput {
+input OrderItemCountWhereUniqueInput {
   id: String
 }
 
-enum CartItemCountDistinctFieldEnum {
+enum OrderItemCountDistinctFieldEnum {
   id
   orderId
   itemId
@@ -411,7 +411,7 @@ enum CartItemCountDistinctFieldEnum {
   deletedAt
 }
 
-type CartItemCount {
+type OrderItemCount {
   id: String!
   orderId: String!
   itemId: String!
@@ -497,7 +497,7 @@ type Order {
   multiOrderId: String
   deletedAt: DateTime
   owner: User!
-  cartItemCount: CartItemCount!
+  orderItemCount: OrderItemCount!
   MultiOrder: MultiOrder
   PaymentOrder: PaymentOrder
 }
@@ -638,6 +638,7 @@ type Mutation {
   deletePaymentInfo(deletePaymentInfoInput: DeletePaymentInfoInput!): PaymentMethod!
   payCurrentOrder(payCurrentOrderInput: PayCurrentOrderInput!): Order!
   addAddress(addAddressInput: AddAddressInput!): [Address!]!
+  updateDefaultAddress(updateDefaultAddressInput: UpdateDefaultAddressInput!): Address!
   removeAddress(addAddressInput: DeleteAddressInput!): Address!
   signUp(signUpInput: SignUpInput!): User!
 }
@@ -662,29 +663,29 @@ input ShopItemCreateWithoutShopInput {
   description: String!
   price: Float!
   imageUrl: String!
-  cartItemCounts: CartItemCountCreateManyWithoutShopItemInput
+  orderItemCounts: OrderItemCountCreateManyWithoutShopItemInput
   refunds: RefundCreateManyWithoutShopItemInput
 }
 
-input CartItemCountCreateManyWithoutShopItemInput {
-  create: [CartItemCountCreateWithoutShopItemInput!]
-  connect: [CartItemCountWhereUniqueInput!]
+input OrderItemCountCreateManyWithoutShopItemInput {
+  create: [OrderItemCountCreateWithoutShopItemInput!]
+  connect: [OrderItemCountWhereUniqueInput!]
 }
 
-input CartItemCountCreateWithoutShopItemInput {
+input OrderItemCountCreateWithoutShopItemInput {
   id: String
   price: Float!
   count: Int!
   deletedAt: DateTime
-  order: OrderCreateOneWithoutCartItemCountInput!
+  order: OrderCreateOneWithoutOrderItemCountInput!
 }
 
-input OrderCreateOneWithoutCartItemCountInput {
-  create: OrderCreateWithoutCartItemCountInput
+input OrderCreateOneWithoutOrderItemCountInput {
+  create: OrderCreateWithoutOrderItemCountInput
   connect: OrderWhereUniqueInput
 }
 
-input OrderCreateWithoutCartItemCountInput {
+input OrderCreateWithoutOrderItemCountInput {
   id: String
   paymentIntentId: String
   price: Float
@@ -790,7 +791,7 @@ input ShopItemCreateInput {
   price: Float!
   imageUrl: String!
   shop: ShopCreateOneWithoutShopItemsInput!
-  cartItemCounts: CartItemCountCreateManyWithoutShopItemInput
+  orderItemCounts: OrderItemCountCreateManyWithoutShopItemInput
   refunds: RefundCreateManyWithoutShopItemInput
 }
 
@@ -846,6 +847,10 @@ input AddAddressInput {
   line2: String!
   postal_code: String!
   default: Boolean!
+}
+
+input UpdateDefaultAddressInput {
+  id: String!
 }
 
 input DeleteAddressInput {

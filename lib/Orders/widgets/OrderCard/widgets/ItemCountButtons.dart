@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 class ItemCountButtons extends StatelessWidget {
   const ItemCountButtons({
     Key key,
-    @required this.cartItemCount,
+    @required this.orderItemCount,
   }) : super(key: key);
 
-  final CartItemCountMixin cartItemCount;
+  final OrderItemCountMixin orderItemCount;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FormField(
-        initialValue: cartItemCount.count,
+        initialValue: orderItemCount.count,
         builder: (field) {
           return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

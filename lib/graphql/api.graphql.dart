@@ -20,16 +20,16 @@ mixin CreditCardMixin {
 mixin OrderMixin {
   String id;
   String ownerId;
-  OrderMixin$CartItemCount cartItemCount;
+  OrderMixin$OrderItemCount orderItemCount;
   double price;
   String paymentIntentId;
 }
-mixin CartItemCountMixin {
+mixin OrderItemCountMixin {
   String id;
   String orderId;
   double price;
   int count;
-  CartItemCountMixin$ShopItem shopItem;
+  OrderItemCountMixin$ShopItem shopItem;
 }
 mixin ShopItemMixin {
   String id;
@@ -113,7 +113,7 @@ class AddToOrder$Mutation$AddToOrder with EquatableMixin, OrderMixin {
 
   @override
   List<Object> get props =>
-      [id, ownerId, cartItemCount, price, paymentIntentId];
+      [id, ownerId, orderItemCount, price, paymentIntentId];
   Map<String, dynamic> toJson() => _$AddToOrder$Mutation$AddToOrderToJson(this);
 }
 
@@ -132,27 +132,27 @@ class AddToOrder$Mutation with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class OrderMixin$CartItemCount with EquatableMixin, CartItemCountMixin {
-  OrderMixin$CartItemCount();
+class OrderMixin$OrderItemCount with EquatableMixin, OrderItemCountMixin {
+  OrderMixin$OrderItemCount();
 
-  factory OrderMixin$CartItemCount.fromJson(Map<String, dynamic> json) =>
-      _$OrderMixin$CartItemCountFromJson(json);
+  factory OrderMixin$OrderItemCount.fromJson(Map<String, dynamic> json) =>
+      _$OrderMixin$OrderItemCountFromJson(json);
 
   @override
   List<Object> get props => [id, orderId, price, count, shopItem];
-  Map<String, dynamic> toJson() => _$OrderMixin$CartItemCountToJson(this);
+  Map<String, dynamic> toJson() => _$OrderMixin$OrderItemCountToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class CartItemCountMixin$ShopItem with EquatableMixin, ShopItemMixin {
-  CartItemCountMixin$ShopItem();
+class OrderItemCountMixin$ShopItem with EquatableMixin, ShopItemMixin {
+  OrderItemCountMixin$ShopItem();
 
-  factory CartItemCountMixin$ShopItem.fromJson(Map<String, dynamic> json) =>
-      _$CartItemCountMixin$ShopItemFromJson(json);
+  factory OrderItemCountMixin$ShopItem.fromJson(Map<String, dynamic> json) =>
+      _$OrderItemCountMixin$ShopItemFromJson(json);
 
   @override
   List<Object> get props => [id, name, description, price, imageUrl, shop];
-  Map<String, dynamic> toJson() => _$CartItemCountMixin$ShopItemToJson(this);
+  Map<String, dynamic> toJson() => _$OrderItemCountMixin$ShopItemToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -320,7 +320,7 @@ class FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
 
   @override
   List<Object> get props =>
-      [id, ownerId, cartItemCount, price, paymentIntentId];
+      [id, ownerId, orderItemCount, price, paymentIntentId];
   Map<String, dynamic> toJson() =>
       _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(this);
 }
@@ -666,13 +666,13 @@ class AddToOrderMutation
               directives: [],
               selectionSet: null),
           FieldNode(
-              name: NameNode(value: 'cartItemCount'),
+              name: NameNode(value: 'orderItemCount'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                    name: NameNode(value: 'CartItemCount'), directives: [])
+                    name: NameNode(value: 'OrderItemCount'), directives: [])
               ])),
           FieldNode(
               name: NameNode(value: 'price'),
@@ -688,10 +688,10 @@ class AddToOrderMutation
               selectionSet: null)
         ])),
     FragmentDefinitionNode(
-        name: NameNode(value: 'CartItemCount'),
+        name: NameNode(value: 'OrderItemCount'),
         typeCondition: TypeConditionNode(
             on: NamedTypeNode(
-                name: NameNode(value: 'CartItemCount'), isNonNull: false)),
+                name: NameNode(value: 'OrderItemCount'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
@@ -1495,13 +1495,13 @@ class FindOrdersFromOwnerIdQuery extends GraphQLQuery<
               directives: [],
               selectionSet: null),
           FieldNode(
-              name: NameNode(value: 'cartItemCount'),
+              name: NameNode(value: 'orderItemCount'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FragmentSpreadNode(
-                    name: NameNode(value: 'CartItemCount'), directives: [])
+                    name: NameNode(value: 'OrderItemCount'), directives: [])
               ])),
           FieldNode(
               name: NameNode(value: 'price'),
@@ -1517,10 +1517,10 @@ class FindOrdersFromOwnerIdQuery extends GraphQLQuery<
               selectionSet: null)
         ])),
     FragmentDefinitionNode(
-        name: NameNode(value: 'CartItemCount'),
+        name: NameNode(value: 'OrderItemCount'),
         typeCondition: TypeConditionNode(
             on: NamedTypeNode(
-                name: NameNode(value: 'CartItemCount'), isNonNull: false)),
+                name: NameNode(value: 'OrderItemCount'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(

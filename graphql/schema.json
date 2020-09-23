@@ -174,7 +174,7 @@
             "description": null,
             "args": [
               {
-                "name": "findMultiCartByUserIdInput",
+                "name": "findMultiOrderByUserIdInput",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -480,11 +480,11 @@
             "defaultValue": null
           },
           {
-            "name": "cartItemCounts",
+            "name": "orderItemCounts",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountListRelationFilter",
+              "name": "OrderItemCountListRelationFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -1394,7 +1394,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountListRelationFilter",
+        "name": "OrderItemCountListRelationFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1403,7 +1403,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountWhereInput",
+              "name": "OrderItemCountWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -1413,7 +1413,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountWhereInput",
+              "name": "OrderItemCountWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -1423,7 +1423,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountWhereInput",
+              "name": "OrderItemCountWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -1435,7 +1435,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountWhereInput",
+        "name": "OrderItemCountWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1450,7 +1450,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereInput",
+                  "name": "OrderItemCountWhereInput",
                   "ofType": null
                 }
               }
@@ -1468,7 +1468,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereInput",
+                  "name": "OrderItemCountWhereInput",
                   "ofType": null
                 }
               }
@@ -1486,7 +1486,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereInput",
+                  "name": "OrderItemCountWhereInput",
                   "ofType": null
                 }
               }
@@ -1689,11 +1689,11 @@
             "defaultValue": null
           },
           {
-            "name": "cartItemCount",
+            "name": "orderItemCount",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountWhereInput",
+              "name": "OrderItemCountWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -3829,7 +3829,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cartItemCounts",
+            "name": "orderItemCounts",
             "description": null,
             "args": [
               {
@@ -3837,7 +3837,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereInput",
+                  "name": "OrderItemCountWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3853,7 +3853,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "CartItemCountOrderByInput",
+                      "name": "OrderItemCountOrderByInput",
                       "ofType": null
                     }
                   }
@@ -3865,7 +3865,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereUniqueInput",
+                  "name": "OrderItemCountWhereUniqueInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3901,7 +3901,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CartItemCountDistinctFieldEnum",
+                      "name": "OrderItemCountDistinctFieldEnum",
                       "ofType": null
                     }
                   }
@@ -3917,7 +3917,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "CartItemCount",
+                  "name": "OrderItemCount",
                   "ofType": null
                 }
               }
@@ -4105,7 +4105,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountOrderByInput",
+        "name": "OrderItemCountOrderByInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4176,7 +4176,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountWhereUniqueInput",
+        "name": "OrderItemCountWhereUniqueInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4197,7 +4197,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "CartItemCountDistinctFieldEnum",
+        "name": "OrderItemCountDistinctFieldEnum",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -4244,7 +4244,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CartItemCount",
+        "name": "OrderItemCount",
         "description": null,
         "fields": [
           {
@@ -5174,7 +5174,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cartItemCount",
+            "name": "orderItemCount",
             "description": null,
             "args": [],
             "type": {
@@ -5182,7 +5182,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CartItemCount",
+                "name": "OrderItemCount",
                 "ofType": null
               }
             },
@@ -6878,6 +6878,37 @@
             "deprecationReason": null
           },
           {
+            "name": "updateDefaultAddress",
+            "description": null,
+            "args": [
+              {
+                "name": "updateDefaultAddressInput",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateDefaultAddressInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Address",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "removeAddress",
             "description": null,
             "args": [
@@ -7148,11 +7179,11 @@
             "defaultValue": null
           },
           {
-            "name": "cartItemCounts",
+            "name": "orderItemCounts",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountCreateManyWithoutShopItemInput",
+              "name": "OrderItemCountCreateManyWithoutShopItemInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7174,7 +7205,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountCreateManyWithoutShopItemInput",
+        "name": "OrderItemCountCreateManyWithoutShopItemInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7189,7 +7220,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountCreateWithoutShopItemInput",
+                  "name": "OrderItemCountCreateWithoutShopItemInput",
                   "ofType": null
                 }
               }
@@ -7207,7 +7238,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CartItemCountWhereUniqueInput",
+                  "name": "OrderItemCountWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -7221,7 +7252,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CartItemCountCreateWithoutShopItemInput",
+        "name": "OrderItemCountCreateWithoutShopItemInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7281,7 +7312,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "OrderCreateOneWithoutCartItemCountInput",
+                "name": "OrderCreateOneWithoutOrderItemCountInput",
                 "ofType": null
               }
             },
@@ -7294,7 +7325,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "OrderCreateOneWithoutCartItemCountInput",
+        "name": "OrderCreateOneWithoutOrderItemCountInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7303,7 +7334,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "OrderCreateWithoutCartItemCountInput",
+              "name": "OrderCreateWithoutOrderItemCountInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7325,7 +7356,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "OrderCreateWithoutCartItemCountInput",
+        "name": "OrderCreateWithoutOrderItemCountInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8192,11 +8223,11 @@
             "defaultValue": null
           },
           {
-            "name": "cartItemCounts",
+            "name": "orderItemCounts",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CartItemCountCreateManyWithoutShopItemInput",
+              "name": "OrderItemCountCreateManyWithoutShopItemInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8655,6 +8686,31 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateDefaultAddressInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },

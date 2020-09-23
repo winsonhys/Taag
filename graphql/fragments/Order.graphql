@@ -1,8 +1,8 @@
 fragment Order on Order {
   id
   ownerId
-  cartItemCount {
-    ...CartItemCount
+  orderItemCount {
+    ...OrderItemCount
   }
   price
   paymentIntentId

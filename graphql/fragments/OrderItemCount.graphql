@@ -1,4 +1,4 @@
-fragment CartItemCount on CartItemCount {
+fragment OrderItemCount on OrderItemCount {
   id
   orderId
   price

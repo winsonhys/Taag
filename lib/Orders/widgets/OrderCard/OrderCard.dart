@@ -23,27 +23,27 @@ class OrderCard extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
-                    imageUrl: order.cartItemCount.shopItem.imageUrl,
+                    imageUrl: order.orderItemCount.shopItem.imageUrl,
                     placeholder: (context, url) =>
                         Lottie.asset('assets/lottie/corgi.json'))),
             Expanded(
               child: Column(
                 children: <Widget>[
                   Text(
-                    order.cartItemCount.shopItem.name,
+                    order.orderItemCount.shopItem.name,
                     style: Theme.of(context)
                         .textTheme
                         .headline5
                         .copyWith(color: Theme.of(context).primaryColor),
                   ),
                   Text(
-                    '\$${order.cartItemCount.shopItem.price.toString()}',
+                    '\$${order.orderItemCount.shopItem.price.toString()}',
                     style: Theme.of(context)
                         .textTheme
                         .headline6
                         .copyWith(color: Theme.of(context).accentColor),
                   ),
-                  ItemCountButtons(cartItemCount: order.cartItemCount)
+                  ItemCountButtons(orderItemCount: order.orderItemCount)
                 ],
               ),
             )
