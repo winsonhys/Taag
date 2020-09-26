@@ -15803,9 +15803,13 @@
               }
             ],
             "type": {
-              "kind": "OBJECT",
-              "name": "OrderWithPrice",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "OrderWithPrice",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

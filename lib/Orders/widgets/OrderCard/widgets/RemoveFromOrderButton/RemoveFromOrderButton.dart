@@ -14,12 +14,13 @@ class RemoveFromOrderButton extends StatelessWidget {
       options: MutationOptions(
         documentNode: RemoveFromOrderMutation().document,
         update: (cache, result) {
-          final orderItemCount = RemoveFromOrder$Mutation.fromJson(result.data)
-              .removeFromOrder
-              .orderItemCount;
+          final order =
+              RemoveFromOrder$Mutation.fromJson(result.data).removeFromOrder;
 
-          final orderJson = orderItemCount.toJson();
-          cache.write(typenameDataIdFromObject(orderJson), orderJson);
+          final orderItemCountJson = order.orderItemCount.toJson();
+
+          cache.write(
+              typenameDataIdFromObject(orderItemCountJson), orderItemCountJson);
         },
       ),
       builder: (runMutation, result) {

@@ -10,44 +10,46 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        constraints: BoxConstraints(maxHeight: 200),
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
-        ),
-        child: Row(
-          children: <Widget>[
-            ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: CachedNetworkImage(
-                    imageUrl: order.orderItemCount.shopItem.imageUrl,
-                    placeholder: (context, url) =>
-                        Lottie.asset('assets/lottie/corgi.json'))),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    order.orderItemCount.shopItem.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .copyWith(color: Theme.of(context).primaryColor),
+    return order.orderItemCount.count > 0
+        ? Container(
+            constraints: BoxConstraints(maxHeight: 200),
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.white,
+            ),
+            child: Row(
+              children: <Widget>[
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: CachedNetworkImage(
+                        imageUrl: order.orderItemCount.shopItem.imageUrl,
+                        placeholder: (context, url) =>
+                            Lottie.asset('assets/lottie/corgi.json'))),
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        order.orderItemCount.shopItem.name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                      Text(
+                        '\$${order.orderItemCount.shopItem.price.toString()}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Theme.of(context).accentColor),
+                      ),
+                      ItemCountButtons(orderItemCount: order.orderItemCount)
+                    ],
                   ),
-                  Text(
-                    '\$${order.orderItemCount.shopItem.price.toString()}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .copyWith(color: Theme.of(context).accentColor),
-                  ),
-                  ItemCountButtons(orderItemCount: order.orderItemCount)
-                ],
-              ),
-            )
-          ],
-        ));
+                )
+              ],
+            ))
+        : Container(width: 0, height: 0);
   }
 }

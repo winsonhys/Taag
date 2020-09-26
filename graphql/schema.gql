@@ -1109,7 +1109,7 @@ type Mutation {
   deleteManyUser(where: UserWhereInput): BatchPayload!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  removeFromOrder(removeFromOrderInput: RemoveFromOrderInput!): OrderWithPrice
+  removeFromOrder(removeFromOrderInput: RemoveFromOrderInput!): OrderWithPrice!
   addToOrder(addToOrderInput: AddToOrderInput!): OrderWithPrice!
   payUnfulfilledOrder(payUnfulfilledOrderInput: PayUnfulfilledOrderInput!): PaymentOrder!
   payMultiOrder(payMultiOrderInput: PayMultiOrderInput!): PaymentMultiOrder!

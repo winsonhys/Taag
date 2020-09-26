@@ -13,7 +13,6 @@ class ItemCountButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(orderItemCount.count);
     return Expanded(
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
