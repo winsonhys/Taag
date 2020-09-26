@@ -26,7 +26,7 @@ class SubmitCreditCardButton extends StatelessWidget {
       return;
     }
 
-    final stripeCustId = context.read<UserProvider>().user.stripe_cust_id;
+    final stripeCustId = context.read<UserProvider>().user.stripeCustId;
     final client = GraphQLProvider.of(context).value;
     final result = await client.mutate(MutationOptions(
         documentNode: AddPaymentInfoMutation().document,

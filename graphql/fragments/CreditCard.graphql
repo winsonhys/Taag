@@ -1,4 +1,5 @@
 fragment CreditCard on StripeCard {
+  __typename
   brand
   exp_month
   exp_year

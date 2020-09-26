@@ -13,7 +13,7 @@ class PaymentMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final queryArgs = GetPaymentInfoArguments(
-            stripeCustId: context.watch<UserProvider>().user.stripe_cust_id)
+            stripeCustId: context.watch<UserProvider>().user.stripeCustId)
         .toJson();
     return ScreenContainer(
         title: 'Payment Methods',

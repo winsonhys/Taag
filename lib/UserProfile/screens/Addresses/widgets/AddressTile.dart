@@ -25,7 +25,7 @@ class AddressTile extends StatelessWidget {
                 text: '${address.line1 + address.line2}\n'),
             TextSpan(
                 style: Theme.of(context).textTheme.subtitle1,
-                text: '${address.state + " " + address.postal_code}\n'),
+                text: '${address.state + " " + address.postalCode}\n'),
           ]),
           minFontSize: 6,
           maxLines: 5,

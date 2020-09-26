@@ -35,7 +35,7 @@ packages:
       name: artemis
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.10-beta.1"
+    version: "6.9.2-beta.1"
   async:
     dependency: transitive
     description:
@@ -733,7 +733,7 @@ packages:
       name: recase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "3.0.0"
   rxdart:
     dependency: transitive
     description:

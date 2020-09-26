@@ -1,4 +1,5 @@
 fragment AddressWithDefault on AddressWithDefault {
+  __typename
   id
   line1
   line2

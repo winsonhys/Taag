@@ -12,3 +12,6 @@ targets:
                   schema: graphql/schema.gql
                   queries_glob: graphql/{mutations,queries,subscriptions}/**.graphql
                   naming_scheme: pathedWithFields
+            scalar_mapping:
+                - graphql_type: DateTime
+                  dart_type: DateTime

@@ -1,4 +1,5 @@
 fragment PaymentMethod on PaymentMethod {
+  __typename
   id
   card {
     ...CreditCard

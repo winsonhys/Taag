@@ -10,6 +10,7 @@ AddPaymentInfo$Mutation$AddPaymentInfo
     _$AddPaymentInfo$Mutation$AddPaymentInfoFromJson(
         Map<String, dynamic> json) {
   return AddPaymentInfo$Mutation$AddPaymentInfo()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..card = json['card'] == null
         ? null
@@ -20,6 +21,7 @@ AddPaymentInfo$Mutation$AddPaymentInfo
 Map<String, dynamic> _$AddPaymentInfo$Mutation$AddPaymentInfoToJson(
         AddPaymentInfo$Mutation$AddPaymentInfo instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'card': instance.card?.toJson(),
     };
@@ -42,24 +44,27 @@ Map<String, dynamic> _$AddPaymentInfo$MutationToJson(
 PaymentMethodMixin$Card _$PaymentMethodMixin$CardFromJson(
     Map<String, dynamic> json) {
   return PaymentMethodMixin$Card()
+    ..$$typename = json['__typename'] as String
     ..brand = json['brand'] as String
-    ..exp_month = (json['exp_month'] as num)?.toDouble()
-    ..exp_year = (json['exp_year'] as num)?.toDouble()
+    ..expMonth = (json['exp_month'] as num)?.toDouble()
+    ..expYear = (json['exp_year'] as num)?.toDouble()
     ..last4 = json['last4'] as String;
 }
 
 Map<String, dynamic> _$PaymentMethodMixin$CardToJson(
         PaymentMethodMixin$Card instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'brand': instance.brand,
-      'exp_month': instance.exp_month,
-      'exp_year': instance.exp_year,
+      'exp_month': instance.expMonth,
+      'exp_year': instance.expYear,
       'last4': instance.last4,
     };
 
 AddToOrder$Mutation$AddToOrder _$AddToOrder$Mutation$AddToOrderFromJson(
     Map<String, dynamic> json) {
   return AddToOrder$Mutation$AddToOrder()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..ownerId = json['ownerId'] as String
     ..orderItemCount = json['orderItemCount'] == null
@@ -73,6 +78,7 @@ AddToOrder$Mutation$AddToOrder _$AddToOrder$Mutation$AddToOrderFromJson(
 Map<String, dynamic> _$AddToOrder$Mutation$AddToOrderToJson(
         AddToOrder$Mutation$AddToOrder instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'ownerId': instance.ownerId,
       'orderItemCount': instance.orderItemCount?.toJson(),
@@ -97,6 +103,7 @@ Map<String, dynamic> _$AddToOrder$MutationToJson(
 OrderMixin$OrderItemCount _$OrderMixin$OrderItemCountFromJson(
     Map<String, dynamic> json) {
   return OrderMixin$OrderItemCount()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..orderId = json['orderId'] as String
     ..count = json['count'] as int
@@ -109,6 +116,7 @@ OrderMixin$OrderItemCount _$OrderMixin$OrderItemCountFromJson(
 Map<String, dynamic> _$OrderMixin$OrderItemCountToJson(
         OrderMixin$OrderItemCount instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'orderId': instance.orderId,
       'count': instance.count,
@@ -118,6 +126,7 @@ Map<String, dynamic> _$OrderMixin$OrderItemCountToJson(
 OrderItemCountMixin$ShopItem _$OrderItemCountMixin$ShopItemFromJson(
     Map<String, dynamic> json) {
   return OrderItemCountMixin$ShopItem()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..name = json['name'] as String
     ..description = json['description'] as String
@@ -131,6 +140,7 @@ OrderItemCountMixin$ShopItem _$OrderItemCountMixin$ShopItemFromJson(
 Map<String, dynamic> _$OrderItemCountMixin$ShopItemToJson(
         OrderItemCountMixin$ShopItem instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
@@ -151,18 +161,58 @@ Map<String, dynamic> _$ShopItemMixin$ShopToJson(ShopItemMixin$Shop instance) =>
       'username': instance.username,
     };
 
+Api$Mutation$RemoveFromOrder _$Api$Mutation$RemoveFromOrderFromJson(
+    Map<String, dynamic> json) {
+  return Api$Mutation$RemoveFromOrder()
+    ..$$typename = json['__typename'] as String
+    ..id = json['id'] as String
+    ..ownerId = json['ownerId'] as String
+    ..orderItemCount = json['orderItemCount'] == null
+        ? null
+        : OrderMixin$OrderItemCount.fromJson(
+            json['orderItemCount'] as Map<String, dynamic>)
+    ..price = (json['price'] as num)?.toDouble()
+    ..paymentIntentId = json['paymentIntentId'] as String;
+}
+
+Map<String, dynamic> _$Api$Mutation$RemoveFromOrderToJson(
+        Api$Mutation$RemoveFromOrder instance) =>
+    <String, dynamic>{
+      '__typename': instance.$$typename,
+      'id': instance.id,
+      'ownerId': instance.ownerId,
+      'orderItemCount': instance.orderItemCount?.toJson(),
+      'price': instance.price,
+      'paymentIntentId': instance.paymentIntentId,
+    };
+
+Api$Mutation _$Api$MutationFromJson(Map<String, dynamic> json) {
+  return Api$Mutation()
+    ..removeFromOrder = json['removeFromOrder'] == null
+        ? null
+        : Api$Mutation$RemoveFromOrder.fromJson(
+            json['removeFromOrder'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$Api$MutationToJson(Api$Mutation instance) =>
+    <String, dynamic>{
+      'removeFromOrder': instance.removeFromOrder?.toJson(),
+    };
+
 SignUpUser$Mutation$SignUp _$SignUpUser$Mutation$SignUpFromJson(
     Map<String, dynamic> json) {
   return SignUpUser$Mutation$SignUp()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
-    ..stripe_cust_id = json['stripe_cust_id'] as String;
+    ..stripeCustId = json['stripe_cust_id'] as String;
 }
 
 Map<String, dynamic> _$SignUpUser$Mutation$SignUpToJson(
         SignUpUser$Mutation$SignUp instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
-      'stripe_cust_id': instance.stripe_cust_id,
+      'stripe_cust_id': instance.stripeCustId,
     };
 
 SignUpUser$Mutation _$SignUpUser$MutationFromJson(Map<String, dynamic> json) {
@@ -182,10 +232,11 @@ Map<String, dynamic> _$SignUpUser$MutationToJson(
 AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
     Map<String, dynamic> json) {
   return AddAddress$Mutation$AddAddress()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..line1 = json['line1'] as String
     ..line2 = json['line2'] as String
-    ..postal_code = json['postal_code'] as String
+    ..postalCode = json['postal_code'] as String
     ..state = json['state'] as String
     ..city = json['city'] as String
     ..country = json['country'] as String;
@@ -194,10 +245,11 @@ AddAddress$Mutation$AddAddress _$AddAddress$Mutation$AddAddressFromJson(
 Map<String, dynamic> _$AddAddress$Mutation$AddAddressToJson(
         AddAddress$Mutation$AddAddress instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'line1': instance.line1,
       'line2': instance.line2,
-      'postal_code': instance.postal_code,
+      'postal_code': instance.postalCode,
       'state': instance.state,
       'city': instance.city,
       'country': instance.country,
@@ -247,9 +299,36 @@ Map<String, dynamic> _$DeletePaymentInfo$MutationToJson(
       'deletePaymentInfo': instance.deletePaymentInfo?.toJson(),
     };
 
+RemoveAddress$Mutation$RemoveAddress
+    _$RemoveAddress$Mutation$RemoveAddressFromJson(Map<String, dynamic> json) {
+  return RemoveAddress$Mutation$RemoveAddress()..id = json['id'] as String;
+}
+
+Map<String, dynamic> _$RemoveAddress$Mutation$RemoveAddressToJson(
+        RemoveAddress$Mutation$RemoveAddress instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+RemoveAddress$Mutation _$RemoveAddress$MutationFromJson(
+    Map<String, dynamic> json) {
+  return RemoveAddress$Mutation()
+    ..removeAddress = json['removeAddress'] == null
+        ? null
+        : RemoveAddress$Mutation$RemoveAddress.fromJson(
+            json['removeAddress'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RemoveAddress$MutationToJson(
+        RemoveAddress$Mutation instance) =>
+    <String, dynamic>{
+      'removeAddress': instance.removeAddress?.toJson(),
+    };
+
 AllShopItems$Query$ShopItems _$AllShopItems$Query$ShopItemsFromJson(
     Map<String, dynamic> json) {
   return AllShopItems$Query$ShopItems()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..name = json['name'] as String
     ..description = json['description'] as String
@@ -263,6 +342,7 @@ AllShopItems$Query$ShopItems _$AllShopItems$Query$ShopItemsFromJson(
 Map<String, dynamic> _$AllShopItems$Query$ShopItemsToJson(
         AllShopItems$Query$ShopItems instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
@@ -288,6 +368,7 @@ Map<String, dynamic> _$AllShopItems$QueryToJson(AllShopItems$Query instance) =>
 GetPaymentInfo$Query$GetPaymentInfo
     _$GetPaymentInfo$Query$GetPaymentInfoFromJson(Map<String, dynamic> json) {
   return GetPaymentInfo$Query$GetPaymentInfo()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..card = json['card'] == null
         ? null
@@ -298,6 +379,7 @@ GetPaymentInfo$Query$GetPaymentInfo
 Map<String, dynamic> _$GetPaymentInfo$Query$GetPaymentInfoToJson(
         GetPaymentInfo$Query$GetPaymentInfo instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'card': instance.card?.toJson(),
     };
@@ -323,6 +405,7 @@ FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
     _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdFromJson(
         Map<String, dynamic> json) {
   return FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..ownerId = json['ownerId'] as String
     ..orderItemCount = json['orderItemCount'] == null
@@ -336,6 +419,7 @@ FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
 Map<String, dynamic> _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(
         FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'ownerId': instance.ownerId,
       'orderItemCount': instance.orderItemCount?.toJson(),
@@ -364,10 +448,11 @@ Map<String, dynamic> _$FindOrdersFromOwnerId$QueryToJson(
 GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
     Map<String, dynamic> json) {
   return GetAddresses$Query$GetAddresses()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..line1 = json['line1'] as String
     ..line2 = json['line2'] as String
-    ..postal_code = json['postal_code'] as String
+    ..postalCode = json['postal_code'] as String
     ..state = json['state'] as String
     ..city = json['city'] as String
     ..country = json['country'] as String
@@ -377,10 +462,11 @@ GetAddresses$Query$GetAddresses _$GetAddresses$Query$GetAddressesFromJson(
 Map<String, dynamic> _$GetAddresses$Query$GetAddressesToJson(
         GetAddresses$Query$GetAddresses instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'line1': instance.line1,
       'line2': instance.line2,
-      'postal_code': instance.postal_code,
+      'postal_code': instance.postalCode,
       'state': instance.state,
       'city': instance.city,
       'country': instance.country,
@@ -405,15 +491,17 @@ Map<String, dynamic> _$GetAddresses$QueryToJson(GetAddresses$Query instance) =>
 FindUserById$Query$FindUserById _$FindUserById$Query$FindUserByIdFromJson(
     Map<String, dynamic> json) {
   return FindUserById$Query$FindUserById()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
-    ..stripe_cust_id = json['stripe_cust_id'] as String;
+    ..stripeCustId = json['stripe_cust_id'] as String;
 }
 
 Map<String, dynamic> _$FindUserById$Query$FindUserByIdToJson(
         FindUserById$Query$FindUserById instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
-      'stripe_cust_id': instance.stripe_cust_id,
+      'stripe_cust_id': instance.stripeCustId,
     };
 
 FindUserById$Query _$FindUserById$QueryFromJson(Map<String, dynamic> json) {
@@ -432,6 +520,7 @@ Map<String, dynamic> _$FindUserById$QueryToJson(FindUserById$Query instance) =>
 FindOneShopItem$Query$ShopItem _$FindOneShopItem$Query$ShopItemFromJson(
     Map<String, dynamic> json) {
   return FindOneShopItem$Query$ShopItem()
+    ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..name = json['name'] as String
     ..description = json['description'] as String
@@ -445,6 +534,7 @@ FindOneShopItem$Query$ShopItem _$FindOneShopItem$Query$ShopItemFromJson(
 Map<String, dynamic> _$FindOneShopItem$Query$ShopItemToJson(
         FindOneShopItem$Query$ShopItem instance) =>
     <String, dynamic>{
+      '__typename': instance.$$typename,
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
@@ -466,68 +556,6 @@ Map<String, dynamic> _$FindOneShopItem$QueryToJson(
         FindOneShopItem$Query instance) =>
     <String, dynamic>{
       'shopItem': instance.shopItem?.toJson(),
-    };
-
-RemoveAddress$Mutation$RemoveAddress
-    _$RemoveAddress$Mutation$RemoveAddressFromJson(Map<String, dynamic> json) {
-  return RemoveAddress$Mutation$RemoveAddress()..id = json['id'] as String;
-}
-
-Map<String, dynamic> _$RemoveAddress$Mutation$RemoveAddressToJson(
-        RemoveAddress$Mutation$RemoveAddress instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-    };
-
-RemoveAddress$Mutation _$RemoveAddress$MutationFromJson(
-    Map<String, dynamic> json) {
-  return RemoveAddress$Mutation()
-    ..removeAddress = json['removeAddress'] == null
-        ? null
-        : RemoveAddress$Mutation$RemoveAddress.fromJson(
-            json['removeAddress'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$RemoveAddress$MutationToJson(
-        RemoveAddress$Mutation instance) =>
-    <String, dynamic>{
-      'removeAddress': instance.removeAddress?.toJson(),
-    };
-
-Api$Mutation$RemoveFromOrder _$Api$Mutation$RemoveFromOrderFromJson(
-    Map<String, dynamic> json) {
-  return Api$Mutation$RemoveFromOrder()
-    ..id = json['id'] as String
-    ..ownerId = json['ownerId'] as String
-    ..orderItemCount = json['orderItemCount'] == null
-        ? null
-        : OrderMixin$OrderItemCount.fromJson(
-            json['orderItemCount'] as Map<String, dynamic>)
-    ..price = (json['price'] as num)?.toDouble()
-    ..paymentIntentId = json['paymentIntentId'] as String;
-}
-
-Map<String, dynamic> _$Api$Mutation$RemoveFromOrderToJson(
-        Api$Mutation$RemoveFromOrder instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'ownerId': instance.ownerId,
-      'orderItemCount': instance.orderItemCount?.toJson(),
-      'price': instance.price,
-      'paymentIntentId': instance.paymentIntentId,
-    };
-
-Api$Mutation _$Api$MutationFromJson(Map<String, dynamic> json) {
-  return Api$Mutation()
-    ..removeFromOrder = json['removeFromOrder'] == null
-        ? null
-        : Api$Mutation$RemoveFromOrder.fromJson(
-            json['removeFromOrder'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$Api$MutationToJson(Api$Mutation instance) =>
-    <String, dynamic>{
-      'removeFromOrder': instance.removeFromOrder?.toJson(),
     };
 
 AddPaymentInfoArguments _$AddPaymentInfoArgumentsFromJson(
@@ -554,6 +582,19 @@ AddToOrderArguments _$AddToOrderArgumentsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AddToOrderArgumentsToJson(
         AddToOrderArguments instance) =>
+    <String, dynamic>{
+      'itemId': instance.itemId,
+      'orderId': instance.orderId,
+    };
+
+ApiArguments _$ApiArgumentsFromJson(Map<String, dynamic> json) {
+  return ApiArguments(
+    itemId: json['itemId'] as String,
+    orderId: json['orderId'] as String,
+  );
+}
+
+Map<String, dynamic> _$ApiArgumentsToJson(ApiArguments instance) =>
     <String, dynamic>{
       'itemId': instance.itemId,
       'orderId': instance.orderId,
@@ -618,6 +659,19 @@ Map<String, dynamic> _$DeletePaymentInfoArgumentsToJson(
       'paymentMethodId': instance.paymentMethodId,
     };
 
+RemoveAddressArguments _$RemoveAddressArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return RemoveAddressArguments(
+    id: json['id'] as String,
+  );
+}
+
+Map<String, dynamic> _$RemoveAddressArgumentsToJson(
+        RemoveAddressArguments instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
 GetPaymentInfoArguments _$GetPaymentInfoArgumentsFromJson(
     Map<String, dynamic> json) {
   return GetPaymentInfoArguments(
@@ -655,30 +709,4 @@ Map<String, dynamic> _$FindOneShopItemArgumentsToJson(
         FindOneShopItemArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
-    };
-
-RemoveAddressArguments _$RemoveAddressArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return RemoveAddressArguments(
-    id: json['id'] as String,
-  );
-}
-
-Map<String, dynamic> _$RemoveAddressArgumentsToJson(
-        RemoveAddressArguments instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-    };
-
-ApiArguments _$ApiArgumentsFromJson(Map<String, dynamic> json) {
-  return ApiArguments(
-    itemId: json['itemId'] as String,
-    orderId: json['orderId'] as String,
-  );
-}
-
-Map<String, dynamic> _$ApiArgumentsToJson(ApiArguments instance) =>
-    <String, dynamic>{
-      'itemId': instance.itemId,
-      'orderId': instance.orderId,
     };

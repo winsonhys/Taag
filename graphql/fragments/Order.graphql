@@ -1,4 +1,5 @@
 fragment Order on OrderWithPrice {
+  __typename
   id
   ownerId
   orderItemCount {

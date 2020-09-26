@@ -1,4 +1,5 @@
 fragment ShopItem on ShopItem {
+    __typename
     id
     name
     description

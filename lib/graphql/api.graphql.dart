@@ -8,16 +8,27 @@ import 'package:gql/ast.dart';
 part 'api.graphql.g.dart';
 
 mixin PaymentMethodMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   PaymentMethodMixin$Card card;
 }
 mixin CreditCardMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String brand;
-  double exp_month;
-  double exp_year;
+  @JsonKey(name: 'exp_month')
+  double expMonth;
+  @JsonKey(name: 'exp_year')
+  double expYear;
   String last4;
 }
 mixin OrderMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   String ownerId;
   OrderMixin$OrderItemCount orderItemCount;
@@ -25,12 +36,18 @@ mixin OrderMixin {
   String paymentIntentId;
 }
 mixin OrderItemCountMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   String orderId;
   int count;
   OrderItemCountMixin$ShopItem shopItem;
 }
 mixin ShopItemMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   String name;
   String description;
@@ -39,23 +56,35 @@ mixin ShopItemMixin {
   ShopItemMixin$Shop shop;
 }
 mixin UserDataMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
-  String stripe_cust_id;
+  @JsonKey(name: 'stripe_cust_id')
+  String stripeCustId;
 }
 mixin AddressMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   String line1;
   String line2;
-  String postal_code;
+  @JsonKey(name: 'postal_code')
+  String postalCode;
   String state;
   String city;
   String country;
 }
 mixin AddressWithDefaultMixin {
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
   String id;
   String line1;
   String line2;
-  String postal_code;
+  @JsonKey(name: 'postal_code')
+  String postalCode;
   String state;
   String city;
   String country;
@@ -72,7 +101,7 @@ class AddPaymentInfo$Mutation$AddPaymentInfo
       _$AddPaymentInfo$Mutation$AddPaymentInfoFromJson(json);
 
   @override
-  List<Object> get props => [id, card];
+  List<Object> get props => [$$typename, id, card];
   Map<String, dynamic> toJson() =>
       _$AddPaymentInfo$Mutation$AddPaymentInfoToJson(this);
 }
@@ -99,7 +128,7 @@ class PaymentMethodMixin$Card with EquatableMixin, CreditCardMixin {
       _$PaymentMethodMixin$CardFromJson(json);
 
   @override
-  List<Object> get props => [brand, exp_month, exp_year, last4];
+  List<Object> get props => [$$typename, brand, expMonth, expYear, last4];
   Map<String, dynamic> toJson() => _$PaymentMethodMixin$CardToJson(this);
 }
 
@@ -112,7 +141,7 @@ class AddToOrder$Mutation$AddToOrder with EquatableMixin, OrderMixin {
 
   @override
   List<Object> get props =>
-      [id, ownerId, orderItemCount, price, paymentIntentId];
+      [$$typename, id, ownerId, orderItemCount, price, paymentIntentId];
   Map<String, dynamic> toJson() => _$AddToOrder$Mutation$AddToOrderToJson(this);
 }
 
@@ -138,7 +167,7 @@ class OrderMixin$OrderItemCount with EquatableMixin, OrderItemCountMixin {
       _$OrderMixin$OrderItemCountFromJson(json);
 
   @override
-  List<Object> get props => [id, orderId, count, shopItem];
+  List<Object> get props => [$$typename, id, orderId, count, shopItem];
   Map<String, dynamic> toJson() => _$OrderMixin$OrderItemCountToJson(this);
 }
 
@@ -150,7 +179,8 @@ class OrderItemCountMixin$ShopItem with EquatableMixin, ShopItemMixin {
       _$OrderItemCountMixin$ShopItemFromJson(json);
 
   @override
-  List<Object> get props => [id, name, description, price, imageUrl, shop];
+  List<Object> get props =>
+      [$$typename, id, name, description, price, imageUrl, shop];
   Map<String, dynamic> toJson() => _$OrderItemCountMixin$ShopItemToJson(this);
 }
 
@@ -171,6 +201,33 @@ class ShopItemMixin$Shop with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Api$Mutation$RemoveFromOrder with EquatableMixin, OrderMixin {
+  Api$Mutation$RemoveFromOrder();
+
+  factory Api$Mutation$RemoveFromOrder.fromJson(Map<String, dynamic> json) =>
+      _$Api$Mutation$RemoveFromOrderFromJson(json);
+
+  @override
+  List<Object> get props =>
+      [$$typename, id, ownerId, orderItemCount, price, paymentIntentId];
+  Map<String, dynamic> toJson() => _$Api$Mutation$RemoveFromOrderToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Api$Mutation with EquatableMixin {
+  Api$Mutation();
+
+  factory Api$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$Api$MutationFromJson(json);
+
+  Api$Mutation$RemoveFromOrder removeFromOrder;
+
+  @override
+  List<Object> get props => [removeFromOrder];
+  Map<String, dynamic> toJson() => _$Api$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class SignUpUser$Mutation$SignUp with EquatableMixin, UserDataMixin {
   SignUpUser$Mutation$SignUp();
 
@@ -178,7 +235,7 @@ class SignUpUser$Mutation$SignUp with EquatableMixin, UserDataMixin {
       _$SignUpUser$Mutation$SignUpFromJson(json);
 
   @override
-  List<Object> get props => [id, stripe_cust_id];
+  List<Object> get props => [$$typename, id, stripeCustId];
   Map<String, dynamic> toJson() => _$SignUpUser$Mutation$SignUpToJson(this);
 }
 
@@ -205,7 +262,7 @@ class AddAddress$Mutation$AddAddress with EquatableMixin, AddressMixin {
 
   @override
   List<Object> get props =>
-      [id, line1, line2, postal_code, state, city, country];
+      [$$typename, id, line1, line2, postalCode, state, city, country];
   Map<String, dynamic> toJson() => _$AddAddress$Mutation$AddAddressToJson(this);
 }
 
@@ -254,173 +311,6 @@ class DeletePaymentInfo$Mutation with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllShopItems$Query$ShopItems with EquatableMixin, ShopItemMixin {
-  AllShopItems$Query$ShopItems();
-
-  factory AllShopItems$Query$ShopItems.fromJson(Map<String, dynamic> json) =>
-      _$AllShopItems$Query$ShopItemsFromJson(json);
-
-  @override
-  List<Object> get props => [id, name, description, price, imageUrl, shop];
-  Map<String, dynamic> toJson() => _$AllShopItems$Query$ShopItemsToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AllShopItems$Query with EquatableMixin {
-  AllShopItems$Query();
-
-  factory AllShopItems$Query.fromJson(Map<String, dynamic> json) =>
-      _$AllShopItems$QueryFromJson(json);
-
-  List<AllShopItems$Query$ShopItems> shopItems;
-
-  @override
-  List<Object> get props => [shopItems];
-  Map<String, dynamic> toJson() => _$AllShopItems$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query$GetPaymentInfo
-    with EquatableMixin, PaymentMethodMixin {
-  GetPaymentInfo$Query$GetPaymentInfo();
-
-  factory GetPaymentInfo$Query$GetPaymentInfo.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPaymentInfo$Query$GetPaymentInfoFromJson(json);
-
-  @override
-  List<Object> get props => [id, card];
-  Map<String, dynamic> toJson() =>
-      _$GetPaymentInfo$Query$GetPaymentInfoToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetPaymentInfo$Query with EquatableMixin {
-  GetPaymentInfo$Query();
-
-  factory GetPaymentInfo$Query.fromJson(Map<String, dynamic> json) =>
-      _$GetPaymentInfo$QueryFromJson(json);
-
-  List<GetPaymentInfo$Query$GetPaymentInfo> getPaymentInfo;
-
-  @override
-  List<Object> get props => [getPaymentInfo];
-  Map<String, dynamic> toJson() => _$GetPaymentInfo$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
-    with EquatableMixin, OrderMixin {
-  FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId();
-
-  factory FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId.fromJson(
-          Map<String, dynamic> json) =>
-      _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdFromJson(json);
-
-  @override
-  List<Object> get props =>
-      [id, ownerId, orderItemCount, price, paymentIntentId];
-  Map<String, dynamic> toJson() =>
-      _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindOrdersFromOwnerId$Query with EquatableMixin {
-  FindOrdersFromOwnerId$Query();
-
-  factory FindOrdersFromOwnerId$Query.fromJson(Map<String, dynamic> json) =>
-      _$FindOrdersFromOwnerId$QueryFromJson(json);
-
-  List<FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId> findOrdersFromOwnerId;
-
-  @override
-  List<Object> get props => [findOrdersFromOwnerId];
-  Map<String, dynamic> toJson() => _$FindOrdersFromOwnerId$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetAddresses$Query$GetAddresses
-    with EquatableMixin, AddressWithDefaultMixin {
-  GetAddresses$Query$GetAddresses();
-
-  factory GetAddresses$Query$GetAddresses.fromJson(Map<String, dynamic> json) =>
-      _$GetAddresses$Query$GetAddressesFromJson(json);
-
-  @override
-  List<Object> get props =>
-      [id, line1, line2, postal_code, state, city, country, isDefault];
-  Map<String, dynamic> toJson() =>
-      _$GetAddresses$Query$GetAddressesToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetAddresses$Query with EquatableMixin {
-  GetAddresses$Query();
-
-  factory GetAddresses$Query.fromJson(Map<String, dynamic> json) =>
-      _$GetAddresses$QueryFromJson(json);
-
-  List<GetAddresses$Query$GetAddresses> getAddresses;
-
-  @override
-  List<Object> get props => [getAddresses];
-  Map<String, dynamic> toJson() => _$GetAddresses$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindUserById$Query$FindUserById with EquatableMixin, UserDataMixin {
-  FindUserById$Query$FindUserById();
-
-  factory FindUserById$Query$FindUserById.fromJson(Map<String, dynamic> json) =>
-      _$FindUserById$Query$FindUserByIdFromJson(json);
-
-  @override
-  List<Object> get props => [id, stripe_cust_id];
-  Map<String, dynamic> toJson() =>
-      _$FindUserById$Query$FindUserByIdToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindUserById$Query with EquatableMixin {
-  FindUserById$Query();
-
-  factory FindUserById$Query.fromJson(Map<String, dynamic> json) =>
-      _$FindUserById$QueryFromJson(json);
-
-  FindUserById$Query$FindUserById findUserById;
-
-  @override
-  List<Object> get props => [findUserById];
-  Map<String, dynamic> toJson() => _$FindUserById$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindOneShopItem$Query$ShopItem with EquatableMixin, ShopItemMixin {
-  FindOneShopItem$Query$ShopItem();
-
-  factory FindOneShopItem$Query$ShopItem.fromJson(Map<String, dynamic> json) =>
-      _$FindOneShopItem$Query$ShopItemFromJson(json);
-
-  @override
-  List<Object> get props => [id, name, description, price, imageUrl, shop];
-  Map<String, dynamic> toJson() => _$FindOneShopItem$Query$ShopItemToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class FindOneShopItem$Query with EquatableMixin {
-  FindOneShopItem$Query();
-
-  factory FindOneShopItem$Query.fromJson(Map<String, dynamic> json) =>
-      _$FindOneShopItem$QueryFromJson(json);
-
-  FindOneShopItem$Query$ShopItem shopItem;
-
-  @override
-  List<Object> get props => [shopItem];
-  Map<String, dynamic> toJson() => _$FindOneShopItem$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class RemoveAddress$Mutation$RemoveAddress with EquatableMixin {
   RemoveAddress$Mutation$RemoveAddress();
 
@@ -451,36 +341,188 @@ class RemoveAddress$Mutation with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Api$Mutation$RemoveFromOrder with EquatableMixin, OrderMixin {
-  Api$Mutation$RemoveFromOrder();
+class AllShopItems$Query$ShopItems with EquatableMixin, ShopItemMixin {
+  AllShopItems$Query$ShopItems();
 
-  factory Api$Mutation$RemoveFromOrder.fromJson(Map<String, dynamic> json) =>
-      _$Api$Mutation$RemoveFromOrderFromJson(json);
+  factory AllShopItems$Query$ShopItems.fromJson(Map<String, dynamic> json) =>
+      _$AllShopItems$Query$ShopItemsFromJson(json);
 
   @override
   List<Object> get props =>
-      [id, ownerId, orderItemCount, price, paymentIntentId];
-  Map<String, dynamic> toJson() => _$Api$Mutation$RemoveFromOrderToJson(this);
+      [$$typename, id, name, description, price, imageUrl, shop];
+  Map<String, dynamic> toJson() => _$AllShopItems$Query$ShopItemsToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Api$Mutation with EquatableMixin {
-  Api$Mutation();
+class AllShopItems$Query with EquatableMixin {
+  AllShopItems$Query();
 
-  factory Api$Mutation.fromJson(Map<String, dynamic> json) =>
-      _$Api$MutationFromJson(json);
+  factory AllShopItems$Query.fromJson(Map<String, dynamic> json) =>
+      _$AllShopItems$QueryFromJson(json);
 
-  Api$Mutation$RemoveFromOrder removeFromOrder;
+  List<AllShopItems$Query$ShopItems> shopItems;
 
   @override
-  List<Object> get props => [removeFromOrder];
-  Map<String, dynamic> toJson() => _$Api$MutationToJson(this);
+  List<Object> get props => [shopItems];
+  Map<String, dynamic> toJson() => _$AllShopItems$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query$GetPaymentInfo
+    with EquatableMixin, PaymentMethodMixin {
+  GetPaymentInfo$Query$GetPaymentInfo();
+
+  factory GetPaymentInfo$Query$GetPaymentInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetPaymentInfo$Query$GetPaymentInfoFromJson(json);
+
+  @override
+  List<Object> get props => [$$typename, id, card];
+  Map<String, dynamic> toJson() =>
+      _$GetPaymentInfo$Query$GetPaymentInfoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPaymentInfo$Query with EquatableMixin {
+  GetPaymentInfo$Query();
+
+  factory GetPaymentInfo$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetPaymentInfo$QueryFromJson(json);
+
+  List<GetPaymentInfo$Query$GetPaymentInfo> getPaymentInfo;
+
+  @override
+  List<Object> get props => [getPaymentInfo];
+  Map<String, dynamic> toJson() => _$GetPaymentInfo$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId
+    with EquatableMixin, OrderMixin {
+  FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId();
+
+  factory FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId.fromJson(
+          Map<String, dynamic> json) =>
+      _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdFromJson(json);
+
+  @override
+  List<Object> get props =>
+      [$$typename, id, ownerId, orderItemCount, price, paymentIntentId];
+  Map<String, dynamic> toJson() =>
+      _$FindOrdersFromOwnerId$Query$FindOrdersFromOwnerIdToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindOrdersFromOwnerId$Query with EquatableMixin {
+  FindOrdersFromOwnerId$Query();
+
+  factory FindOrdersFromOwnerId$Query.fromJson(Map<String, dynamic> json) =>
+      _$FindOrdersFromOwnerId$QueryFromJson(json);
+
+  List<FindOrdersFromOwnerId$Query$FindOrdersFromOwnerId> findOrdersFromOwnerId;
+
+  @override
+  List<Object> get props => [findOrdersFromOwnerId];
+  Map<String, dynamic> toJson() => _$FindOrdersFromOwnerId$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetAddresses$Query$GetAddresses
+    with EquatableMixin, AddressWithDefaultMixin {
+  GetAddresses$Query$GetAddresses();
+
+  factory GetAddresses$Query$GetAddresses.fromJson(Map<String, dynamic> json) =>
+      _$GetAddresses$Query$GetAddressesFromJson(json);
+
+  @override
+  List<Object> get props => [
+        $$typename,
+        id,
+        line1,
+        line2,
+        postalCode,
+        state,
+        city,
+        country,
+        isDefault
+      ];
+  Map<String, dynamic> toJson() =>
+      _$GetAddresses$Query$GetAddressesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetAddresses$Query with EquatableMixin {
+  GetAddresses$Query();
+
+  factory GetAddresses$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetAddresses$QueryFromJson(json);
+
+  List<GetAddresses$Query$GetAddresses> getAddresses;
+
+  @override
+  List<Object> get props => [getAddresses];
+  Map<String, dynamic> toJson() => _$GetAddresses$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindUserById$Query$FindUserById with EquatableMixin, UserDataMixin {
+  FindUserById$Query$FindUserById();
+
+  factory FindUserById$Query$FindUserById.fromJson(Map<String, dynamic> json) =>
+      _$FindUserById$Query$FindUserByIdFromJson(json);
+
+  @override
+  List<Object> get props => [$$typename, id, stripeCustId];
+  Map<String, dynamic> toJson() =>
+      _$FindUserById$Query$FindUserByIdToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindUserById$Query with EquatableMixin {
+  FindUserById$Query();
+
+  factory FindUserById$Query.fromJson(Map<String, dynamic> json) =>
+      _$FindUserById$QueryFromJson(json);
+
+  FindUserById$Query$FindUserById findUserById;
+
+  @override
+  List<Object> get props => [findUserById];
+  Map<String, dynamic> toJson() => _$FindUserById$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindOneShopItem$Query$ShopItem with EquatableMixin, ShopItemMixin {
+  FindOneShopItem$Query$ShopItem();
+
+  factory FindOneShopItem$Query$ShopItem.fromJson(Map<String, dynamic> json) =>
+      _$FindOneShopItem$Query$ShopItemFromJson(json);
+
+  @override
+  List<Object> get props =>
+      [$$typename, id, name, description, price, imageUrl, shop];
+  Map<String, dynamic> toJson() => _$FindOneShopItem$Query$ShopItemToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FindOneShopItem$Query with EquatableMixin {
+  FindOneShopItem$Query();
+
+  factory FindOneShopItem$Query.fromJson(Map<String, dynamic> json) =>
+      _$FindOneShopItem$QueryFromJson(json);
+
+  FindOneShopItem$Query$ShopItem shopItem;
+
+  @override
+  List<Object> get props => [shopItem];
+  Map<String, dynamic> toJson() => _$FindOneShopItem$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
 class AddPaymentInfoArguments extends JsonSerializable with EquatableMixin {
   AddPaymentInfoArguments({@required this.token, @required this.stripeCustId});
 
+  @override
   factory AddPaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
       _$AddPaymentInfoArgumentsFromJson(json);
 
@@ -490,6 +532,7 @@ class AddPaymentInfoArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [token, stripeCustId];
+  @override
   Map<String, dynamic> toJson() => _$AddPaymentInfoArgumentsToJson(this);
 }
 
@@ -548,6 +591,12 @@ class AddPaymentInfoMutation
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -570,6 +619,12 @@ class AddPaymentInfoMutation
                 name: NameNode(value: 'StripeCard'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'brand'),
               alias: null,
@@ -612,8 +667,9 @@ class AddPaymentInfoMutation
 
 @JsonSerializable(explicitToJson: true)
 class AddToOrderArguments extends JsonSerializable with EquatableMixin {
-  AddToOrderArguments({@required this.itemId, @required this.orderId});
+  AddToOrderArguments({@required this.itemId, this.orderId});
 
+  @override
   factory AddToOrderArguments.fromJson(Map<String, dynamic> json) =>
       _$AddToOrderArgumentsFromJson(json);
 
@@ -623,6 +679,7 @@ class AddToOrderArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [itemId, orderId];
+  @override
   Map<String, dynamic> toJson() => _$AddToOrderArgumentsToJson(this);
 }
 
@@ -645,7 +702,7 @@ class AddToOrderMutation
           VariableDefinitionNode(
               variable: VariableNode(name: NameNode(value: 'orderId')),
               type: NamedTypeNode(
-                  name: NameNode(value: 'String'), isNonNull: true),
+                  name: NameNode(value: 'String'), isNonNull: false),
               defaultValue: DefaultValueNode(value: null),
               directives: [])
         ],
@@ -679,6 +736,12 @@ class AddToOrderMutation
                 name: NameNode(value: 'OrderWithPrice'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
@@ -721,6 +784,12 @@ class AddToOrderMutation
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -755,6 +824,12 @@ class AddToOrderMutation
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
@@ -821,6 +896,234 @@ class AddToOrderMutation
 }
 
 @JsonSerializable(explicitToJson: true)
+class ApiArguments extends JsonSerializable with EquatableMixin {
+  ApiArguments({@required this.itemId, @required this.orderId});
+
+  @override
+  factory ApiArguments.fromJson(Map<String, dynamic> json) =>
+      _$ApiArgumentsFromJson(json);
+
+  final String itemId;
+
+  final String orderId;
+
+  @override
+  List<Object> get props => [itemId, orderId];
+  @override
+  Map<String, dynamic> toJson() => _$ApiArgumentsToJson(this);
+}
+
+class ApiMutation extends GraphQLQuery<Api$Mutation, ApiArguments> {
+  ApiMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: null,
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'itemId')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'orderId')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'removeFromOrder'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'removeFromOrderInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'item_id'),
+                          value: VariableNode(name: NameNode(value: 'itemId'))),
+                      ObjectFieldNode(
+                          name: NameNode(value: 'order_id'),
+                          value: VariableNode(name: NameNode(value: 'orderId')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'Order'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Order'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'OrderWithPrice'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'ownerId'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'orderItemCount'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'OrderItemCount'), directives: [])
+              ])),
+          FieldNode(
+              name: NameNode(value: 'price'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'paymentIntentId'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'OrderItemCount'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'OrderItemCount'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'orderId'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'count'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'shopItem'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'ShopItem'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'ShopItem'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'ShopItem'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'name'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'description'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'price'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'imageUrl'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'shop'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'api';
+
+  @override
+  final ApiArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  Api$Mutation parse(Map<String, dynamic> json) => Api$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
 class SignUpUserArguments extends JsonSerializable with EquatableMixin {
   SignUpUserArguments(
       {@required this.email,
@@ -830,6 +1133,7 @@ class SignUpUserArguments extends JsonSerializable with EquatableMixin {
       @required this.lastName,
       @required this.dob});
 
+  @override
   factory SignUpUserArguments.fromJson(Map<String, dynamic> json) =>
       _$SignUpUserArgumentsFromJson(json);
 
@@ -848,6 +1152,7 @@ class SignUpUserArguments extends JsonSerializable with EquatableMixin {
   @override
   List<Object> get props =>
       [email, password, displayName, firstName, lastName, dob];
+  @override
   Map<String, dynamic> toJson() => _$SignUpUserArgumentsToJson(this);
 }
 
@@ -944,6 +1249,12 @@ class SignUpUserMutation
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -982,6 +1293,7 @@ class AddAddressArguments extends JsonSerializable with EquatableMixin {
       @required this.state,
       @required this.isDefault});
 
+  @override
   factory AddAddressArguments.fromJson(Map<String, dynamic> json) =>
       _$AddAddressArgumentsFromJson(json);
 
@@ -1002,6 +1314,7 @@ class AddAddressArguments extends JsonSerializable with EquatableMixin {
   @override
   List<Object> get props =>
       [country, city, line1, line2, postalCode, state, isDefault];
+  @override
   Map<String, dynamic> toJson() => _$AddAddressArgumentsToJson(this);
 }
 
@@ -1106,6 +1419,12 @@ class AddAddressMutation
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1167,6 +1486,7 @@ class AddAddressMutation
 class DeletePaymentInfoArguments extends JsonSerializable with EquatableMixin {
   DeletePaymentInfoArguments({@required this.paymentMethodId});
 
+  @override
   factory DeletePaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
       _$DeletePaymentInfoArgumentsFromJson(json);
 
@@ -1174,6 +1494,7 @@ class DeletePaymentInfoArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [paymentMethodId];
+  @override
   Map<String, dynamic> toJson() => _$DeletePaymentInfoArgumentsToJson(this);
 }
 
@@ -1234,6 +1555,78 @@ class DeletePaymentInfoMutation extends GraphQLQuery<DeletePaymentInfo$Mutation,
       DeletePaymentInfo$Mutation.fromJson(json);
 }
 
+@JsonSerializable(explicitToJson: true)
+class RemoveAddressArguments extends JsonSerializable with EquatableMixin {
+  RemoveAddressArguments({@required this.id});
+
+  @override
+  factory RemoveAddressArguments.fromJson(Map<String, dynamic> json) =>
+      _$RemoveAddressArgumentsFromJson(json);
+
+  final String id;
+
+  @override
+  List<Object> get props => [id];
+  @override
+  Map<String, dynamic> toJson() => _$RemoveAddressArgumentsToJson(this);
+}
+
+class RemoveAddressMutation
+    extends GraphQLQuery<RemoveAddress$Mutation, RemoveAddressArguments> {
+  RemoveAddressMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'removeAddress'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'id')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'String'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'removeAddress'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'addAddressInput'),
+                    value: ObjectValueNode(fields: [
+                      ObjectFieldNode(
+                          name: NameNode(value: 'id'),
+                          value: VariableNode(name: NameNode(value: 'id')))
+                    ]))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'removeAddress';
+
+  @override
+  final RemoveAddressArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  RemoveAddress$Mutation parse(Map<String, dynamic> json) =>
+      RemoveAddress$Mutation.fromJson(json);
+}
+
 class AllShopItemsQuery
     extends GraphQLQuery<AllShopItems$Query, JsonSerializable> {
   AllShopItemsQuery();
@@ -1263,6 +1656,12 @@ class AllShopItemsQuery
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
@@ -1329,6 +1728,7 @@ class AllShopItemsQuery
 class GetPaymentInfoArguments extends JsonSerializable with EquatableMixin {
   GetPaymentInfoArguments({@required this.stripeCustId});
 
+  @override
   factory GetPaymentInfoArguments.fromJson(Map<String, dynamic> json) =>
       _$GetPaymentInfoArgumentsFromJson(json);
 
@@ -1336,6 +1736,7 @@ class GetPaymentInfoArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [stripeCustId];
+  @override
   Map<String, dynamic> toJson() => _$GetPaymentInfoArgumentsToJson(this);
 }
 
@@ -1385,6 +1786,12 @@ class GetPaymentInfoQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1407,6 +1814,12 @@ class GetPaymentInfoQuery
                 name: NameNode(value: 'StripeCard'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'brand'),
               alias: null,
@@ -1477,6 +1890,12 @@ class FindOrdersFromOwnerIdQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1518,6 +1937,12 @@ class FindOrdersFromOwnerIdQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1552,6 +1977,12 @@ class FindOrdersFromOwnerIdQuery
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
@@ -1644,6 +2075,12 @@ class GetAddressesQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1708,6 +2145,7 @@ class GetAddressesQuery
 class FindUserByIdArguments extends JsonSerializable with EquatableMixin {
   FindUserByIdArguments({@required this.id});
 
+  @override
   factory FindUserByIdArguments.fromJson(Map<String, dynamic> json) =>
       _$FindUserByIdArgumentsFromJson(json);
 
@@ -1715,6 +2153,7 @@ class FindUserByIdArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [id];
+  @override
   Map<String, dynamic> toJson() => _$FindUserByIdArgumentsToJson(this);
 }
 
@@ -1758,6 +2197,12 @@ class FindUserByIdQuery
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
@@ -1789,6 +2234,7 @@ class FindUserByIdQuery
 class FindOneShopItemArguments extends JsonSerializable with EquatableMixin {
   FindOneShopItemArguments({@required this.id});
 
+  @override
   factory FindOneShopItemArguments.fromJson(Map<String, dynamic> json) =>
       _$FindOneShopItemArgumentsFromJson(json);
 
@@ -1796,6 +2242,7 @@ class FindOneShopItemArguments extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object> get props => [id];
+  @override
   Map<String, dynamic> toJson() => _$FindOneShopItemArgumentsToJson(this);
 }
 
@@ -1843,6 +2290,12 @@ class FindOneShopItemQuery
                 name: NameNode(value: 'ShopItem'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
           FieldNode(
               name: NameNode(value: 'id'),
               alias: null,
@@ -1906,282 +2359,4 @@ class FindOneShopItemQuery
   @override
   FindOneShopItem$Query parse(Map<String, dynamic> json) =>
       FindOneShopItem$Query.fromJson(json);
-}
-
-@JsonSerializable(explicitToJson: true)
-class RemoveAddressArguments extends JsonSerializable with EquatableMixin {
-  RemoveAddressArguments({@required this.id});
-
-  factory RemoveAddressArguments.fromJson(Map<String, dynamic> json) =>
-      _$RemoveAddressArgumentsFromJson(json);
-
-  final String id;
-
-  @override
-  List<Object> get props => [id];
-  Map<String, dynamic> toJson() => _$RemoveAddressArgumentsToJson(this);
-}
-
-class RemoveAddressMutation
-    extends GraphQLQuery<RemoveAddress$Mutation, RemoveAddressArguments> {
-  RemoveAddressMutation({this.variables});
-
-  @override
-  final DocumentNode document = DocumentNode(definitions: [
-    OperationDefinitionNode(
-        type: OperationType.mutation,
-        name: NameNode(value: 'removeAddress'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'id')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'String'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'removeAddress'),
-              alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'addAddressInput'),
-                    value: ObjectValueNode(fields: [
-                      ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')))
-                    ]))
-              ],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
-  ]);
-
-  @override
-  final String operationName = 'removeAddress';
-
-  @override
-  final RemoveAddressArguments variables;
-
-  @override
-  List<Object> get props => [document, operationName, variables];
-  @override
-  RemoveAddress$Mutation parse(Map<String, dynamic> json) =>
-      RemoveAddress$Mutation.fromJson(json);
-}
-
-@JsonSerializable(explicitToJson: true)
-class ApiArguments extends JsonSerializable with EquatableMixin {
-  ApiArguments({@required this.itemId, @required this.orderId});
-
-  factory ApiArguments.fromJson(Map<String, dynamic> json) =>
-      _$ApiArgumentsFromJson(json);
-
-  final String itemId;
-
-  final String orderId;
-
-  @override
-  List<Object> get props => [itemId, orderId];
-  Map<String, dynamic> toJson() => _$ApiArgumentsToJson(this);
-}
-
-class ApiMutation extends GraphQLQuery<Api$Mutation, ApiArguments> {
-  ApiMutation({this.variables});
-
-  @override
-  final DocumentNode document = DocumentNode(definitions: [
-    OperationDefinitionNode(
-        type: OperationType.mutation,
-        name: null,
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'itemId')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'String'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: []),
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'orderId')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'String'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'removeFromOrder'),
-              alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'removeFromOrderInput'),
-                    value: ObjectValueNode(fields: [
-                      ObjectFieldNode(
-                          name: NameNode(value: 'item_id'),
-                          value: VariableNode(name: NameNode(value: 'itemId'))),
-                      ObjectFieldNode(
-                          name: NameNode(value: 'order_id'),
-                          value: VariableNode(name: NameNode(value: 'orderId')))
-                    ]))
-              ],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FragmentSpreadNode(
-                    name: NameNode(value: 'Order'), directives: [])
-              ]))
-        ])),
-    FragmentDefinitionNode(
-        name: NameNode(value: 'Order'),
-        typeCondition: TypeConditionNode(
-            on: NamedTypeNode(
-                name: NameNode(value: 'OrderWithPrice'), isNonNull: false)),
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'id'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'ownerId'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'orderItemCount'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FragmentSpreadNode(
-                    name: NameNode(value: 'OrderItemCount'), directives: [])
-              ])),
-          FieldNode(
-              name: NameNode(value: 'price'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'paymentIntentId'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null)
-        ])),
-    FragmentDefinitionNode(
-        name: NameNode(value: 'OrderItemCount'),
-        typeCondition: TypeConditionNode(
-            on: NamedTypeNode(
-                name: NameNode(value: 'OrderItemCount'), isNonNull: false)),
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'id'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'orderId'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'count'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'shopItem'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FragmentSpreadNode(
-                    name: NameNode(value: 'ShopItem'), directives: [])
-              ]))
-        ])),
-    FragmentDefinitionNode(
-        name: NameNode(value: 'ShopItem'),
-        typeCondition: TypeConditionNode(
-            on: NamedTypeNode(
-                name: NameNode(value: 'ShopItem'), isNonNull: false)),
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'id'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'name'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'description'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'price'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'imageUrl'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null),
-          FieldNode(
-              name: NameNode(value: 'shop'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'username'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
-  ]);
-
-  @override
-  final String operationName = 'api';
-
-  @override
-  final ApiArguments variables;
-
-  @override
-  List<Object> get props => [document, operationName, variables];
-  @override
-  Api$Mutation parse(Map<String, dynamic> json) => Api$Mutation.fromJson(json);
 }

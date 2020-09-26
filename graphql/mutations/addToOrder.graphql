@@ -1,4 +1,4 @@
-mutation addToOrder($itemId: String!, $orderId: String!) {
+mutation addToOrder($itemId: String!, $orderId: String) {
   addToOrder(addToOrderInput: { item_id: $itemId, order_id: $orderId }) {
     ...Order
 	}

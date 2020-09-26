@@ -1,10 +1,8 @@
-import 'package:Taag/Auth/providers/UserProvider.dart';
+import 'package:Taag/ItemDetails/widgets/BuyNowButton/BuyNowButtonView.dart';
 import 'package:Taag/graphql/api.graphql.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:Taag/ItemDetails/widgets/AddToCartButton/BuyNowButtonView.dart';
-import 'package:provider/provider.dart';
 
 class BuyNowButton extends StatelessWidget {
   final String itemId;
@@ -18,18 +16,27 @@ class BuyNowButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Mutation(
         options: MutationOptions(
-          onCompleted: (_) {
-            Get.snackbar('Item added', 'Item has been added to cart');
-          },
-          documentNode: AddToOrderMutation().document,
-        ),
+            onCompleted: (_) {
+              FlushbarHelper.createSuccess(
+                      message: 'Item has been added to cart')
+                  .show(context);
+            },
+            update: (cache, result) {
+              final OrderMixin order =
+                  AddToOrder$Mutation.fromJson(result.data).addToOrder;
+              cache.write(typenameDataIdFromObject(order), order);
+            },
+            documentNode: AddToOrderMutation().document,
+            onError: (err) {
+              FlushbarHelper.createError(message: err.graphqlErrors[0].message)
+                  .show(context);
+            }),
         builder: (RunMutation runMutation, result) {
           return BuyNowButtonView(
               loading: result.loading,
               addToCart: () {
                 runMutation({
                   'itemId': itemId,
-                  'buyerId': context.read<UserProvider>().user.id
                 });
               });
         });

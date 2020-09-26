@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:Taag/ItemDetails/widgets/BuyNowButton/BuyNowButton.dart';
+import 'package:Taag/graphql/GraphqlContainer.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -28,6 +31,7 @@ class ItemDetails extends StatelessWidget {
           }
           final ShopItemMixin item =
               FindOneShopItem$Query.fromJson(result.data).shopItem;
+
           return Scaffold(
               backgroundColor: Theme.of(context).accentColor,
               floatingActionButton: Padding(

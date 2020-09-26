@@ -1,4 +1,5 @@
 fragment Address on Address {
+  __typename
   id
   line1
   line2

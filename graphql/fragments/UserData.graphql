@@ -1,4 +1,5 @@
 fragment UserData on User {
+  __typename
   id,
   stripe_cust_id
 }

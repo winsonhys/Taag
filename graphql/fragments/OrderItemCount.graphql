@@ -1,4 +1,5 @@
 fragment OrderItemCount on OrderItemCount {
+  __typename
   id
   orderId
   count

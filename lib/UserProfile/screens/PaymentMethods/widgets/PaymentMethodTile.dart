@@ -29,7 +29,7 @@ class PaymentMethodTile extends StatelessWidget {
                 text: '**** **** **** ${card.last4}\n'),
             TextSpan(
                 style: Theme.of(context).textTheme.subtitle1,
-                text: '${card.exp_month.toInt()}/${card.exp_year.toInt()}'),
+                text: '${card.expMonth.toInt()}/${card.expYear.toInt()}'),
           ]),
           minFontSize: 6,
         ),
