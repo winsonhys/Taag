@@ -161,9 +161,10 @@ Map<String, dynamic> _$ShopItemMixin$ShopToJson(ShopItemMixin$Shop instance) =>
       'username': instance.username,
     };
 
-Api$Mutation$RemoveFromOrder _$Api$Mutation$RemoveFromOrderFromJson(
-    Map<String, dynamic> json) {
-  return Api$Mutation$RemoveFromOrder()
+RemoveFromOrder$Mutation$RemoveFromOrder
+    _$RemoveFromOrder$Mutation$RemoveFromOrderFromJson(
+        Map<String, dynamic> json) {
+  return RemoveFromOrder$Mutation$RemoveFromOrder()
     ..$$typename = json['__typename'] as String
     ..id = json['id'] as String
     ..ownerId = json['ownerId'] as String
@@ -175,8 +176,8 @@ Api$Mutation$RemoveFromOrder _$Api$Mutation$RemoveFromOrderFromJson(
     ..paymentIntentId = json['paymentIntentId'] as String;
 }
 
-Map<String, dynamic> _$Api$Mutation$RemoveFromOrderToJson(
-        Api$Mutation$RemoveFromOrder instance) =>
+Map<String, dynamic> _$RemoveFromOrder$Mutation$RemoveFromOrderToJson(
+        RemoveFromOrder$Mutation$RemoveFromOrder instance) =>
     <String, dynamic>{
       '__typename': instance.$$typename,
       'id': instance.id,
@@ -186,15 +187,17 @@ Map<String, dynamic> _$Api$Mutation$RemoveFromOrderToJson(
       'paymentIntentId': instance.paymentIntentId,
     };
 
-Api$Mutation _$Api$MutationFromJson(Map<String, dynamic> json) {
-  return Api$Mutation()
+RemoveFromOrder$Mutation _$RemoveFromOrder$MutationFromJson(
+    Map<String, dynamic> json) {
+  return RemoveFromOrder$Mutation()
     ..removeFromOrder = json['removeFromOrder'] == null
         ? null
-        : Api$Mutation$RemoveFromOrder.fromJson(
+        : RemoveFromOrder$Mutation$RemoveFromOrder.fromJson(
             json['removeFromOrder'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$Api$MutationToJson(Api$Mutation instance) =>
+Map<String, dynamic> _$RemoveFromOrder$MutationToJson(
+        RemoveFromOrder$Mutation instance) =>
     <String, dynamic>{
       'removeFromOrder': instance.removeFromOrder?.toJson(),
     };
@@ -587,14 +590,16 @@ Map<String, dynamic> _$AddToOrderArgumentsToJson(
       'orderId': instance.orderId,
     };
 
-ApiArguments _$ApiArgumentsFromJson(Map<String, dynamic> json) {
-  return ApiArguments(
+RemoveFromOrderArguments _$RemoveFromOrderArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return RemoveFromOrderArguments(
     itemId: json['itemId'] as String,
     orderId: json['orderId'] as String,
   );
 }
 
-Map<String, dynamic> _$ApiArgumentsToJson(ApiArguments instance) =>
+Map<String, dynamic> _$RemoveFromOrderArgumentsToJson(
+        RemoveFromOrderArguments instance) =>
     <String, dynamic>{
       'itemId': instance.itemId,
       'orderId': instance.orderId,

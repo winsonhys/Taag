@@ -201,30 +201,32 @@ class ShopItemMixin$Shop with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Api$Mutation$RemoveFromOrder with EquatableMixin, OrderMixin {
-  Api$Mutation$RemoveFromOrder();
+class RemoveFromOrder$Mutation$RemoveFromOrder with EquatableMixin, OrderMixin {
+  RemoveFromOrder$Mutation$RemoveFromOrder();
 
-  factory Api$Mutation$RemoveFromOrder.fromJson(Map<String, dynamic> json) =>
-      _$Api$Mutation$RemoveFromOrderFromJson(json);
+  factory RemoveFromOrder$Mutation$RemoveFromOrder.fromJson(
+          Map<String, dynamic> json) =>
+      _$RemoveFromOrder$Mutation$RemoveFromOrderFromJson(json);
 
   @override
   List<Object> get props =>
       [$$typename, id, ownerId, orderItemCount, price, paymentIntentId];
-  Map<String, dynamic> toJson() => _$Api$Mutation$RemoveFromOrderToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$RemoveFromOrder$Mutation$RemoveFromOrderToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Api$Mutation with EquatableMixin {
-  Api$Mutation();
+class RemoveFromOrder$Mutation with EquatableMixin {
+  RemoveFromOrder$Mutation();
 
-  factory Api$Mutation.fromJson(Map<String, dynamic> json) =>
-      _$Api$MutationFromJson(json);
+  factory RemoveFromOrder$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$RemoveFromOrder$MutationFromJson(json);
 
-  Api$Mutation$RemoveFromOrder removeFromOrder;
+  RemoveFromOrder$Mutation$RemoveFromOrder removeFromOrder;
 
   @override
   List<Object> get props => [removeFromOrder];
-  Map<String, dynamic> toJson() => _$Api$MutationToJson(this);
+  Map<String, dynamic> toJson() => _$RemoveFromOrder$MutationToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -896,12 +898,12 @@ class AddToOrderMutation
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiArguments extends JsonSerializable with EquatableMixin {
-  ApiArguments({@required this.itemId, @required this.orderId});
+class RemoveFromOrderArguments extends JsonSerializable with EquatableMixin {
+  RemoveFromOrderArguments({@required this.itemId, @required this.orderId});
 
   @override
-  factory ApiArguments.fromJson(Map<String, dynamic> json) =>
-      _$ApiArgumentsFromJson(json);
+  factory RemoveFromOrderArguments.fromJson(Map<String, dynamic> json) =>
+      _$RemoveFromOrderArgumentsFromJson(json);
 
   final String itemId;
 
@@ -910,17 +912,18 @@ class ApiArguments extends JsonSerializable with EquatableMixin {
   @override
   List<Object> get props => [itemId, orderId];
   @override
-  Map<String, dynamic> toJson() => _$ApiArgumentsToJson(this);
+  Map<String, dynamic> toJson() => _$RemoveFromOrderArgumentsToJson(this);
 }
 
-class ApiMutation extends GraphQLQuery<Api$Mutation, ApiArguments> {
-  ApiMutation({this.variables});
+class RemoveFromOrderMutation
+    extends GraphQLQuery<RemoveFromOrder$Mutation, RemoveFromOrderArguments> {
+  RemoveFromOrderMutation({this.variables});
 
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
         type: OperationType.mutation,
-        name: null,
+        name: NameNode(value: 'removeFromOrder'),
         variableDefinitions: [
           VariableDefinitionNode(
               variable: VariableNode(name: NameNode(value: 'itemId')),
@@ -1112,15 +1115,16 @@ class ApiMutation extends GraphQLQuery<Api$Mutation, ApiArguments> {
   ]);
 
   @override
-  final String operationName = 'api';
+  final String operationName = 'removeFromOrder';
 
   @override
-  final ApiArguments variables;
+  final RemoveFromOrderArguments variables;
 
   @override
   List<Object> get props => [document, operationName, variables];
   @override
-  Api$Mutation parse(Map<String, dynamic> json) => Api$Mutation.fromJson(json);
+  RemoveFromOrder$Mutation parse(Map<String, dynamic> json) =>
+      RemoveFromOrder$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)

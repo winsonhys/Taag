@@ -1,4 +1,4 @@
-mutation($itemId: String!, $orderId: String!) {
+mutation removeFromOrder($itemId: String!, $orderId: String!) {
     removeFromOrder(removeFromOrderInput: { item_id: $itemId, order_id: $orderId }) {
         ...Order
     }
