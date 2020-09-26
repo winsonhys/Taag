@@ -10,7 +10,7 @@ class AddAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenContainer(
-        title: "Add Address",
+        title: 'Add Address',
         body: ChangeNotifierProvider(
             create: (_) => AddressProvider(), child: AddAddressView()));
   }

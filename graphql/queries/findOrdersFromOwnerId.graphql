@@ -1,5 +1,5 @@
-query findOrdersFromOwnerId($ownerId: String!){
-  findOrdersFromOwnerId(ownerId: $ownerId) {
+query findOrdersFromOwnerId{
+  findOrdersFromOwnerId {
     ...Order
   }
 }

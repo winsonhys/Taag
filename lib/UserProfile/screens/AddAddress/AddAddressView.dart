@@ -71,7 +71,7 @@ class AddAddressView extends HookWidget {
                           ? 'Please enter your postal code'
                           : null),
                   Row(children: [
-                    Text("Set this as default address"),
+                    Text('Set this as default address'),
                     Switch(
                         value: context.watch<AddressProvider>().isDefault,
                         onChanged: (value) =>

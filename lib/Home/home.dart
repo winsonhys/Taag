@@ -1,9 +1,7 @@
-import 'package:Taag/Auth/providers/UserProvider.dart';
 import 'package:Taag/Home/widgets/HomeView.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
@@ -12,8 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query(
         options: QueryOptions(
-            documentNode: FindOrdersFromOwnerIdQuery().document,
-            variables: {'ownerId': context.watch<UserProvider>().user.id}),
+          documentNode: FindOrdersFromOwnerIdQuery().document,
+        ),
         builder: (result, {fetchMore, refetch}) {
           if (result.loading) {
             return CircularProgressIndicator();

@@ -1,4 +1,4 @@
-fragment Order on Order {
+fragment Order on OrderWithPrice {
   id
   ownerId
   orderItemCount {

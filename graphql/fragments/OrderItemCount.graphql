@@ -1,7 +1,6 @@
 fragment OrderItemCount on OrderItemCount {
   id
   orderId
-  price
   count
   shopItem {
     ...ShopItem
