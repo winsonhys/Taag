@@ -1,4 +1,4 @@
-import 'package:Taag/ItemDetails/widgets/BuyNOwButton/BuyNowButton.dart';
+import 'package:Taag/ItemDetails/widgets/BuyNowButton/BuyNowButton.dart';
 import 'package:Taag/graphql/api.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
