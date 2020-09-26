@@ -11,7 +11,7 @@ class Orders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Query(
-        options: QueryOptions(
+        options: WatchQueryOptions(
             documentNode: FindOrdersFromOwnerIdQuery().document,
             variables: {'ownerId': context.watch<UserProvider>().user.id}),
         builder: (result, {fetchMore, refetch}) {
