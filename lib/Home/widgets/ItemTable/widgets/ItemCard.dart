@@ -2,16 +2,19 @@ import 'package:Taag/graphql/api.graphql.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:Taag/ItemDetails/ItemDetails.dart';
+import 'package:get/route_manager.dart';
 import 'package:lottie/lottie.dart';
 
 class Itemcard extends StatelessWidget {
   final ShopItemMixin item;
+  final Function refetch;
 
-  const Itemcard({@required this.item, Key key}) : super(key: key);
+  const Itemcard({@required this.item, @required this.refetch, Key key})
+      : super(key: key);
 
   void goToItemPage(context) {
-    Navigator.pushNamed(context, ItemDetails.route,
-        arguments: ItemDetailsArguments(item.id));
+    Get.toNamed(ItemDetails.route, arguments: ItemDetailsArguments(item.id))
+        .then((value) => refetch());
   }
 
   @override

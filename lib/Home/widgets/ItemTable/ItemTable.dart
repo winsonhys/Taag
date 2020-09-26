@@ -5,10 +5,14 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:Taag/Home/widgets/ItemTable/widgets/ItemCard.dart';
 
 class ItemTable extends StatelessWidget {
-  const ItemTable({Key key}) : super(key: key);
+  const ItemTable({Key key, @required this.refetchOrders}) : super(key: key);
+  final Function refetchOrders;
 
   Widget _buildGridItem(ShopItemMixin item) {
-    return Itemcard(item: item);
+    return Itemcard(
+      item: item,
+      refetch: refetchOrders,
+    );
   }
 
   @override

@@ -7,7 +7,9 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 class HomeView extends StatelessWidget {
   final _panelController = PanelController();
   final double subtotal;
-  HomeView({Key key, @required this.subtotal}) : super(key: key);
+  final Function refetch;
+  HomeView({Key key, @required this.subtotal, @required this.refetch})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class HomeView extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(),
               body: Center(
-                child: ItemTable(),
+                child: ItemTable(refetchOrders: refetch),
               )),
         ));
     return panel;
